@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沐序Hair salon</title>
+  <link href="./css/bootstrap.css" rel="stylesheet" />
+  <link href="./css/carousel.css" rel="stylesheet" />
+  <link rel="icon" href="./img/0817-沐序 LOGO (4).png">
+  <style>
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md fixed-top mark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./mini_topic.html"><img src="./img/0817-沐序 LOGO (3).png" width="100px"
+          height="auto"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mb-5 mb-md-0 ms-auto">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="./mini_topic.html">首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="./reserve.html">立即預約</a></li>
+          <li class="nav-item"><a class="nav-link" href="./Breaking_news.html">最新消息</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about_us.html">關於我們</a></li>
+        </ul>
+        <!-- 開啟登入表單的按鈕 -->
+        <button onclick="document.getElementById('id01').style.display='block'"
+          class="btn btn-neutral-brown ms-auto">登入</button>
+
+        <!-- 登入彈跳視窗 -->
+        <div id="id01" class="modal">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">&times;</span>
+
+          <!-- 彈跳視窗內容 -->
+          <form class="modal-content animate" action="">
+            <div class="containerlogin">
+              <label for="uname"><b>使用者名稱</b></label>
+              <input type="text" placeholder="輸入您的帳號..." name="uname" required>
+
+              <label for="psw"><b>密碼</b></label>
+              <input type="password" placeholder="輸入您的密碼..." name="psw" required>
+
+              <label>
+                <input type="checkbox" checked="checked" name="remember"> 記住我
+              </label><br>
+              <button type="submit">登入</button>
+            </div>
+
+            <div class="containerlogin" style="background-color:#EFE7DA">
+              <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                class="cancelbtn">取消</button>
+              <span class="psw"><a href="#">忘記密碼?</a></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./img/S__1610874911.jpg" class="img-fluid w-100" />
+          <div class="carousel-caption text-start">
+            <h2>沐序Hair salon</h2>
+            <p class="opacity-75">
+              沐光而來，序美而生
+            </p>
+            <p>
+              <a class="btn btn-lg btn-neutral-brown1" href="./reserve.html">立即預約</a>
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/S__161406978.jpg" class="img-fluid w-100" />
+        </div>
+        <div class="carousel-item">
+          <img src="./img/S__161398789.jpg" class="img-fluid w-100" />
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+    <!-- 行銷訊息與特色區塊
+  ================================================== -->
+    <!-- 用另一個 container 包住頁面其餘內容，讓內容置中。 -->
+    <div class="container marketing">
+      <!-- 輪播圖下方的三個欄位 -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img src="./img/沐序 LOGO.png" class="bd-placeholder-img rounded-circle" width="140" height="140"
+            style="object-fit: cover;">
+          <h2 class="fw-normal">沐序Hair salon</h2>
+          <p>
+            以「溫柔、專業、療癒」為核心，提供剪髮、染燙、護理與頭皮養護等全方位服務。
+            從溝通到設計，我們細心傾聽您的需求，打造專屬於您的風格。舒適的空間氛圍，
+            讓您在美麗蛻變的同時，也能享受片刻放鬆與療癒。
+          </p>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img src="./img/LINE_ALBUM_Paul mitchell_251210_1.jpg" class="bd-placeholder-img rounded-circle" width="140"
+            height="140" style="object-fit: cover;">
+          <h2 class="fw-normal">肯邦 Paul mitchell</h2>
+          <p>
+            「專業沙龍級、創新科技、環保永續、平實奢華」，
+            強調透過專業技術與優質產品，
+            提供「最棒的整髮工具與奢華護髮體驗」，
+            同時結合環保理念，使用潔淨能源與天然植物，
+            並建立強大的設計師社群，以專業與創新引領美髮潮流。
+            在沐序，我們相信髮型不只是外在，更是一種心境的呈現。
+          </p>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img src="./img/LINE_ALBUM_Lebel_251210_1.jpg" class="bd-placeholder-img rounded-circle" width="140"
+            height="140" style="object-fit: cover;">
+          <h2 class="fw-normal">Lebel</h2>
+          <p>
+            專為東方人髮質設計的專業沙龍級美髮品牌，
+            強調科技與自然結合，利用如幹細胞等先進技術，
+            不僅滋養髮絲，更注重激活頭皮的自我保濕力，
+            追求從根源打造健康、水潤的秀髮，傳遞「水潤頭皮，孕育健康秀髮」
+            與「美麗の誕生」的理念。
+          </p>
+        </div>
+        <!-- /.col-lg-4 -->
+      </div>
+      <!-- /.row -->
+      <!-- 特色區塊開始 -->
+      <hr class="featurette-divider">
+      <div style="margin: 0 50px">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-light lh-1">
+              頭皮養護
+            </h2>
+            <p class="lead">
+              讓頭皮重啟呼吸，透過深層清潔、平衡油脂、舒緩修護與強化髮根，
+              為你打造最健康、最穩定的頭皮環境。
+            </p>
+          </div>
+          <div class="col-md-5 d-flex justify-content-center">
+            <div class="flip-box">
+              <div class="flip-box-inner">
+                <div class="flip-box-front">
+                  <img src="./img/Before_scalp_care.jpg" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="flip-box-back">
+                  <img src="./img/After_scalp_care.jpg" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="featurette-divider" />
+      <div style="margin: 0 50px">
+        <div class="row featurette">
+          <div class="col-md-6 order-md-2 d-flex align-items-center">
+            <div>
+              <h2 class="featurette-heading fw-normal lh-1">
+                縮毛矯正
+              </h2>
+              <p class="lead">
+                讓頭髮回到最美的樣貌，用細緻溫和的技法調整髮絲結構，讓每一束髮都變得滑順、柔軟、自然。
+                告別潮濕天氣的毛躁困擾，留住光澤與輕盈。
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center">
+            <div class="flip-box2">
+              <div class="flip-box-inner">
+                <div class="flip-box-front">
+                  <img src="./img/Hair_reduction_correction1.jpg" style="width:auto;height:100%;object-fit:cover;">
+                </div>
+                <div class="flip-box-back">
+                  <img src="./img/Hair_reduction_correction2.jpg" style="width:auto;height:100%;object-fit:cover;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="featurette-divider" />
+      <div style="margin: 0 50px">
+        <div class="row featurette">
+          <div class="col-md-7 d-flex align-items-center">
+            <div>
+              <h2 class="featurette-heading fw-normal lh-1">
+                線條染
+              </h2>
+              <p class="lead">
+                用細緻挑染打造自然光影，讓髮量更蓬鬆、輪廓更立體、髮色更耐看。
+                輕鬆提升質感，不用頻繁補染也能一直好看。
+                白髮不必遮，而是讓它與線條共存，變成你的獨特風格。
+              </p>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-center">
+            <div class="flip-box3">
+              <div class="flip-box-inner">
+                <div class="flip-box-front">
+                  <img src="./img/Line_dyeing1.jpg" style="width:auto;height:100%;object-fit:cover;">
+                </div>
+                <div class="flip-box-back">
+                  <img src="./img/Line_dyeing2.jpg" style="width:auto;height:100%;object-fit:cover;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider" />
+    <!-- 特色區塊結束 -->
+    <!-- /.container -->
+    <!-- 頁尾 -->
+    <footer class="container">
+      <a href="https://line.me/ti/p/peBk-c-SYT" target="_blank"><svg width="22" height="auto" fill="currentColor" class="bi bi-line social_media"
+          style="margin-right:16px;color:#B29079" viewBox="0 0 16 16">
+          <path
+            d="M8 0c4.411 0 8 2.912 8 6.492 0 1.433-.555 2.723-1.715 3.994-1.678 1.932-5.431 4.285-6.285 4.645-.83.35-.734-.197-.696-.413l.003-.018.114-.685c.027-.204.055-.521-.026-.723-.09-.223-.444-.339-.704-.395C2.846 12.39 0 9.701 0 6.492 0 2.912 3.59 0 8 0M5.022 7.686H3.497V4.918a.156.156 0 0 0-.155-.156H2.78a.156.156 0 0 0-.156.156v3.486c0 .041.017.08.044.107v.001l.002.002.002.002a.15.15 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157m.791-2.924a.156.156 0 0 0-.156.156v3.486c0 .086.07.155.156.155h.562c.086 0 .155-.07.155-.155V4.918a.156.156 0 0 0-.155-.156zm3.863 0a.156.156 0 0 0-.156.156v2.07L7.923 4.832l-.013-.015v-.001l-.01-.01-.003-.003-.011-.009h-.001L7.88 4.79l-.003-.002-.005-.003-.008-.005h-.002l-.003-.002-.01-.004-.004-.002-.01-.003h-.002l-.003-.001-.009-.002h-.006l-.003-.001h-.004l-.002-.001h-.574a.156.156 0 0 0-.156.155v3.486c0 .086.07.155.156.155h.56c.087 0 .157-.07.157-.155v-2.07l1.6 2.16a.2.2 0 0 0 .039.038l.001.001.01.006.004.002.008.004.007.003.005.002.01.003h.003a.2.2 0 0 0 .04.006h.56c.087 0 .157-.07.157-.155V4.918a.156.156 0 0 0-.156-.156zm3.815.717v-.56a.156.156 0 0 0-.155-.157h-2.242a.16.16 0 0 0-.108.044h-.001l-.001.002-.002.003a.16.16 0 0 0-.044.107v3.486c0 .041.017.08.044.107l.002.003.002.002a.16.16 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156Z" />
+        </svg></a>
+      <a href="https://www.instagram.com/mushue_hair_salon?igsh=dWptYjczaXpsY29m&utm_source=qr" target="_blank"><svg width="22"
+          height="auto" fill="currentColor" class="bi bi-instagram social_media" style="margin-right:16px;color:#B29079"
+          viewBox="0 0 16 16">
+          <path
+            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+        </svg></a>
+      <a href="#" class=" btn btn-neutral-brown float-end"><svg width="25" height="auto" fill="currentColor"
+          class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5" />
+        </svg></a>
+    </footer>
+  </main>
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script>
+    var modal = document.getElementById('id01');
+
+    // 當使用者點擊彈跳視窗外部時，關閉彈跳視窗
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>

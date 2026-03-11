@@ -1,0 +1,261 @@
+.cal-month,
+.cal-days,
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+}
+
+.cal-month-name {
+  grid-column-start: 2;
+  grid-column-end: 7;
+  text-align: center;
+}
+
+.cal-weekday,
+.cal-btn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  padding: 0;
+}
+
+.cal-btn:not([disabled]) {
+  font-weight: 500;
+  color: var(--bs-emphasis-color);
+}
+
+.cal-btn:hover,
+.cal-btn:focus {
+  background-color: var(--bs-secondary-bg);
+}
+
+.cal-btn[disabled] {
+  border: 0;
+  opacity: .5;
+}
+
+.w-340px {
+  width: 340px;
+}
+
+.w-400px {
+  width: 400px;
+}
+
+input[type=text],
+select,
+textarea {
+  width: 100%;
+  /* 全寬 */
+  padding: 12px;
+  /* 一些內距 */
+  border: 1px solid #ccc;
+  /* 灰色邊框 */
+  border-radius: 10px;
+  /* 圓角邊框 */
+  box-sizing: border-box;
+  /* 確保 padding 和 width 不會跑掉 */
+  margin-top: 6px;
+  /* 上方外距 */
+  margin-bottom: 16px;
+  /* 下方外距 */
+  resize: vertical
+    /* 允許使用者垂直調整 textarea（不可水平調整） */
+}
+
+/* 設定送出按鈕的背景顏色等樣式 */
+input[type=submit] {
+  background-color: #B29079;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 滑鼠移到送出按鈕時，套用較深的顏色 */
+input[type=submit]:hover {
+  background-color: #C1B6A4;
+}
+
+/* 為表單加上背景色與內距 */
+.container1 {
+  border-radius: 15px;
+  background-color: #F6F5EC;
+  padding: 30px;
+  margin: 30px;
+}
+
+/* 用於標記今天的日期樣式 */
+.cal-today {
+  /* 例如：用主要顏色當背景，並設為白色文字 */
+  background-color: #EFE7DA;
+  /* Bootstrap 主要顏色 */
+  color: var(--bs-black) !important;
+  font-weight: bold;
+}
+
+/* 確保被點擊的過去日期樣式不突出 */
+.cal-days button[disabled] {
+  /* 讓禁用的按鈕看起來更像文字，沒有陰影或背景變化 */
+  cursor: default;
+  background-color: transparent !important;
+  opacity: 0.6;
+  /* 稍微透明化 */
+}
+
+.modal {
+  display: none;
+  /* 預設隱藏 */
+  position: fixed;
+  /* 固定位置 */
+  z-index: 1;
+  /* 顯示在最上層 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* 全寬 */
+  height: 100%;
+  /* 全高 */
+  overflow: auto;
+  /* 需要時可滾動 */
+  background-color: rgb(0, 0, 0);
+  /* 備用顏色 */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* 黑色帶透明度 */
+  padding-top: 60px;
+}
+
+/* 模態框內容/盒子 */
+.modal-content {
+  background-color: #fefefe;
+  margin: 12rem auto;
+  /* 距離頂部 20px 並置中 */
+  border: 1px solid #888;
+  width: 25rem;
+  /* 可依螢幕大小調整 */
+}
+
+/* 加入縮放動畫 */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+/* 縮放動畫 keyframes */
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
+/* 隱藏關閉按鈕 */
+.close {
+  position: absolute;
+  display: none;
+}
+
+/* 輸入框全寬 */
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* 所有按鈕的樣式 */
+button {
+  background-color: #B29079;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* 按鈕滑鼠懸停效果 */
+button:hover {
+  opacity: 0.8;
+}
+
+/* 取消按鈕的額外樣式（紅色） */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: lightcoral;
+  border-radius: 10px;
+}
+
+/* 容器加內距 */
+.containerlogin {
+  padding: 16px;
+  border-radius: 9px
+}
+
+/* 忘記密碼文字 */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* 在極小螢幕下調整 span 和取消按鈕樣式 */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+.nav-item a:hover {
+  background-color: #C1B6A4;
+  border-radius: 5px;
+}
+
+.nav-item {
+  margin-left: 15px;
+}
+
+.navbar-brand {
+  margin-left: 15px;
+}
+
+h2 {
+  font-weight: bold;
+  color: #B29079;
+  margin-top: 90px;
+  margin-bottom: 8px;
+}
+
+.featurette-divider {
+  margin: 3rem 0;
+}
+
+.social_media:hover {
+  color: #C1B6A4 !important;
+}

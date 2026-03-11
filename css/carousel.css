@@ -1,0 +1,327 @@
+/* 全域樣式
+-------------------------------------------------- */
+/* footer 下方的間距與較淡的主體文字 */
+
+body {
+  padding-top: 70px;
+  padding-bottom: 50px;
+  color: rgb(var(--bs-tertiary-color-rgb));
+}
+
+
+/* 輪播圖自訂樣式
+-------------------------------------------------- */
+
+/* 輪播圖基礎類別 */
+.carousel {
+  margin-bottom: 4rem;
+}
+
+/* 由於定位圖片，需要協助標題定位 */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* 宣告高度，因為 img 元素有定位 */
+.carousel-item {
+  height: 32rem;
+  /* 保持原本高度設定 */
+}
+
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* 第一張輪播圖在大螢幕時顯示中間部分 */
+@media (min-width: 800px) {
+
+  .carousel-item.active img,
+  .carousel-item:first-child img {
+    object-position: center center;
+  }
+}
+
+/* 螢幕寬度超過 1000px 時，增加輪播高度 */
+@media (min-width: 1000px) {
+  .carousel-item {
+    height: 42rem;
+  }
+  /* 第二、三張輪播圖圖片顯示範圍往上移 */
+  .carousel-item:nth-child(2) img,
+  .carousel-item:nth-child(3) img {
+    object-position: center 30%;
+  }
+}
+
+
+/* 行銷內容
+-------------------------------------------------- */
+
+/* 讓輪播圖下方三欄的文字置中 */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+/* rtl:end:ignore */
+
+
+/* 特色內容
+------------------------- */
+
+.featurette-divider {
+  margin: 3rem 0;
+  /* 讓 Bootstrap <hr> 有更大的間距 */
+}
+
+/* 行銷標題字母間距縮小 */
+/* rtl:begin:remove */
+.featurette-heading {
+  letter-spacing: -.05rem;
+}
+
+/* rtl:end:remove */
+
+/* 響應式 CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+
+  /* 放大輪播圖內容字體 */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 3rem;
+  }
+}
+
+/* 小螢幕時讓 featurette flip-box 置中 */
+@media (max-width: 767.98px) {
+  .featurette .col-md-5.d-flex {
+    justify-content: center !important;
+  }
+}
+
+/* 模態框（背景） */
+.modal {
+  display: none;
+  /* 預設隱藏 */
+  position: fixed;
+  /* 固定位置 */
+  z-index: 1;
+  /* 顯示在最上層 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* 全寬 */
+  height: 100%;
+  /* 全高 */
+  overflow: auto;
+  /* 需要時可滾動 */
+  background-color: rgb(0, 0, 0);
+  /* 備用顏色 */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* 黑色帶透明度 */
+  padding-top: 60px;
+}
+
+/* 模態框內容/盒子 */
+.modal-content {
+  background-color: #fefefe;
+  margin: 12rem auto;
+  /* 距離頂部 20px 並置中 */
+  border: 1px solid #888;
+  width: 25rem;
+  /* 可依螢幕大小調整 */
+}
+
+/* 加入縮放動畫 */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+/* 縮放動畫 keyframes */
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
+/* 隱藏關閉按鈕 */
+.close {
+  position: absolute;
+  display: none;
+}
+
+/* 輸入框全寬 */
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* 所有按鈕的樣式 */
+button {
+  background-color: #B29079;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* 按鈕滑鼠懸停效果 */
+button:hover {
+  opacity: 0.8;
+}
+
+/* 取消按鈕的額外樣式（紅色） */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: lightcoral;
+  border-radius: 10px;
+}
+
+/* 容器加內距 */
+.containerlogin {
+  padding: 16px;
+  border-radius: 9px
+}
+
+/* 忘記密碼文字 */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* 在極小螢幕下調整 span 和取消按鈕樣式 */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+.nav-item {
+  margin-left: 15px;
+}
+
+.nav-item a:hover {
+  background-color: #C1B6A4;
+  border-radius: 5px;
+}
+
+.navbar-brand {
+  margin-left: 15px;
+}
+
+/* 翻轉盒子容器 - 可以設定你想要的寬高。這裡加上邊框是為了展示翻轉時會超出盒子（如果不需要 3D 效果可移除 perspective） */
+.flip-box {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+  /* 如果不需要 3D 效果可移除 */
+}
+
+.flip-box2 {
+  background-color: transparent;
+  width: 280px;
+  height: 500px;
+  perspective: 1000px;
+}
+
+.flip-box3 {
+  background-color: transparent;
+  width: 300px;
+  height: 450px;
+  perspective: 1000px;
+}
+
+/* 這個容器用來定位正反兩面 */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* 滑鼠移到翻轉盒子容器時做水平翻轉 */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-box2:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-box3:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+/* 定位正面與背面 */
+.flip-box-front,
+.flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+}
+
+/* 背面樣式 */
+.flip-box-back {
+  transform: rotateY(180deg);
+}
+
+.social_media:hover {
+  color: #C1B6A4 !important;
+}
