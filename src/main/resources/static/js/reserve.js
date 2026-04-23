@@ -1,6 +1,37 @@
 var modal = document.getElementById('id01');
 window.onclick = function (event) { if (event.target == modal) modal.style.display = "none"; }
 
+// Custom select dropdowns
+document.querySelectorAll('.custom-select').forEach(wrapper => {
+  const trigger = wrapper.querySelector('.custom-select-trigger');
+  const valueSpan = wrapper.querySelector('.custom-select-value');
+  const options = wrapper.querySelectorAll('.custom-option');
+  const hiddenSelect = wrapper.nextElementSibling;
+
+  trigger.addEventListener('click', () => {
+    document.querySelectorAll('.custom-select.open').forEach(el => {
+      if (el !== wrapper) el.classList.remove('open');
+    });
+    wrapper.classList.toggle('open');
+  });
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      option.classList.add('selected');
+      valueSpan.textContent = option.textContent;
+      hiddenSelect.value = option.dataset.value;
+      wrapper.classList.remove('open');
+    });
+  });
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.custom-select')) {
+    document.querySelectorAll('.custom-select.open').forEach(el => el.classList.remove('open'));
+  }
+});
+
 let currentDate = new Date();
 let selectedDate = null;
 const monthNames = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];

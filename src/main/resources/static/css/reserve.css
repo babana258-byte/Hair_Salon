@@ -336,6 +336,84 @@ body {
   padding-right: 2.5rem;
 }
 
+.custom-select {
+  position: relative;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 50px;
+  background-color: var(--white-beige);
+  color: var(--text-dark);
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.2s, background-color 0.2s;
+  user-select: none;
+}
+
+.custom-select.open .custom-select-trigger {
+  border-color: var(--brandy-rose);
+  background-color: white;
+}
+
+.custom-select-trigger svg {
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.custom-select.open .custom-select-trigger svg {
+  transform: rotate(180deg);
+}
+
+.custom-select-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(74, 55, 40, 0.1);
+  z-index: 100;
+  overflow: hidden;
+  animation: dropdownFade 0.2s ease;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.custom-select.open .custom-select-dropdown {
+  display: block;
+}
+
+.custom-option {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  font-family: 'Noto Serif TC', serif;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.custom-option:hover {
+  background-color: var(--peach-cream);
+}
+
+.custom-option.selected {
+  color: var(--brandy-rose);
+}
+
 .submit-btn {
   width: 100%;
   padding: 0.8rem;
@@ -495,7 +573,7 @@ body {
 
 footer.container {
   border-top: 1px solid rgba(193, 182, 164, 0.3);
-  padding: 1.5rem 0 2rem;
+  padding: 1.5rem 0 0.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -100,6 +100,19 @@ body {
   background-color: rgba(245, 233, 218, 0.96) !important;
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+  width: 48px;
+}
+
+.carousel-control-prev {
+  left: 12px;
+}
+
+.carousel-control-next {
+  right: 12px;
+}
+
 .carousel-item img {
   height: 92vh;
   object-fit: cover;
@@ -209,6 +222,11 @@ body {
 .flip-box {
   width: 320px;
   height: 240px;
+}
+
+.flip-box2 {
+  width: 360px;
+  height: 460px;
 }
 
 .flip-box-inner {
@@ -363,8 +381,8 @@ body {
 }
 
 footer.container {
-  padding: 2rem 0;
-  margin-bottom: 2rem;
+  padding: 1.2rem 0 0;
+  margin-bottom: 0;
   border-top: 1px solid rgba(193, 182, 164, 0.3);
   display: flex;
   align-items: center;

@@ -112,7 +112,21 @@
           </div>
           <div class="form-group">
             <label>服務內容</label>
-            <select id="service" name="service">
+            <div class="custom-select" id="serviceDropdown">
+              <div class="custom-select-trigger">
+                <span class="custom-select-value">剪髮</span>
+                <svg width="12" height="12" fill="#B29079" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+              </div>
+              <div class="custom-select-dropdown">
+                <div class="custom-option selected" data-value="Haircut">剪髮</div>
+                <div class="custom-option" data-value="Perming">燙髮</div>
+                <div class="custom-option" data-value="HairDye">染髮</div>
+                <div class="custom-option" data-value="HairCare">護髮</div>
+                <div class="custom-option" data-value="ScalpCare">頭皮養護</div>
+                <div class="custom-option" data-value="HairStyling">妝髮造型</div>
+              </div>
+            </div>
+            <select id="service" name="service" hidden>
               <option value="Haircut">剪髮</option>
               <option value="Perming">燙髮</option>
               <option value="HairDye">染髮</option>
@@ -123,7 +137,34 @@
           </div>
           <div class="form-group">
             <label>預約時間</label>
-            <select id="time" name="time">
+            <div class="custom-select" id="timeDropdown">
+              <div class="custom-select-trigger">
+                <span class="custom-select-value">10:00</span>
+                <svg width="12" height="12" fill="#B29079" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+              </div>
+              <div class="custom-select-dropdown">
+                <div class="custom-option selected" data-value="10:00">10:00</div>
+                <div class="custom-option" data-value="10:30">10:30</div>
+                <div class="custom-option" data-value="11:00">11:00</div>
+                <div class="custom-option" data-value="11:30">11:30</div>
+                <div class="custom-option" data-value="12:00">12:00</div>
+                <div class="custom-option" data-value="12:30">12:30</div>
+                <div class="custom-option" data-value="13:00">13:00</div>
+                <div class="custom-option" data-value="13:30">13:30</div>
+                <div class="custom-option" data-value="14:00">14:00</div>
+                <div class="custom-option" data-value="14:30">14:30</div>
+                <div class="custom-option" data-value="15:00">15:00</div>
+                <div class="custom-option" data-value="15:30">15:30</div>
+                <div class="custom-option" data-value="16:00">16:00</div>
+                <div class="custom-option" data-value="16:30">16:30</div>
+                <div class="custom-option" data-value="17:00">17:00</div>
+                <div class="custom-option" data-value="17:30">17:30</div>
+                <div class="custom-option" data-value="18:00">18:00</div>
+                <div class="custom-option" data-value="18:30">18:30</div>
+                <div class="custom-option" data-value="19:00">19:00</div>
+              </div>
+            </div>
+            <select id="time" name="time" hidden>
               <option value="10:00">10:00</option>
               <option value="10:30">10:30</option>
               <option value="11:00">11:00</option>
@@ -157,7 +198,7 @@
 
     <hr style="border-color:rgba(193,182,164,0.2);margin:0;">
 
-    <footer class="container" style="margin-bottom:2rem;">
+    <footer class="container" style="margin-bottom:0.8rem;">
       <div>
         <a href="https://line.me/ti/p/peBk-c-SYT" target="_blank" style="margin-right:12px;">
           <svg width="22" height="auto" fill="currentColor" class="social_media" style="color:var(--brandy-rose)"

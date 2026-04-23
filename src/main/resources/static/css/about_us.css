@@ -1,292 +1,268 @@
-/* 讓聯絡表單覆蓋圖片的樣式 */
-.contact-overlay-container {
-    position: relative;
-    margin-top: -73px;
-    /* 視覺上往上疊到圖片 */
-    z-index: 2;
-    pointer-events: none;
+:root {
+  --brandy-rose: #B29079;
+  --peach-cream: #EFE7DA;
+  --chalk-beige: #E1DACA;
+  --neutral: #C1B6A4;
+  --white-beige: #F6F5EC;
+  --brown-dark: #7A5C47;
+  --brown-deep: #4A3728;
+  --text-dark: #3A2E26;
+  --text-mid: #6B5040;
+  --radius: 50px;
 }
 
-.contact-overlay-row {
-    position: relative;
-    z-index: 2;
-    pointer-events: auto;
-}
-
-.contact-form-overlay {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    width: 95%;
-    max-width: 520px;
-    background: rgba(255, 255, 255, 0.98);
-    border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-    padding: 32px 28px;
-    z-index: 10;
-}
-
-@media (max-width: 991px) {
-    .contact-form-overlay {
-        position: static;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 24px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
-    }
-
-    .contact-overlay-container {
-        margin-top: 0;
-    }
-
-    .col-md-6.d-flex {
-        justify-content: center !important;
-    }
-}
-
-@media (min-width: 1200px) {
-    .contact-overlay-row .row {
-        /* 減少兩側間距 */
-        margin-left: -40px;
-        margin-right: -40px;
-    }
-
-    .contact-overlay-row .col-md-6.mb-4 {
-        padding-left: 250px !important;
-        /* 原本180px，減少為80px */
-    }
-
-    .contact-overlay-row .col-md-6.d-flex {
-        padding-right: 250px !important;
-    }
+* {
+  transition: color 0.3s ease, background-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 body {
-    margin-top: 90px;
+  font-family: 'Noto Serif TC', serif;
+  background-color: var(--white-beige);
+  color: var(--text-dark);
+  min-height: 100vh;
+  padding-top: 80px;
 }
 
-.contact-section h2 {
-    font-weight: bold;
-    color: #2d3748;
+.navbar {
+  background-color: rgba(245, 233, 218, 0.96) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(193, 182, 164, 0.3);
+  padding: 0.8rem 1.5rem;
 }
 
-.contact-info-icon {
-    width: 48px;
-    margin-right: 16px;
+.nav-item { margin-left: 15px; }
+.navbar-brand { margin-left: 15px; }
+
+.nav-link {
+  font-family: 'Noto Serif TC', serif;
+  color: var(--text-mid) !important;
+  letter-spacing: 0.08em;
+  position: relative;
+  padding: 0.4rem 0.8rem !important;
 }
 
-.contact-info-block {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 24px;
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background-color: var(--brandy-rose);
+  transition: width 0.3s ease;
 }
 
-.contact-info-block strong {
-    font-size: 1.1rem;
-    color: #222;
+.nav-link:hover::after,
+.nav-link.active::after { width: 60%; }
+
+.nav-link:hover,
+.nav-link.active { color: var(--brown-dark) !important; }
+
+.btn-neutral-brown {
+  background-color: transparent;
+  border: 1.5px solid var(--brandy-rose);
+  color: var(--brandy-rose);
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  padding: 0.45rem 1.4rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
 }
 
-.contact-form {
-    background: #f8f9fa;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    padding: 32px 24px;
+.btn-neutral-brown:hover {
+  background-color: var(--brandy-rose);
+  color: white;
 }
 
-.contact-form input,
-.contact-form textarea {
-    border-radius: 8px;
-    border: 1px solid #cfd8dc;
-    font-size: 1rem;
-    margin-bottom: 16px;
+.mark { background-color: rgba(245, 233, 218, 0.96) !important; }
+
+/* 頁面標題 */
+.text-center h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--brown-deep);
+  letter-spacing: 0.08em;
 }
 
-.contact-form button {
-    background-color: #a6c3d4;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 8px;
-    width: 180px;
-    padding: 12px 0;
-    font-size: 1.1rem;
-    transition: 0.2s;
+a { text-decoration: none; color: inherit; }
+
+/* 關於我們 — 聯絡區塊 */
+.contact-overlay-container {
+  position: relative;
+  margin-top: -73px;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.contact-form button:hover {
-    background-color: #7fa7c2;
+.contact-overlay-row {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
 
-h2 {
-    font-weight: bold;
-    color: #B29079;
+form.p-4.border {
+  background-color: white !important;
+  border-color: var(--chalk-beige) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 40px rgba(193, 182, 164, 0.15) !important;
 }
 
-.nav-item a:hover {
-    background-color: #C1B6A4;
-    border-radius: 5px;
-}
-
-.nav-item {
-    margin-left: 15px;
-}
-
-.navbar-brand {
-    margin-left: 15px;
-}
-
-/* 模態框（背景） */
-.modal {
-    display: none;
-    /* 預設隱藏 */
-    position: fixed;
-    /* 固定位置 */
-    z-index: 1;
-    /* 顯示在最上層 */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* 全寬 */
-    height: 100%;
-    /* 全高 */
-    overflow: auto;
-    /* 需要時可滾動 */
-    background-color: rgb(0, 0, 0);
-    /* 備用顏色 */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* 黑色帶透明度 */
-    padding-top: 60px;
-}
-
-/* 模態框內容/盒子 */
-.modal-content {
-    background-color: #fefefe;
-    margin: 12rem auto;
-    /* 距離頂部 20px 並置中 */
-    border: 1px solid #888;
-    width: 25rem;
-    /* 可依螢幕大小調整 */
-}
-
-/* 加入縮放動畫 */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-/* 縮放動畫 keyframes */
-@-webkit-keyframes animatezoom {
-    from {
-        -webkit-transform: scale(0)
-    }
-
-    to {
-        -webkit-transform: scale(1)
-    }
-}
-
-@keyframes animatezoom {
-    from {
-        transform: scale(0)
-    }
-
-    to {
-        transform: scale(1)
-    }
-}
-
-/* 隱藏關閉按鈕 */
-.close {
-    position: absolute;
-    display: none;
-}
-
-/* 輸入框全寬 */
-input[type=text],
-input[type=password] {
-    width: 100%;
-    padding: 8px 12px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
-}
-
-/* 所有按鈕的樣式 */
-button {
-    background-color: #B29079;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* 按鈕滑鼠懸停效果 */
-button:hover {
-    opacity: 0.8;
-}
-
-/* 取消按鈕的額外樣式（紅色） */
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: lightcoral;
-    border-radius: 10px;
-}
-
-/* 容器加內距 */
-.containerlogin {
-    padding: 16px;
-    border-radius: 9px;
-}
-
-/* 忘記密碼文字 */
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* 在極小螢幕下調整 span 和取消按鈕樣式 */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-
-    .cancelbtn {
-        width: 100%;
-    }
-}
-
-form {
-    z-index: 1;
-    position: relative;
-}
-
-.social_media:hover {
-    color: #C1B6A4 !important;
-}
-
-/* 讓地圖 iframe 響應式縮放不超出表單 */
+/* 地圖 */
 .responsive-map {
-    width: 100%;
-    max-width: 100%;
-    height: 300px;
-    border: 3px solid #E1DACA;
-    border-radius: 15px;
-    display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 300px;
+  border: 2px solid var(--chalk-beige);
+  border-radius: 16px;
+  display: block;
 }
 
-/* 在小螢幕下調整表單最大寬度 */
-@media (max-width: 575.98px) {
-    .contact-overlay-row form {
-        max-width: 100% !important;
-        padding: 12px !important;
-    }
+/* 聯絡資訊文字 */
+.contact-overlay-row strong {
+  color: var(--brown-deep);
+  font-family: 'Noto Serif TC', serif;
+}
 
-    .responsive-map {
-        height: 200px;
-    }
+.contact-overlay-row div {
+  color: var(--text-mid);
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+/* 登入 Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(58, 46, 38, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: var(--white-beige);
+  margin: 10% auto;
+  padding: 0;
+  border: 1px solid rgba(193, 182, 164, 0.4);
+  width: 360px;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(74, 55, 40, 0.15);
+  animation: modalSlideIn 0.35s ease;
+  overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 1.4rem;
+  color: var(--brandy-rose);
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.close:hover { color: var(--brown-dark); }
+
+.containerlogin { padding: 1.8rem 2rem; }
+
+.containerlogin label {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text-mid);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.containerlogin input[type=text],
+.containerlogin input[type=password] {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 50px;
+  background-color: white;
+  color: var(--text-dark);
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.containerlogin input[type=text]:focus,
+.containerlogin input[type=password]:focus { border-color: var(--brandy-rose); }
+
+.containerlogin button[type=submit] {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: var(--brandy-rose);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.containerlogin button[type=submit]:hover { background-color: var(--brown-dark); }
+
+.cancelbtn {
+  background: transparent;
+  border: 1.5px solid var(--brandy-rose);
+  color: var(--brandy-rose);
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelbtn:hover { background-color: var(--peach-cream); }
+
+.psw a {
+  color: var(--brandy-rose);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+/* 頁尾 */
+footer.container {
+  border-top: 1px solid rgba(193, 182, 164, 0.3);
+  padding: 1.2rem 0 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social_media { transition: opacity 0.3s, transform 0.3s; }
+.social_media:hover { opacity: 0.7; transform: translateY(-2px); }
+
+/* RWD */
+@media (max-width: 991px) {
+  .contact-overlay-container { margin-top: 0; }
+}
+
+@media (min-width: 1200px) {
+  .contact-overlay-row .col-md-6.mb-4 { padding-left: 180px !important; }
+  .contact-overlay-row .col-md-6.d-flex { padding-right: 180px !important; }
+}
+
+@media (max-width: 575.98px) {
+  .responsive-map { height: 200px; }
 }
