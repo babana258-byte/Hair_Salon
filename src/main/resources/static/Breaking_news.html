@@ -7,14 +7,13 @@
     <title>沐序_最新消息</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/Breaking_news.css">
-    <link rel="icon" href="./img/0817-沐序 LOGO (4).png">
+    <link rel="icon" href="./img/logo_favicon.png">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top mark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html"><img src="./img/0817-沐序 LOGO (3).png" width="100px"
-                    height="auto"></a>
+            <a class="navbar-brand" href="./index.html"><img src="./img/logo_navbar.png" width="90px" height="auto"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,37 +29,35 @@
                 <!-- 開啟登入表單的按鈕 -->
                 <button onclick="document.getElementById('id01').style.display='block'"
                     class="btn btn-neutral-brown ms-auto">登入</button>
-
-                <!-- 登入彈跳視窗 -->
-                <div id="id01" class="modal">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                        title="Close Modal">&times;</span>
-
-                    <!-- 彈跳視窗內容 -->
-                    <form class="modal-content animate" action="">
-                        <div class="containerlogin">
-                            <label for="uname"><b>使用者名稱</b></label>
-                            <input type="text" placeholder="輸入您的帳號..." name="uname" required>
-
-                            <label for="psw"><b>密碼</b></label>
-                            <input type="password" placeholder="輸入您的密碼..." name="psw" required>
-
-                            <label>
-                                <input type="checkbox" checked="checked" name="remember"> 記住我
-                            </label><br>
-                            <button type="submit">登入</button>
-                        </div>
-
-                        <div class="containerlogin" style="background-color:#EFE7DA">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                class="cancelbtn">取消</button>
-                            <span class="psw"><a href="#">忘記密碼?</a></span>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </nav>
+
+    <!-- 登入彈跳視窗 -->
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">&times;</span>
+        <form class="modal-content animate" action="">
+            <div class="containerlogin">
+                <label for="uname"><b>使用者名稱</b></label>
+                <input type="text" placeholder="輸入您的帳號..." name="uname" required>
+
+                <label for="psw"><b>密碼</b></label>
+                <input type="password" placeholder="輸入您的密碼..." name="psw" required>
+
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> 記住我
+                </label><br>
+                <button type="submit">登入</button>
+            </div>
+
+            <div class="containerlogin" style="background-color:#EFE7DA">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="cancelbtn">取消</button>
+                <span class="psw"><a href="#">忘記密碼?</a></span>
+            </div>
+        </form>
+    </div>
     <main>
         <div class="py-5 text-center container">
             <h2>最新消息</h2>
@@ -70,7 +67,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col">
                         <div class="card shadow-sm">
-                            <a href="./December_announcement.html"><img src="./img/12month_Class_Schedule.jpg"
+                            <a href="./December_announcement.html"><img src="./img/december_schedule.jpg"
                                     class="bd-placeholder-img card-img-top" width="100%" height="225" role="img"
                                     preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <div class="card-body">
@@ -279,15 +276,7 @@
             </svg></a>
     </footer>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script>
-        var modal = document.getElementById('id01');
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <script src="./js/Breaking_news.js"></script>
 </body>
 
 </html>

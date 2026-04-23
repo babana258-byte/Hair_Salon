@@ -7,14 +7,13 @@
     <title>沐序_關於我們</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/about_us.css">
-    <link rel="icon" href="./img/0817-沐序 LOGO (4).png">
+    <link rel="icon" href="./img/logo_favicon.png">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top mark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html"><img src="./img/0817-沐序 LOGO (3).png" width="100px"
-                    height="auto"></a>
+            <a class="navbar-brand" href="./index.html"><img src="./img/logo_navbar.png" width="90px" height="auto"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,41 +29,39 @@
                 <!-- 開啟登入表單的按鈕 -->
                 <button onclick="document.getElementById('id01').style.display='block'"
                     class="btn btn-neutral-brown ms-auto">登入</button>
-
-                <!-- 登入彈跳視窗 -->
-                <div id="id01" class="modal">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                        title="Close Modal">&times;</span>
-
-                    <!-- 彈跳視窗內容 -->
-                    <form class="modal-content animate" action="">
-                        <div class="containerlogin">
-                            <label for="uname"><b>使用者名稱</b></label>
-                            <input type="text" placeholder="輸入您的帳號..." name="uname" required>
-
-                            <label for="psw"><b>密碼</b></label>
-                            <input type="password" placeholder="輸入您的密碼..." name="psw" required>
-
-                            <label>
-                                <input type="checkbox" checked="checked" name="remember"> 記住我
-                            </label><br>
-                            <button type="submit">登入</button>
-                        </div>
-
-                        <div class="containerlogin" style="background-color:#EFE7DA">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                class="cancelbtn">取消</button>
-                            <span class="psw"><a href="#">忘記密碼?</a></span>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </nav>
+
+    <!-- 登入彈跳視窗 -->
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">&times;</span>
+        <form class="modal-content animate" action="">
+            <div class="containerlogin">
+                <label for="uname"><b>使用者名稱</b></label>
+                <input type="text" placeholder="輸入您的帳號..." name="uname" required>
+
+                <label for="psw"><b>密碼</b></label>
+                <input type="password" placeholder="輸入您的密碼..." name="psw" required>
+
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> 記住我
+                </label><br>
+                <button type="submit">登入</button>
+            </div>
+
+            <div class="containerlogin" style="background-color:#EFE7DA">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="cancelbtn">取消</button>
+                <span class="psw"><a href="#">忘記密碼?</a></span>
+            </div>
+        </form>
+    </div>
     <div class="text-center py-5 container">
         <h2>關於我們</h2>
     </div>
-    <img src="./img/about_us_img.jpg" style="width: 100%; height: auto;">
+    <img src="./img/about_us.jpg" style="width: 100%; height: auto;">
 
     <!-- 聯絡我們區塊，表單覆蓋圖片 -->
     <div class="contact-overlay-container">
@@ -153,16 +150,7 @@
     </div>
     <br><br><br>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script>
-        var modal = document.getElementById('id01');
-
-        // 當使用者點擊彈跳視窗外部時，關閉彈跳視窗
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <script src="./js/about_us.js"></script>
 </body>
 
 </html>

@@ -7,14 +7,13 @@
     <title>12月假表、活動</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/December_announcement.css">
-    <link rel="icon" href="./img/0817-沐序 LOGO (4).png">
+    <link rel="icon" href="./img/logo_favicon.png">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top mark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html"><img src="./img/0817-沐序 LOGO (3).png" width="100px"
-                    height="auto"></a>
+            <a class="navbar-brand" href="./index.html"><img src="./img/logo_navbar.png" width="90px" height="auto"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,41 +29,39 @@
                 <!-- 開啟登入表單的按鈕 -->
                 <button onclick="document.getElementById('id01').style.display='block'"
                     class="btn btn-neutral-brown ms-auto">登入</button>
-
-                <!-- 登入彈跳視窗 -->
-                <div id="id01" class="modal">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                        title="Close Modal">&times;</span>
-
-                    <!-- 彈跳視窗內容 -->
-                    <form class="modal-content animate" action="">
-                        <div class="containerlogin">
-                            <label for="uname"><b>使用者名稱</b></label>
-                            <input type="text" placeholder="輸入您的帳號..." name="uname" required>
-
-                            <label for="psw"><b>密碼</b></label>
-                            <input type="password" placeholder="輸入您的密碼..." name="psw" required>
-
-                            <label>
-                                <input type="checkbox" checked="checked" name="remember"> 記住我
-                            </label><br>
-                            <button type="submit">登入</button>
-                        </div>
-
-                        <div class="containerlogin" style="background-color:#EFE7DA">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                class="cancelbtn">取消</button>
-                            <span class="psw"><a href="#">忘記密碼?</a></span>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </nav>
+
+    <!-- 登入彈跳視窗 -->
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">&times;</span>
+        <form class="modal-content animate" action="">
+            <div class="containerlogin">
+                <label for="uname"><b>使用者名稱</b></label>
+                <input type="text" placeholder="輸入您的帳號..." name="uname" required>
+
+                <label for="psw"><b>密碼</b></label>
+                <input type="password" placeholder="輸入您的密碼..." name="psw" required>
+
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> 記住我
+                </label><br>
+                <button type="submit">登入</button>
+            </div>
+
+            <div class="containerlogin" style="background-color:#EFE7DA">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="cancelbtn">取消</button>
+                <span class="psw"><a href="#">忘記密碼?</a></span>
+            </div>
+        </form>
+    </div>
     <div class="py-5 text-center container">
         <h2>🎉12月假表、活動出爐囉🎉</h2>
     </div>
-    <img src="./img/12month_Class_Schedule.jpg" class="center1">
+    <img src="./img/december_schedule.jpg" class="center1">
     <div class="py-5 text-center container">
         <h2>🔖年前超優惠專屬活動🔖</h2>
         <p>剪燙染護優惠大組合<br>
@@ -73,22 +70,22 @@
         <div class="row justify-content-center mb-4">
             <div class="col-12 col-md-4">
                 <div style="margin-bottom: 20px;">
-                    <a href="javascript:void(0);" onclick="showImageModal('./img/Event_photos1.jpg')">
-                        <img src="./img/Event_photos1.jpg" class="shadow-sm thumbnail" width="300px" height="400px">
+                    <a href="javascript:void(0);" onclick="showImageModal('./img/event_1.jpg')">
+                        <img src="./img/event_1.jpg" class="shadow-sm thumbnail" width="300px" height="400px">
                     </a>
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div style="margin-bottom: 20px;">
-                    <a href="javascript:void(0);" onclick="showImageModal('./img/Event_photos2.jpg')">
-                        <img src="./img/Event_photos2.jpg" class="shadow-sm thumbnail" width="300px" height="400px">
+                    <a href="javascript:void(0);" onclick="showImageModal('./img/event_2.jpg')">
+                        <img src="./img/event_2.jpg" class="shadow-sm thumbnail" width="300px" height="400px">
                     </a>
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div>
-                    <a href="javascript:void(0);" onclick="showImageModal('./img/Event_photos3.jpg')">
-                        <img src="./img/Event_photos3.jpg" class="shadow-sm thumbnail" width="300px" height="400px">
+                    <a href="javascript:void(0);" onclick="showImageModal('./img/event_3.jpg')">
+                        <img src="./img/event_3.jpg" class="shadow-sm thumbnail" width="300px" height="400px">
                     </a>
                 </div>
             </div>
@@ -128,33 +125,7 @@
             </svg></a>
     </footer>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script>
-        var modal = document.getElementById('id01');
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-            // 點擊圖片 modal 背景關閉
-            var imgModal = document.getElementById('imgModal');
-            if (event.target == imgModal) {
-                closeImageModal();
-            }
-        }
-
-        // 圖片放大功能
-        function showImageModal(src) {
-            var imgModal = document.getElementById('imgModal');
-            var img = document.getElementById('imgModalPic');
-            img.src = src;
-            imgModal.style.display = 'flex';
-        }
-        function closeImageModal() {
-            var imgModal = document.getElementById('imgModal');
-            imgModal.style.display = 'none';
-            document.getElementById('imgModalPic').src = '';
-        }
-    </script>
+    <script src="./js/December_announcement.js"></script>
 </body>
 
 </html>

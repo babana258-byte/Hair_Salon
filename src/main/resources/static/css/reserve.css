@@ -1,240 +1,33 @@
-.cal-month,
-.cal-days,
-.cal-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  align-items: center;
+:root {
+  --brandy-rose: #B29079;
+  --peach-cream: #EFE7DA;
+  --chalk-beige: #E1DACA;
+  --neutral: #C1B6A4;
+  --white-beige: #F6F5EC;
+  --brown-dark: #7A5C47;
+  --brown-deep: #4A3728;
+  --text-dark: #3A2E26;
+  --text-mid: #6B5040;
+  --radius: 50px;
 }
 
-.cal-month-name {
-  grid-column-start: 2;
-  grid-column-end: 7;
-  text-align: center;
-}
-
-.cal-weekday,
-.cal-btn {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  height: 3rem;
-  padding: 0;
-}
-
-.cal-btn:not([disabled]) {
-  font-weight: 500;
-  color: var(--bs-emphasis-color);
-}
-
-.cal-btn:hover,
-.cal-btn:focus {
-  background-color: var(--bs-secondary-bg);
-}
-
-.cal-btn[disabled] {
-  border: 0;
-  opacity: .5;
-}
-
-.w-340px {
-  width: 340px;
-}
-
-.w-400px {
-  width: 400px;
-}
-
-input[type=text],
-select,
-textarea {
-  width: 100%;
-  /* 全寬 */
-  padding: 12px;
-  /* 一些內距 */
-  border: 1px solid #ccc;
-  /* 灰色邊框 */
-  border-radius: 10px;
-  /* 圓角邊框 */
-  box-sizing: border-box;
-  /* 確保 padding 和 width 不會跑掉 */
-  margin-top: 6px;
-  /* 上方外距 */
-  margin-bottom: 16px;
-  /* 下方外距 */
-  resize: vertical
-    /* 允許使用者垂直調整 textarea（不可水平調整） */
-}
-
-/* 設定送出按鈕的背景顏色等樣式 */
-input[type=submit] {
-  background-color: #B29079;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* 滑鼠移到送出按鈕時，套用較深的顏色 */
-input[type=submit]:hover {
-  background-color: #C1B6A4;
-}
-
-/* 為表單加上背景色與內距 */
-.container1 {
-  border-radius: 15px;
-  background-color: #F6F5EC;
-  padding: 30px;
-  margin: 30px;
-}
-
-/* 用於標記今天的日期樣式 */
-.cal-today {
-  /* 例如：用主要顏色當背景，並設為白色文字 */
-  background-color: #EFE7DA;
-  /* Bootstrap 主要顏色 */
-  color: var(--bs-black) !important;
-  font-weight: bold;
-}
-
-/* 確保被點擊的過去日期樣式不突出 */
-.cal-days button[disabled] {
-  /* 讓禁用的按鈕看起來更像文字，沒有陰影或背景變化 */
-  cursor: default;
-  background-color: transparent !important;
-  opacity: 0.6;
-  /* 稍微透明化 */
-}
-
-.modal {
-  display: none;
-  /* 預設隱藏 */
-  position: fixed;
-  /* 固定位置 */
-  z-index: 1;
-  /* 顯示在最上層 */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* 全寬 */
-  height: 100%;
-  /* 全高 */
-  overflow: auto;
-  /* 需要時可滾動 */
-  background-color: rgb(0, 0, 0);
-  /* 備用顏色 */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* 黑色帶透明度 */
-  padding-top: 60px;
-}
-
-/* 模態框內容/盒子 */
-.modal-content {
-  background-color: #fefefe;
-  margin: 12rem auto;
-  /* 距離頂部 20px 並置中 */
-  border: 1px solid #888;
-  width: 25rem;
-  /* 可依螢幕大小調整 */
-}
-
-/* 加入縮放動畫 */
-.animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
-}
-
-/* 縮放動畫 keyframes */
-@-webkit-keyframes animatezoom {
-  from {
-    -webkit-transform: scale(0)
-  }
-
-  to {
-    -webkit-transform: scale(1)
-  }
-}
-
-@keyframes animatezoom {
-  from {
-    transform: scale(0)
-  }
-
-  to {
-    transform: scale(1)
-  }
-}
-
-/* 隱藏關閉按鈕 */
-.close {
-  position: absolute;
-  display: none;
-}
-
-/* 輸入框全寬 */
-input[type=text],
-input[type=password] {
-  width: 100%;
-  padding: 8px 12px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+* {
+  transition: color 0.3s ease, background-color 0.3s ease;
   box-sizing: border-box;
 }
 
-/* 所有按鈕的樣式 */
-button {
-  background-color: #B29079;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+body {
+  font-family: 'Noto Serif TC', serif;
+  background-color: var(--white-beige);
+  color: var(--text-dark);
+  min-height: 100vh;
 }
 
-/* 按鈕滑鼠懸停效果 */
-button:hover {
-  opacity: 0.8;
-}
-
-/* 取消按鈕的額外樣式（紅色） */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: lightcoral;
-  border-radius: 10px;
-}
-
-/* 容器加內距 */
-.containerlogin {
-  padding: 16px;
-  border-radius: 9px
-}
-
-/* 忘記密碼文字 */
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* 在極小螢幕下調整 span 和取消按鈕樣式 */
-@media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
-  }
-
-  .cancelbtn {
-    width: 100%;
-  }
-}
-
-.nav-item a:hover {
-  background-color: #C1B6A4;
-  border-radius: 5px;
+.navbar {
+  background-color: rgba(245, 233, 218, 0.96) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(193, 182, 164, 0.3);
+  padding: 0.8rem 1.5rem;
 }
 
 .nav-item {
@@ -245,17 +38,491 @@ span.psw {
   margin-left: 15px;
 }
 
-h2 {
-  font-weight: bold;
-  color: #B29079;
-  margin-top: 90px;
-  margin-bottom: 8px;
+.nav-link {
+  font-family: 'Noto Serif TC', serif;
+  color: var(--text-mid) !important;
+  letter-spacing: 0.08em;
+  position: relative;
+  padding: 0.4rem 0.8rem !important;
 }
 
-.featurette-divider {
-  margin: 3rem 0;
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background-color: var(--brandy-rose);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 60%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--brown-dark) !important;
+}
+
+.btn-neutral-brown {
+  background-color: transparent;
+  border: 1.5px solid var(--brandy-rose);
+  color: var(--brandy-rose);
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  padding: 0.45rem 1.4rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.btn-neutral-brown:hover {
+  background-color: var(--brandy-rose);
+  color: white;
+}
+
+.mark {
+  background-color: rgba(245, 233, 218, 0.96) !important;
+}
+
+.bg-reserve {
+  position: relative;
+  background-image: url('../img/reserve_bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.bg-reserve::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(246, 245, 236, 0.93);
+  z-index: 0;
+}
+
+.bg-reserve>* {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--brandy-rose);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.page-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--brown-deep);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: var(--text-mid);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+}
+
+.reserve-layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem 2rem 4rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.calendar-wrapper {
+  background: white;
+  border: 1px solid var(--chalk-beige);
+  box-shadow: 0 8px 40px rgba(193, 182, 164, 0.15);
+  padding: 1.5rem;
+  min-width: 320px;
+  flex: 1;
+  border-radius: 20px;
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.cal-month-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--brown-deep);
+  letter-spacing: 0.05em;
+}
+
+.cal-btn {
+  background: none;
+  border: 1.5px solid var(--chalk-beige);
+  color: var(--brandy-rose);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 50%;
+}
+
+.cal-btn:hover {
+  background-color: var(--brandy-rose);
+  color: white;
+  border-color: var(--brandy-rose);
+}
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 0.5rem;
+}
+
+.cal-weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--brandy-rose);
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0;
+}
+
+.cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.cal-day {
+  text-align: center;
+  padding: 0.5rem 0.2rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-dark);
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  border-radius: 50px;
+}
+
+.cal-day:hover {
+  background-color: var(--peach-cream);
+  border-color: var(--brandy-rose);
+}
+
+.cal-day.selected {
+  background-color: var(--brandy-rose);
+  color: white;
+  border-color: var(--brandy-rose);
+}
+
+.cal-day.today {
+  font-weight: 600;
+  color: var(--brown-dark);
+}
+
+.cal-day.other-month {
+  color: rgba(193, 182, 164, 0.5);
+}
+
+.cal-day.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.selected-date-display {
+  margin-top: 1.2rem;
+  padding: 0.8rem;
+  background-color: var(--peach-cream);
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--brown-dark);
+  min-height: 40px;
+  border-radius: 50px;
+}
+
+.form-wrapper {
+  background: white;
+  border: 1px solid var(--chalk-beige);
+  box-shadow: 0 8px 40px rgba(193, 182, 164, 0.15);
+  padding: 2rem;
+  min-width: 320px;
+  flex: 1;
+  border-radius: 20px;
+}
+
+.form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--brown-deep);
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--chalk-beige);
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--text-mid);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 50px;
+  background-color: var(--white-beige);
+  color: var(--text-dark);
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group textarea {
+  border-radius: 16px;
+  height: 90px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--brandy-rose);
+  background-color: white;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23B29079' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--brandy-rose);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: var(--brown-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(74, 55, 40, 0.15);
+}
+
+.success-msg {
+  display: none;
+  background-color: var(--peach-cream);
+  border-left: 3px solid var(--brandy-rose);
+  padding: 1rem 1.2rem;
+  font-size: 0.85rem;
+  color: var(--brown-dark);
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+  border-radius: 0 12px 12px 0;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(58, 46, 38, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: var(--white-beige);
+  margin: 10% auto;
+  padding: 0;
+  border: 1px solid rgba(193, 182, 164, 0.4);
+  width: 360px;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(74, 55, 40, 0.15);
+  animation: modalSlideIn 0.35s ease;
+  overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 1.4rem;
+  color: var(--brandy-rose);
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: var(--brown-dark);
+}
+
+.containerlogin {
+  padding: 1.8rem 2rem;
+}
+
+.containerlogin label {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text-mid);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.containerlogin input[type=text],
+.containerlogin input[type=password] {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 50px;
+  background-color: white;
+  color: var(--text-dark);
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.containerlogin input[type=text]:focus,
+.containerlogin input[type=password]:focus {
+  border-color: var(--brandy-rose);
+}
+
+.containerlogin button[type=submit] {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: var(--brandy-rose);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.containerlogin button[type=submit]:hover {
+  background-color: var(--brown-dark);
+}
+
+.cancelbtn {
+  background: transparent;
+  border: 1.5px solid var(--brandy-rose);
+  color: var(--brandy-rose);
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelbtn:hover {
+  background-color: var(--peach-cream);
+}
+
+.psw a {
+  color: var(--brandy-rose);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+footer.container {
+  border-top: 1px solid rgba(193, 182, 164, 0.3);
+  padding: 1.5rem 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social_media {
+  transition: opacity 0.3s, transform 0.3s;
 }
 
 .social_media:hover {
-  color: #C1B6A4 !important;
+  opacity: 0.7;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .reserve-layout {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .calendar-wrapper,
+  .form-wrapper {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .page-header h2 {
+    font-size: 2rem;
+  }
 }
