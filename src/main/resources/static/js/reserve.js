@@ -61,13 +61,19 @@ function renderCalendar() {
     day.textContent = d;
     const thisDate = new Date(year, month, d);
     const isPast = thisDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    if (isPast || thisDate.getDay() === 0) day.classList.add('disabled');
+    if (isPast) day.classList.add('disabled');
     if (today.getFullYear() === year && today.getMonth() === month && today.getDate() === d) day.classList.add('today');
     if (selectedDate && selectedDate.getFullYear() === year && selectedDate.getMonth() === month && selectedDate.getDate() === d) day.classList.add('selected');
     day.addEventListener('click', function () {
       if (day.classList.contains('disabled')) return;
-      selectedDate = new Date(year, month, d);
-      document.getElementById('selectedDateDisplay').textContent = `已選擇：${year} 年 ${month + 1} 月 ${d} 日`;
+      const clicked = new Date(year, month, d);
+      if (selectedDate && selectedDate.getTime() === clicked.getTime()) {
+        selectedDate = null;
+        document.getElementById('selectedDateDisplay').textContent = '請選擇預約日期';
+      } else {
+        selectedDate = clicked;
+        document.getElementById('selectedDateDisplay').textContent = `已選擇：${year} 年 ${month + 1} 月 ${d} 日`;
+      }
       renderCalendar();
     });
     calDays.appendChild(day);

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沐序_個人中心</title>
+  <link href="./css/bootstrap.css" rel="stylesheet" />
+  <link href="./css/profile.css" rel="stylesheet" />
+  <link href="./css/nav-auth.css" rel="stylesheet" />
+  <link rel="icon" href="./img/logo_favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md fixed-top mark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./index.html">
+        <img src="./img/logo_navbar.png" width="90px" height="auto">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mb-5 mb-md-0 ms-auto">
+          <li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="./reserve.html">立即預約</a></li>
+          <li class="nav-item"><a class="nav-link" href="./shop.html">商品</a></li>
+          <li class="nav-item"><a class="nav-link" href="./Breaking_news.html">最新消息</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about_us.html">關於我們</a></li>
+        </ul>
+        <div id="navAuthWrap" class="ms-3 d-flex align-items-center nav-user-icons" style="display:flex!important;">
+          <div class="nav-dropdown">
+            <button class="nav-icon-btn" onclick="toggleCartDropdown(event)" title="購物車">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+              <span class="cart-badge" id="cartBadge"></span>
+            </button>
+            <div class="nav-dropdown-menu cart-dropdown-menu" id="cartDropdownMenu">
+              <div id="cartDropdownList"></div>
+              <div class="cart-dropdown-footer">
+                <a href="./cart.html" class="cart-checkout-link">前往購物車</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-dropdown">
+            <button class="nav-icon-btn" onclick="toggleProfileDropdown(event)" title="個人中心">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            </button>
+            <div class="nav-dropdown-menu" id="profileDropdownMenu">
+              <a href="./profile.html" class="nav-dropdown-item">個人中心</a>
+              <a href="#" class="nav-dropdown-item" onclick="navLogout(); return false;">登出</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container" style="padding-top: 80px; max-width: 1200px;">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <span class="section-label">My Account</span>
+      <h1>個人中心</h1>
+      <p>歡迎回到您的專屬空間。</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="sidebar-nav">
+          <button class="nav-item-btn active" data-section="overview" onclick="switchSection('overview')">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            帳戶概覽
+          </button>
+          <button class="nav-item-btn" data-section="profile" onclick="switchSection('profile')">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+            </svg>
+            個人資料
+          </button>
+          <button class="nav-item-btn" data-section="appointments" onclick="switchSection('appointments')">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
+            </svg>
+            預約記錄
+          </button>
+          <button class="nav-item-btn" data-section="invoices" onclick="switchSection('invoices')">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/>
+            </svg>
+            消費記錄
+          </button>
+          <button class="nav-item-btn" data-section="password" onclick="switchSection('password')">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+            </svg>
+            修改密碼
+          </button>
+          <hr style="border-color:var(--chalk-beige);margin:0.8rem 0;">
+          <button class="nav-item-btn" onclick="logout()" style="color:var(--text-mid);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
+            </svg>
+            登出
+          </button>
+        </div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="col-md-9">
+
+        <!-- ── 帳戶概覽 ── -->
+        <div class="content-section active" id="section-overview">
+          <!-- Member Card -->
+          <div class="member-card mb-4">
+            <div class="member-info">
+              <h2>王小明</h2>
+              <p>會員 · 加入於 2024 年 1 月</p>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <!-- 即將到來的預約 -->
+            <div class="col-md-6">
+              <div class="info-card">
+                <div class="card-header">
+                  <span class="card-title">即將到來的預約</span>
+                  <a href="#" class="card-link" onclick="switchSection('appointments')">查看全部</a>
+                </div>
+                <div class="appointment-item">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem;">
+                    <div class="service-name">縮毛矯正</div>
+                    <span class="badge badge-confirmed">已確認</span>
+                  </div>
+                  <div class="meta">
+                    <div class="meta-item">
+                      <label>日期</label>
+                      <span>2025-05-10</span>
+                    </div>
+                    <div class="meta-item">
+                      <label>時間</label>
+                      <span>14:00</span>
+                    </div>
+                  </div>
+                  <p class="hint">請於預約時間前 5 分鐘到達，謝謝。</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 最近消費 -->
+            <div class="col-md-6">
+              <div class="info-card">
+                <div class="card-header">
+                  <span class="card-title">最近消費</span>
+                  <a href="#" class="card-link" onclick="switchSection('invoices')">查看全部</a>
+                </div>
+                <div class="invoice-item">
+                  <div class="invoice-icon">
+                    <svg width="20" height="20" fill="none" stroke="var(--brandy-rose)" stroke-width="1.5" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/>
+                    </svg>
+                  </div>
+                  <div class="invoice-info">
+                    <div class="service">線條染 + 護髮</div>
+                    <div class="date">2025-04-20 · 刷卡</div>
+                  </div>
+                  <div class="invoice-amount">NT$ 4,200</div>
+                </div>
+                <div class="invoice-item">
+                  <div class="invoice-icon">
+                    <svg width="20" height="20" fill="none" stroke="var(--brandy-rose)" stroke-width="1.5" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/>
+                    </svg>
+                  </div>
+                  <div class="invoice-info">
+                    <div class="service">剪髮</div>
+                    <div class="date">2025-03-15 · 現金</div>
+                  </div>
+                  <div class="invoice-amount">NT$ 500</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 快速操作 -->
+            <div class="col-12">
+              <div class="info-card">
+                <div class="card-header">
+                  <span class="card-title">快速操作</span>
+                </div>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                  <a href="./reserve.html" class="btn-primary" style="text-decoration:none;">立即預約</a>
+                  <button class="btn-outline" onclick="switchSection('profile')">編輯資料</button>
+                  <button class="btn-outline" onclick="switchSection('password')">修改密碼</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 個人資料 ── -->
+        <div class="content-section" id="section-profile">
+          <div class="info-card">
+            <div class="card-header">
+              <span class="card-title">個人資料</span>
+            </div>
+            <div id="profileAlert" class="alert-msg"></div>
+            <form id="profileFormEl" class="profile-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>姓名</label>
+                    <input type="text" id="profileName" value="王小明" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>手機號碼</label>
+                    <input type="tel" id="profilePhone" value="0912-345-678" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>生日</label>
+                    <input type="date" id="profileBirthday" value="1995-06-15">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>性別</label>
+                    <select id="profileGender">
+                      <option value="男">男</option>
+                      <option value="女">女</option>
+                      <option value="其他">其他</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:1.5rem;">
+                <button type="submit" class="btn-primary">儲存變更</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ── 預約記錄 ── -->
+        <div class="content-section" id="section-appointments">
+          <div class="info-card">
+            <div class="card-header">
+              <span class="card-title">預約記錄</span>
+              <a href="./reserve.html" class="card-link">+ 新增預約</a>
+            </div>
+            <div id="appointmentList" style="display:flex;flex-direction:column;gap:0.8rem;">
+              <!-- 由 JS 載入 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 消費記錄 ── -->
+        <div class="content-section" id="section-invoices">
+          <div class="info-card">
+            <div class="card-header">
+              <span class="card-title">消費記錄</span>
+            </div>
+            <div id="invoiceList">
+              <!-- 由 JS 載入 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 修改密碼 ── -->
+        <div class="content-section" id="section-password">
+          <div class="info-card">
+            <div class="card-header">
+              <span class="card-title">修改密碼</span>
+            </div>
+            <div id="passwordAlert" class="alert-msg"></div>
+            <form id="passwordFormEl" class="profile-form">
+              <div class="form-group">
+                <label>目前密碼</label>
+                <input type="password" id="oldPassword" placeholder="輸入目前的密碼" required>
+              </div>
+              <div class="form-group">
+                <label>新密碼</label>
+                <input type="password" id="newPassword" placeholder="設定新密碼（至少8位）" required>
+              </div>
+              <div class="form-group">
+                <label>確認新密碼</label>
+                <input type="password" id="confirmPassword" placeholder="再次輸入新密碼" required>
+              </div>
+              <div style="margin-top:1.5rem;">
+                <button type="submit" class="btn-primary">確認修改</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="container">
+      <div>
+        <a href="https://line.me/ti/p/peBk-c-SYT" target="_blank" style="margin-right:12px;">
+          <svg width="22" height="auto" fill="currentColor" class="social_media" style="color:var(--brandy-rose)" viewBox="0 0 16 16">
+            <path d="M8 0c4.411 0 8 2.912 8 6.492 0 1.433-.555 2.723-1.715 3.994-1.678 1.932-5.431 4.285-6.285 4.645-.83.35-.734-.197-.696-.413l.003-.018.114-.685c.027-.204.055-.521-.026-.723-.09-.223-.444-.339-.704-.395C2.846 12.39 0 9.701 0 6.492 0 2.912 3.59 0 8 0M5.022 7.686H3.497V4.918a.156.156 0 0 0-.155-.156H2.78a.156.156 0 0 0-.156.156v3.486c0 .041.017.08.044.107v.001l.002.002.002.002a.15.15 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157m.791-2.924a.156.156 0 0 0-.156.156v3.486c0 .086.07.155.156.155h.562c.086 0 .155-.07.155-.155V4.918a.156.156 0 0 0-.155-.156zm3.863 0a.156.156 0 0 0-.156.156v2.07L7.923 4.832l-.013-.015v-.001l-.01-.01-.003-.003-.011-.009h-.001L7.88 4.79l-.003-.002-.005-.003-.008-.005h-.002l-.003-.002-.01-.004-.004-.002-.01-.003h-.002l-.003-.001-.009-.002h-.006l-.003-.001h-.004l-.002-.001h-.574a.156.156 0 0 0-.156.155v3.486c0 .086.07.155.156.155h.56c.087 0 .157-.07.157-.155v-2.07l1.6 2.16a.2.2 0 0 0 .039.038l.001.001.01.006.004.002.008.004.007.003.005.002.01.003h.003a.2.2 0 0 0 .04.006h.56c.087 0 .157-.07.157-.155V4.918a.156.156 0 0 0-.156-.156zm3.815.717v-.56a.156.156 0 0 0-.155-.157h-2.242a.16.16 0 0 0-.108.044h-.001l-.001.002-.002.003a.16.16 0 0 0-.044.107v3.486c0 .041.017.08.044.107l.002.003.002.002a.16.16 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156Z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/mushue_hair_salon?igsh=dWptYjczaXpsY29m&utm_source=qr" target="_blank">
+          <svg width="22" height="auto" fill="currentColor" class="social_media" style="color:var(--brandy-rose)" viewBox="0 0 16 16">
+            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+          </svg>
+        </a>
+      </div>
+      <div style="font-size:0.75rem;color:var(--neutral);letter-spacing:0.1em;">© 2024 沐序 Hair Salon</div>
+      <a href="#" class="btn-neutral-brown">
+        <svg width="18" height="auto" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/>
+        </svg>
+      </a>
+    </footer>
+  </div>
+
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/nav-auth.js"></script>
+  <script src="./js/profile.js"></script>
+</body>
+</html>

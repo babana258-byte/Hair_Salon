@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沐序_結帳</title>
+  <link href="./css/bootstrap.css" rel="stylesheet" />
+  <link href="./css/checkout.css" rel="stylesheet" />
+  <link href="./css/nav-auth.css" rel="stylesheet" />
+  <link rel="icon" href="./img/logo_favicon.png">
+  <script>(function(){if(localStorage.getItem('mushue_logged_in')==='true'){var s=document.createElement('style');s.textContent='#navLoginBtn{display:none!important}#navUserIcons{display:flex!important}';document.head.appendChild(s);}}());</script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md fixed-top mark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./index.html">
+        <img src="./img/logo_navbar.png" width="90px" height="auto">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mb-5 mb-md-0 ms-auto">
+          <li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="./reserve.html">立即預約</a></li>
+          <li class="nav-item"><a class="nav-link" href="./shop.html">商品</a></li>
+          <li class="nav-item"><a class="nav-link" href="./Breaking_news.html">最新消息</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about_us.html">關於我們</a></li>
+        </ul>
+        <div id="navAuthWrap" class="ms-3 d-flex align-items-center">
+          <a href="./login.html" class="btn btn-neutral-brown" id="navLoginBtn">登入</a>
+          <div id="navUserIcons" class="nav-user-icons">
+            <div class="nav-dropdown">
+              <button class="nav-icon-btn" onclick="toggleCartDropdown(event)" title="購物車">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                <span class="cart-badge" id="cartBadge"></span>
+              </button>
+              <div class="nav-dropdown-menu cart-dropdown-menu" id="cartDropdownMenu">
+                <div id="cartDropdownList"></div>
+                <div class="cart-dropdown-footer">
+                  <a href="./cart.html" class="cart-checkout-link">前往購物車</a>
+                </div>
+              </div>
+            </div>
+            <div class="nav-dropdown">
+              <button class="nav-icon-btn" onclick="toggleProfileDropdown(event)" title="個人中心">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+              </button>
+              <div class="nav-dropdown-menu" id="profileDropdownMenu">
+                <a href="./profile.html" class="nav-dropdown-item">個人中心</a>
+                <a href="#" class="nav-dropdown-item" onclick="navLogout(); return false;">登出</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <div style="padding-top: 80px;">
+    <div class="container" style="max-width:1100px;">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <span class="section-label">Checkout</span>
+        <h1>結帳</h1>
+        <p>請填寫收件資訊與付款方式，完成您的訂單</p>
+      </div>
+
+      <!-- Steps -->
+      <div class="steps mb-4">
+        <div class="step done">
+          <div class="step-num">✓</div>
+          <span>購物車</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step active">
+          <div class="step-num">2</div>
+          <span>結帳資訊</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <span>訂單確認</span>
+        </div>
+      </div>
+
+      <form id="checkoutForm">
+        <!-- 錯誤提示 -->
+        <div id="checkoutError" style="display:none;background:#fde8e4;border:1px solid #c0705a;border-radius:12px;padding:0.8rem 1.2rem;margin-bottom:1rem;font-size:0.85rem;color:#8b3a2a;letter-spacing:0.05em;"></div>
+        <div class="row g-4">
+
+          <!-- 左側：填寫資訊 -->
+          <div class="col-lg-7">
+
+            <!-- 收件人資訊 -->
+            <div class="form-card">
+              <div class="form-card-title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+                </svg>
+                收件人資訊
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>姓名</label>
+                    <input type="text" id="name" placeholder="收件人姓名">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>手機號碼</label>
+                    <input type="tel" id="phone" placeholder="09xx-xxx-xxx">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 收件地址 -->
+            <div class="form-card">
+              <div class="form-card-title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                </svg>
+                收件地址
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>縣市</label>
+                    <select id="city">
+                      <option value="">選擇縣市</option>
+                      <option>台北市</option>
+                      <option>新北市</option>
+                      <option>桃園市</option>
+                      <option>台中市</option>
+                      <option>台南市</option>
+                      <option>高雄市</option>
+                      <option>基隆市</option>
+                      <option>新竹市</option>
+                      <option>嘉義市</option>
+                      <option>新竹縣</option>
+                      <option>苗栗縣</option>
+                      <option>彰化縣</option>
+                      <option>南投縣</option>
+                      <option>雲林縣</option>
+                      <option>嘉義縣</option>
+                      <option>屏東縣</option>
+                      <option>宜蘭縣</option>
+                      <option>花蓮縣</option>
+                      <option>台東縣</option>
+                      <option>澎湖縣</option>
+                      <option>金門縣</option>
+                      <option>連江縣</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>鄉鎮市區</label>
+                    <input type="text" id="district" placeholder="鄉鎮市區">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>詳細地址</label>
+                    <input type="text" id="address" placeholder="路／街、號、樓層">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 付款方式 -->
+            <div class="form-card">
+              <div class="form-card-title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/>
+                </svg>
+                付款方式
+              </div>
+              <div class="payment-options">
+                <div class="payment-option selected">
+                  <input type="radio" name="payment" id="payment-cash" value="現金" checked>
+                  <label for="payment-cash">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
+                    </svg>
+                    貨到付款（現金）
+                  </label>
+                </div>
+                <div class="payment-option">
+                  <input type="radio" name="payment" id="payment-transfer" value="轉帳">
+                  <label for="payment-transfer">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+                    </svg>
+                    ATM 轉帳
+                  </label>
+                </div>
+              </div>
+              <!-- 隱藏的 select 用於表單驗證 -->
+              <input type="hidden" id="payment" name="payment" value="現金">
+            </div>
+
+            <!-- 備註 -->
+            <div class="form-card">
+              <div class="form-card-title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+                </svg>
+                訂單備註（選填）
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <textarea id="notes" placeholder="有任何特殊需求或備註請告訴我們..."></textarea>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 右側：訂單摘要 -->
+          <div class="col-lg-5">
+            <div class="order-summary">
+              <div class="summary-title">訂單摘要</div>
+
+              <!-- 商品列表 -->
+              <div id="orderItems"></div>
+
+              <hr class="summary-divider">
+
+              <div class="summary-row">
+                <span class="label">小計</span>
+                <span class="value" id="summarySubtotal">NT$ 0</span>
+              </div>
+              <div class="summary-row">
+                <span class="label">運費</span>
+                <span class="value" id="summaryShipping">NT$ 80</span>
+              </div>
+
+              <hr class="summary-divider">
+
+              <div class="summary-total">
+                <span class="label">總計</span>
+                <span class="value" id="summaryTotal">NT$ 0</span>
+              </div>
+
+              <button type="button" class="submit-btn" id="submitBtn" onclick="submitOrder()">確認訂單</button>
+
+              <div class="secure-info">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                </svg>
+                安全加密付款保障
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+      <!-- Footer -->
+      <footer class="container">
+        <div>
+          <a href="https://line.me/ti/p/peBk-c-SYT" target="_blank" style="margin-right:12px;">
+            <svg width="22" height="auto" fill="currentColor" class="social_media" style="color:var(--brandy-rose)" viewBox="0 0 16 16">
+              <path d="M8 0c4.411 0 8 2.912 8 6.492 0 1.433-.555 2.723-1.715 3.994-1.678 1.932-5.431 4.285-6.285 4.645-.83.35-.734-.197-.696-.413l.003-.018.114-.685c.027-.204.055-.521-.026-.723-.09-.223-.444-.339-.704-.395C2.846 12.39 0 9.701 0 6.492 0 2.912 3.59 0 8 0M5.022 7.686H3.497V4.918a.156.156 0 0 0-.155-.156H2.78a.156.156 0 0 0-.156.156v3.486c0 .041.017.08.044.107v.001l.002.002.002.002a.15.15 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157m.791-2.924a.156.156 0 0 0-.156.156v3.486c0 .086.07.155.156.155h.562c.086 0 .155-.07.155-.155V4.918a.156.156 0 0 0-.155-.156zm3.863 0a.156.156 0 0 0-.156.156v2.07L7.923 4.832l-.013-.015v-.001l-.01-.01-.003-.003-.011-.009h-.001L7.88 4.79l-.003-.002-.005-.003-.008-.005h-.002l-.003-.002-.01-.004-.004-.002-.01-.003h-.002l-.003-.001-.009-.002h-.006l-.003-.001h-.004l-.002-.001h-.574a.156.156 0 0 0-.156.155v3.486c0 .086.07.155.156.155h.56c.087 0 .157-.07.157-.155v-2.07l1.6 2.16a.2.2 0 0 0 .039.038l.001.001.01.006.004.002.008.004.007.003.005.002.01.003h.003a.2.2 0 0 0 .04.006h.56c.087 0 .157-.07.157-.155V4.918a.156.156 0 0 0-.156-.156zm3.815.717v-.56a.156.156 0 0 0-.155-.157h-2.242a.16.16 0 0 0-.108.044h-.001l-.001.002-.002.003a.16.16 0 0 0-.044.107v3.486c0 .041.017.08.044.107l.002.003.002.002a.16.16 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156Z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/mushue_hair_salon?igsh=dWptYjczaXpsY29m&utm_source=qr" target="_blank">
+            <svg width="22" height="auto" fill="currentColor" class="social_media" style="color:var(--brandy-rose)" viewBox="0 0 16 16">
+              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+            </svg>
+          </a>
+        </div>
+        <div style="font-size:0.75rem;color:var(--neutral);letter-spacing:0.1em;">© 2024 沐序 Hair Salon</div>
+        <a href="#" class="btn-neutral-brown">
+          <svg width="18" height="auto" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </a>
+      </footer>
+    </div>
+  </div>
+
+  <!-- 訂單成功 Modal -->
+  <div class="success-modal" id="successModal">
+    <div class="success-modal-content">
+      <div class="success-icon">
+        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <h2>訂單成立！</h2>
+      <p>感謝您的購買，我們將盡快為您安排出貨。</p>
+      <p>訂單確認通知將發送至您的手機。</p>
+      <div class="order-number" id="orderNumber"></div>
+      <div class="success-btns">
+        <a href="./profile.html" class="btn-primary-sm">查看訂單</a>
+        <a href="./shop.html" class="btn-outline-sm">繼續購物</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/nav-auth.js"></script>
+  <script src="./js/checkout.js"></script>
+</body>
+</html>

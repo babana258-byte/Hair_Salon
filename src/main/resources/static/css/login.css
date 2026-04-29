@@ -1,0 +1,223 @@
+:root {
+  --brandy-rose: #B29079;
+  --peach-cream: #EFE7DA;
+  --chalk-beige: #E1DACA;
+  --neutral: #C1B6A4;
+  --white-beige: #F6F5EC;
+  --brown-dark: #7A5C47;
+  --brown-deep: #4A3728;
+  --text-dark: #3A2E26;
+  --text-mid: #6B5040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Serif TC', serif;
+  background-color: var(--white-beige);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 左側圖片區（已移除，保留定義供相容） ── */
+
+/* ── 登入區（置中） ── */
+.login-right {
+  width: 100%; max-width: 480px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 3rem 2.5rem;
+  background-color: var(--white-beige);
+  border: 1px solid var(--chalk-beige);
+  border-radius: 24px;
+  box-shadow: 0 12px 48px rgba(193, 182, 164, 0.2);
+  margin: 2rem;
+}
+
+/* ── Logo ── */
+.login-logo { text-align: center; margin-bottom: 2.5rem; }
+
+.login-logo img { width: 120px; height: auto; margin-bottom: 1rem; }
+
+.login-logo p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem; color: var(--neutral);
+  letter-spacing: 0.3em; text-transform: uppercase;
+}
+
+/* ── Tab 切換 ── */
+.tab-group {
+  position: relative;
+  display: flex;
+  background-color: var(--chalk-beige);
+  border-radius: 50px; padding: 4px; margin-bottom: 2rem;
+}
+
+.tab-slider {
+  position: absolute;
+  top: 4px; left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(193,182,164,0.3);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.tab-group[data-active="register"] .tab-slider {
+  transform: translateX(100%);
+}
+
+.tab-btn {
+  flex: 1; padding: 0.6rem;
+  border: none; background: transparent;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.85rem; letter-spacing: 0.1em;
+  color: var(--text-mid); cursor: pointer;
+  border-radius: 50px; transition: color 0.3s ease;
+  position: relative; z-index: 1;
+}
+
+.tab-btn.active {
+  color: var(--brown-dark);
+}
+
+/* ── Section Label ── */
+.section-label {
+  font-size: 0.7rem; letter-spacing: 0.25em;
+  color: var(--brandy-rose); text-transform: uppercase;
+  margin-bottom: 0.5rem; display: block;
+}
+
+/* ── Form Title ── */
+.form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300;
+  color: var(--brown-deep); letter-spacing: 0.05em; margin-bottom: 1.8rem;
+}
+
+/* ── Form Group ── */
+.form-group { margin-bottom: 1.2rem; }
+
+.form-group label {
+  display: block; font-size: 0.75rem;
+  letter-spacing: 0.15em; color: var(--text-mid);
+  margin-bottom: 0.4rem; text-transform: uppercase;
+}
+
+.form-group input {
+  width: 100%; padding: 0.75rem 1.2rem;
+  border: 1.5px solid var(--chalk-beige); border-radius: 50px;
+  background-color: white; color: var(--text-dark);
+  font-family: 'Noto Serif TC', serif; font-size: 0.9rem;
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--brandy-rose);
+  box-shadow: 0 0 0 3px rgba(178,144,121,0.1);
+}
+
+.form-group input::placeholder { color: var(--neutral); }
+
+/* ── 記住我 & 忘記密碼 ── */
+.form-options {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.remember-me {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; color: var(--text-mid); cursor: pointer;
+}
+
+.remember-me input[type=checkbox] { accent-color: var(--brandy-rose); }
+
+.forgot-link {
+  font-size: 0.8rem; color: var(--brandy-rose);
+  text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s;
+}
+
+.forgot-link:hover { color: var(--brown-dark); }
+
+/* ── Submit Button ── */
+.submit-btn {
+  width: 100%; padding: 0.85rem;
+  background-color: var(--brandy-rose); color: white;
+  border: none; border-radius: 50px;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.2em; font-size: 0.9rem;
+  cursor: pointer; transition: all 0.3s ease; margin-bottom: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: var(--brown-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(74,55,40,0.15);
+}
+
+/* ── Divider ── */
+.divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 1.2rem 0; color: var(--neutral);
+  font-size: 0.75rem; letter-spacing: 0.1em;
+}
+
+.divider::before, .divider::after {
+  content: ''; flex: 1;
+  height: 1px; background-color: var(--chalk-beige);
+}
+
+/* ── Register Link ── */
+.register-link { text-align: center; font-size: 0.82rem; color: var(--text-mid); }
+
+.register-link a {
+  color: var(--brandy-rose); text-decoration: none;
+  font-weight: 500; transition: color 0.2s;
+}
+
+.register-link a:hover { color: var(--brown-dark); }
+
+/* ── Form 切換 ── */
+.login-form, .register-form { display: none; }
+.login-form.active, .register-form.active { display: block; }
+
+/* ── Alert Message ── */
+.alert-msg {
+  display: none; padding: 0.8rem 1.2rem;
+  border-radius: 12px; font-size: 0.82rem;
+  letter-spacing: 0.05em; margin-bottom: 1rem;
+}
+
+.alert-msg.error {
+  background-color: #fdf0ed;
+  border-left: 3px solid #c0705a; color: #8b3a2a;
+}
+
+.alert-msg.success {
+  background-color: var(--peach-cream);
+  border-left: 3px solid var(--brandy-rose); color: var(--brown-dark);
+}
+
+/* ── Back to Home ── */
+.back-home { text-align: center; margin-top: 2rem; }
+
+.back-home a {
+  font-size: 0.8rem; color: var(--neutral);
+  text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+
+.back-home a:hover { color: var(--brandy-rose); }
+
+/* ── RWD ── */
+@media (min-width: 768px) {
+  .login-right { padding: 3rem 3.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .login-right { max-width: 520px; }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沐序_登入</title>
+  <link href="./css/bootstrap.css" rel="stylesheet" />
+  <link href="./css/login.css" rel="stylesheet" />
+  <link rel="icon" href="./img/logo_favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- 登入/註冊區 -->
+  <div class="login-right">
+    <!-- Logo -->
+    <div class="login-logo">
+      <a href="./index.html">
+        <img src="./img/logo_navbar.png" alt="沐序 Logo">
+      </a>
+      <p>Mushue Hair Salon</p>
+    </div>
+
+    <!-- Tab 切換 -->
+    <div class="tab-group" id="tabGroup" data-active="login">
+      <div class="tab-slider"></div>
+      <button class="tab-btn active" id="loginTab" onclick="switchTab('login')">登入</button>
+      <button class="tab-btn" id="registerTab" onclick="switchTab('register')">註冊</button>
+    </div>
+
+    <!-- 錯誤/成功訊息 -->
+    <div class="alert-msg" id="alertMsg"></div>
+
+    <!-- 登入表單 -->
+    <div class="login-form active" id="loginForm">
+      <span class="section-label">Welcome Back</span>
+      <div class="form-title">歡迎回來</div>
+      <form id="loginFormEl">
+        <div class="form-group">
+          <label>手機號碼</label>
+          <input type="tel" id="loginUsername" placeholder="輸入您的手機號碼" required>
+        </div>
+        <div class="form-group">
+          <label>密碼</label>
+          <input type="password" id="loginPassword" placeholder="輸入您的密碼" required>
+        </div>
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" checked> 記住我
+          </label>
+          <a href="#" class="forgot-link">忘記密碼？</a>
+        </div>
+        <button type="submit" class="submit-btn">登 入</button>
+      </form>
+      <div class="divider">或</div>
+      <div class="register-link">
+        還沒有帳號？<a href="#" onclick="switchTab('register')">立即註冊</a>
+      </div>
+    </div>
+
+    <!-- 註冊表單 -->
+    <div class="register-form" id="registerForm">
+      <span class="section-label">Create Account</span>
+      <div class="form-title">建立帳號</div>
+      <form id="registerFormEl">
+        <div class="form-group">
+          <label>姓名</label>
+          <input type="text" id="regName" placeholder="輸入您的姓名" required>
+        </div>
+        <div class="form-group">
+          <label>手機號碼</label>
+          <input type="tel" id="regPhone" placeholder="輸入您的手機號碼" required>
+        </div>
+        <div class="form-group">
+          <label>密碼</label>
+          <input type="password" id="regPassword" placeholder="設定密碼（至少8位）" required>
+        </div>
+        <div class="form-group">
+          <label>確認密碼</label>
+          <input type="password" id="regPasswordConfirm" placeholder="再次輸入密碼" required>
+        </div>
+        <button type="submit" class="submit-btn">立即註冊</button>
+      </form>
+      <div class="divider">或</div>
+      <div class="register-link">
+        已有帳號？<a href="#" onclick="switchTab('login')">返回登入</a>
+      </div>
+    </div>
+
+    <!-- 返回首頁 -->
+    <div class="back-home">
+      <a href="./index.html">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+        </svg>
+        返回首頁
+      </a>
+    </div>
+  </div>
+
+  <script src="./js/login.js"></script>
+</body>
+</html>

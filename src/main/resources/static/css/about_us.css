@@ -11,6 +11,8 @@
   --radius: 50px;
 }
 
+html { scrollbar-gutter: stable; }
+
 * {
   transition: color 0.3s ease, background-color 0.3s ease;
   box-sizing: border-box;
@@ -80,12 +82,33 @@ body {
 .mark { background-color: rgba(245, 233, 218, 0.96) !important; }
 
 /* 頁面標題 */
-.text-center h2 {
+.page-header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--brandy-rose);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.page-header h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   font-weight: 300;
   color: var(--brown-deep);
   letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: var(--text-mid);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
 }
 
 a { text-decoration: none; color: inherit; }

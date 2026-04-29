@@ -7,8 +7,10 @@
     <title>沐序_關於我們</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="icon" href="./img/logo_favicon.png">
+    <script>(function(){if(localStorage.getItem('mushue_logged_in')==='true'){var s=document.createElement('style');s.textContent='#navLoginBtn{display:none!important}#navUserIcons{display:flex!important}';document.head.appendChild(s);}}());</script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/about_us.css">
+    <link rel="stylesheet" href="./css/nav-auth.css">
 </head>
 
 <body>
@@ -23,13 +25,38 @@
                 <ul class="navbar-nav mb-5 mb-md-0 ms-auto">
                     <li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
                     <li class="nav-item"><a class="nav-link" href="./reserve.html">立即預約</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./shop.html">商品</a></li>
                     <li class="nav-item"><a class="nav-link" href="./Breaking_news.html">最新消息</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="./about_us.html">關於我們</a>
                     </li>
                 </ul>
                 <!-- 開啟登入表單的按鈕 -->
-                <button onclick="document.getElementById('id01').style.display='block'"
-                    class="btn btn-neutral-brown ms-auto">登入</button>
+                <div id="navAuthWrap" class="ms-3 d-flex align-items-center">
+                  <a href="./login.html" class="btn btn-neutral-brown" id="navLoginBtn">登入</a>
+                  <div id="navUserIcons" class="nav-user-icons">
+                    <div class="nav-dropdown">
+                      <button class="nav-icon-btn" onclick="toggleCartDropdown(event)" title="購物車">
+                        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                        <span class="cart-badge" id="cartBadge"></span>
+                      </button>
+                      <div class="nav-dropdown-menu cart-dropdown-menu" id="cartDropdownMenu">
+                        <div id="cartDropdownList"></div>
+                        <div class="cart-dropdown-footer">
+                          <a href="./cart.html" class="cart-checkout-link">前往購物車</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nav-dropdown">
+                      <button class="nav-icon-btn" onclick="toggleProfileDropdown(event)" title="個人中心">
+                        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                      </button>
+                      <div class="nav-dropdown-menu" id="profileDropdownMenu">
+                        <a href="./profile.html" class="nav-dropdown-item">個人中心</a>
+                        <a href="#" class="nav-dropdown-item" onclick="navLogout(); return false;">登出</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -55,8 +82,10 @@
             </div>
         </form>
     </div>
-    <div class="text-center py-5 container">
-        <h2>關於我們</h2>
+    <div class="page-header container">
+        <span class="section-label">About Us</span>
+        <h1>關於我們</h1>
+        <p>了解沐序的品牌故事與理念，感受我們對美髮藝術的熱情與堅持</p>
     </div>
     <img src="./img/about_us.jpg" style="width: 100%; height: auto;">
 
@@ -167,6 +196,7 @@
         </a>
     </footer>
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/nav-auth.js"></script>
     <script src="./js/about_us.js"></script>
 </body>
 
