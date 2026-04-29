@@ -1,0 +1,267 @@
+:root {
+  --brandy-rose: #B29079;
+  --peach-cream: #EFE7DA;
+  --chalk-beige: #E1DACA;
+  --neutral: #C1B6A4;
+  --white-beige: #F6F5EC;
+  --brown-dark: #7A5C47;
+  --brown-deep: #4A3728;
+  --text-dark: #3A2E26;
+  --text-mid: #6B5040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Serif TC', serif;
+  background-color: var(--white-beige);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 驗證區（置中卡片） ── */
+.verify-right {
+  width: 100%; max-width: 480px;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  background-color: var(--white-beige);
+  border: 1px solid var(--chalk-beige);
+  border-radius: 24px;
+  box-shadow: 0 12px 48px rgba(193, 182, 164, 0.2);
+  margin: 2rem;
+}
+
+/* ── Logo ── */
+.verify-logo {
+  text-align: center; margin-bottom: 2.5rem;
+}
+
+.verify-logo img {
+  width: 100px; height: auto; margin-bottom: 1rem;
+}
+
+.verify-logo p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem; color: var(--neutral);
+  letter-spacing: 0.3em; text-transform: uppercase;
+}
+
+/* ── 手機圖示 ── */
+.phone-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background-color: var(--peach-cream);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem; color: var(--brandy-rose);
+}
+
+/* ── Section Label ── */
+.section-label {
+  display: inline-block;
+  font-size: 0.7rem; letter-spacing: 0.25em;
+  color: var(--brandy-rose); text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Title ── */
+.verify-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300;
+  color: var(--brown-deep); letter-spacing: 0.05em;
+  margin-bottom: 0.5rem; text-align: center;
+}
+
+.verify-subtitle {
+  font-size: 0.82rem; color: var(--neutral);
+  letter-spacing: 0.08em; text-align: center;
+  margin-bottom: 2rem; line-height: 1.8;
+}
+
+.verify-subtitle span {
+  color: var(--brandy-rose); letter-spacing: 0.1em;
+}
+
+/* ── OTP 輸入框 ── */
+.otp-group {
+  display: flex; justify-content: center;
+  gap: 0.6rem; margin-bottom: 2rem;
+}
+
+.otp-input {
+  width: 52px; height: 60px;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 16px;
+  background-color: white; color: var(--brown-deep);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 500;
+  text-align: center; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+}
+
+.otp-input::-webkit-outer-spin-button,
+.otp-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.otp-input:focus {
+  border-color: var(--brandy-rose);
+  box-shadow: 0 0 0 3px rgba(178,144,121,0.12);
+}
+
+.otp-input.filled {
+  border-color: var(--brandy-rose);
+  background-color: rgba(178,144,121,0.05);
+}
+
+.otp-input.error {
+  border-color: #c0705a;
+  box-shadow: 0 0 0 3px rgba(192,112,90,0.1);
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* ── 提交按鈕 ── */
+.submit-btn {
+  width: 100%; padding: 0.85rem;
+  background-color: var(--brandy-rose); color: white;
+  border: none; border-radius: 50px;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.2em; font-size: 0.88rem;
+  cursor: pointer; transition: all 0.3s ease;
+  margin-bottom: 1.2rem;
+}
+
+.submit-btn:hover {
+  background-color: var(--brown-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(74,55,40,0.15);
+}
+
+.submit-btn:disabled {
+  background-color: var(--neutral);
+  cursor: not-allowed; transform: none; box-shadow: none;
+}
+
+/* ── 倒數計時 & 重送 ── */
+.resend-area {
+  text-align: center; margin-bottom: 1.5rem;
+}
+
+.countdown {
+  font-size: 0.82rem; color: var(--neutral);
+  letter-spacing: 0.05em;
+}
+
+.countdown span {
+  color: var(--brandy-rose); font-weight: 500;
+}
+
+.resend-btn {
+  background: none; border: none;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.82rem; color: var(--brandy-rose);
+  cursor: pointer; letter-spacing: 0.05em;
+  text-decoration: underline; transition: color 0.2s;
+  display: none;
+}
+
+.resend-btn:hover { color: var(--brown-dark); }
+.resend-btn.visible { display: inline; }
+
+/* ── Alert ── */
+.alert-msg {
+  display: none; padding: 0.8rem 1.2rem;
+  border-radius: 12px; font-size: 0.82rem;
+  letter-spacing: 0.05em; margin-bottom: 1rem;
+  text-align: center;
+}
+
+.alert-msg.error {
+  background-color: #fdf0ed;
+  border-left: 3px solid #c0705a; color: #8b3a2a;
+}
+
+.alert-msg.success {
+  background-color: var(--peach-cream);
+  border-left: 3px solid var(--brandy-rose); color: var(--brown-dark);
+}
+
+/* ── 返回 ── */
+.back-link {
+  text-align: center; margin-top: 1rem;
+}
+
+.back-link a {
+  font-size: 0.8rem; color: var(--neutral);
+  text-decoration: none; letter-spacing: 0.1em;
+  transition: color 0.2s;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+
+.back-link a:hover { color: var(--brandy-rose); }
+
+/* ── 成功畫面 ── */
+.success-screen {
+  display: none; text-align: center;
+}
+
+.success-screen .success-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background-color: var(--peach-cream);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem; color: var(--brandy-rose);
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.success-screen h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; color: var(--brown-deep);
+  margin-bottom: 0.5rem;
+}
+
+.success-screen p {
+  font-size: 0.82rem; color: var(--neutral);
+  letter-spacing: 0.08em; margin-bottom: 1.8rem;
+}
+
+.success-actions {
+  display: flex; flex-direction: column; gap: 0.8rem;
+  width: 100%;
+}
+
+.success-home-link {
+  display: block; text-align: center;
+  font-size: 0.82rem; color: var(--neutral);
+  text-decoration: none; letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+
+.success-home-link:hover { color: var(--brandy-rose); }
+
+.success-countdown {
+  font-size: 0.78rem; color: var(--neutral);
+  letter-spacing: 0.06em; margin-bottom: 1.4rem;
+}
+
+/* ── RWD ── */
+@media (min-width: 768px) {
+  .verify-right { padding: 3rem 3.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .verify-right { max-width: 520px; }
+}

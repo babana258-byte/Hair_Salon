@@ -57,13 +57,13 @@ document.getElementById('loginFormEl').addEventListener('submit', async function
   }
 });
 
-// ── 註冊 ──
+// ── 註冊：發送驗證碼 → 跳轉 verify.html ──
 document.getElementById('registerFormEl').addEventListener('submit', async function (e) {
   e.preventDefault();
-  const name = document.getElementById('regName').value;
-  const phone = document.getElementById('regPhone').value;
+  const name     = document.getElementById('regName').value.trim();
+  const phone    = document.getElementById('regPhone').value.trim();
   const password = document.getElementById('regPassword').value;
-  const confirm = document.getElementById('regPasswordConfirm').value;
+  const confirm  = document.getElementById('regPasswordConfirm').value;
 
   if (password !== confirm) {
     showAlert('兩次密碼輸入不一致，請再確認。', 'error');
@@ -75,19 +75,36 @@ document.getElementById('registerFormEl').addEventListener('submit', async funct
     return;
   }
 
+  if (!/^09\d{8}$/.test(phone)) {
+    showAlert('手機號碼格式不正確（需為 09 開頭共 10 碼）。', 'error');
+    return;
+  }
+
+  const btn = this.querySelector('button[type=submit]');
+  btn.textContent = '發送中...';
+  btn.disabled = true;
+
   try {
-    // TODO: 串接後端 API
-    // const res = await fetch('/api/auth/register', {
+    // ── 測試模式：跳過後端，直接跳轉 verify.html ──
+    // const res = await fetch('/api/auth/send-sms', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ name, phone, username, password })
+    //   body: JSON.stringify({ phone })
     // });
     // const data = await res.json();
+    // if (!res.ok || !data.success) {
+    //   showAlert(data.message || '發送失敗，請稍後再試。', 'error');
+    //   btn.textContent = '發送驗證碼';
+    //   btn.disabled = false;
+    //   return;
+    // }
 
-    // 暫時模擬
-    showAlert('註冊成功！請登入您的帳號。', 'success');
-    setTimeout(() => switchTab('login'), 2000);
+    sessionStorage.setItem('pending_register', JSON.stringify({ name, phone, password }));
+    window.location.href = `./verify.html?phone=${encodeURIComponent(phone)}`;
+
   } catch (err) {
     showAlert('系統錯誤，請稍後再試。', 'error');
+    btn.textContent = '發送驗證碼';
+    btn.disabled = false;
   }
 });

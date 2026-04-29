@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沐序後台｜總覽</title>
+  <link href="../css/bootstrap.css" rel="stylesheet" />
+  <link href="../css/admin.css" rel="stylesheet" />
+  <link rel="icon" href="../img/0817-沐序 LOGO (4).png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-text">沐序 Hair Salon</div>
+    <div class="sidebar-logo-sub">Admin Panel</div>
+  </div>
+
+  <div class="sidebar-section">主要功能</div>
+  <nav class="sidebar-nav">
+    <a href="./dashboard.html" class="nav-item active">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zm7.5-9C10.5 3.504 11.004 3 11.625 3h2.25C14.496 3 15 3.504 15 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0110.5 19.875V4.125zm7.5 4.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z"/></svg>
+      總覽
+    </a>
+    <a href="./appointments.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5"/></svg>
+      預約管理
+    </a>
+    <a href="./customers.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      客戶管理
+    </a>
+    <a href="./invoices.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/></svg>
+      消費管理
+    </a>
+  </nav>
+
+  <div class="sidebar-section">服務設定</div>
+  <nav class="sidebar-nav">
+    <a href="./services.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      服務項目
+    </a>
+    <a href="./inventory.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+      庫存管理
+    </a>
+  </nav>
+
+  <div class="sidebar-section">人員管理</div>
+  <nav class="sidebar-nav">
+    <a href="./staff.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+      員工管理
+    </a>
+    <a href="./schedules.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      班表管理
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" onclick="window.location.href='../login.html'">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
+      登出
+    </button>
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title">總覽</div>
+    </div>
+    <div class="topbar-right">
+      <span class="role-badge">管理員</span>
+      <span class="admin-name">王老闆</span>
+      <div class="admin-avatar">王</div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <span class="section-label">Dashboard</span>
+        <h1>今日總覽</h1>
+      </div>
+      <a href="./appointments.html" class="btn-primary">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        新增預約
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">今日預約</div>
+        <div class="stat-value" id="todayAppt">8</div>
+        <div class="stat-hint">已完成 3 筆</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">本月營收</div>
+        <div class="stat-value" id="monthRevenue">128k</div>
+        <div class="stat-hint">較上月 +12%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">客戶總數</div>
+        <div class="stat-value" id="totalCustomers">342</div>
+        <div class="stat-hint">本月新增 18</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-label">庫存警示</div>
+        <div class="stat-value" id="lowStock">3</div>
+        <div class="stat-hint">低於安全庫存</div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- 今日預約 -->
+      <div class="col-lg-7">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">今日預約</span>
+            <a href="./appointments.html" class="btn-outline" style="font-size:0.72rem;padding:0.35rem 0.9rem;">查看全部</a>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>客戶</th>
+                  <th>服務</th>
+                  <th>設計師</th>
+                  <th>時間</th>
+                  <th>狀態</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="todayApptTable">
+                <tr>
+                  <td>王小明</td>
+                  <td>縮毛矯正</td>
+                  <td>林設計師</td>
+                  <td>14:00</td>
+                  <td><span class="badge badge-confirmed">已確認</span></td>
+                  <td>
+                    <button class="btn-icon" title="標記完成" onclick="completeAppointment(1)">
+                      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>李小華</td>
+                  <td>線條染</td>
+                  <td>王設計師</td>
+                  <td>15:30</td>
+                  <td><span class="badge badge-confirmed">已確認</span></td>
+                  <td>
+                    <button class="btn-icon" title="標記完成" onclick="completeAppointment(2)">
+                      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>陳小美</td>
+                  <td>剪髮</td>
+                  <td>林設計師</td>
+                  <td>17:00</td>
+                  <td><span class="badge badge-pending">待確認</span></td>
+                  <td>
+                    <button class="btn-icon" title="標記完成" onclick="completeAppointment(3)">
+                      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側資訊 -->
+      <div class="col-lg-5">
+        <!-- 快速統計 -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <span class="card-title">本週統計</span>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:0.6rem;">
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
+                <span style="color:var(--neutral);">本週預約數</span>
+                <span style="color:var(--brandy-rose);font-weight:500;">38 筆</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
+                <span style="color:var(--neutral);">本週新客戶</span>
+                <span style="color:var(--brandy-rose);font-weight:500;">5 位</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
+                <span style="color:var(--neutral);">平均客單價</span>
+                <span style="color:var(--brandy-rose);font-weight:500;">NT$ 2,340</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
+                <span style="color:var(--neutral);">今日到訪率</span>
+                <span style="color:var(--brandy-rose);font-weight:500;">87.5%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
+                <span style="color:var(--neutral);">未出貨訂單</span>
+                <span style="color:#c0705a;font-weight:500;">2 筆</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 庫存警示 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title" style="color:#c0705a;">庫存警示</span>
+            <a href="./inventory.html" class="btn-outline" style="font-size:0.72rem;padding:0.35rem 0.9rem;">查看庫存</a>
+          </div>
+          <div class="card-body" style="padding-top:0.8rem;">
+            <div style="display:flex;flex-direction:column;gap:0.6rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;">
+                <span style="color:var(--text-dark);">摩洛哥堅果修護油</span>
+                <span class="badge badge-warning">剩 2 瓶</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;">
+                <span style="color:var(--text-dark);">染劑 #6N</span>
+                <span class="badge badge-warning">剩 1 管</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;">
+                <span style="color:var(--text-dark);">護髮素 500ml</span>
+                <span class="badge badge-warning">剩 3 瓶</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="../js/dashboard.js"></script>
+</body>
+</html>
