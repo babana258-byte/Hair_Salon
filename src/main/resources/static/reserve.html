@@ -139,28 +139,26 @@
           </div>
           <div class="form-group">
             <label>服務內容</label>
-            <div class="custom-select" id="serviceDropdown">
-              <div class="custom-select-trigger">
-                <span class="custom-select-value">剪髮</span>
-                <svg width="12" height="12" fill="#B29079" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
-              </div>
-              <div class="custom-select-dropdown">
-                <div class="custom-option selected" data-value="Haircut">剪髮</div>
-                <div class="custom-option" data-value="Perming">燙髮</div>
-                <div class="custom-option" data-value="HairDye">染髮</div>
-                <div class="custom-option" data-value="HairCare">護髮</div>
-                <div class="custom-option" data-value="ScalpCare">頭皮養護</div>
-                <div class="custom-option" data-value="HairStyling">妝髮造型</div>
-              </div>
+            <div class="service-checkbox-grid">
+              <label class="service-checkbox-item">
+                <input type="checkbox" name="service" value="Haircut"><span>剪髮</span>
+              </label>
+              <label class="service-checkbox-item">
+                <input type="checkbox" name="service" value="Perming"><span>燙髮</span>
+              </label>
+              <label class="service-checkbox-item">
+                <input type="checkbox" name="service" value="HairDye"><span>染髮</span>
+              </label>
+              <label class="service-checkbox-item">
+                <input type="checkbox" name="service" value="HairCare"><span>護髮</span>
+              </label>
+              <label class="service-checkbox-item">
+                <input type="checkbox" name="service" value="ScalpCare"><span>頭皮養護</span>
+              </label>
+              <label class="service-checkbox-item">
+                <input type="checkbox" name="service" value="HairStyling"><span>妝髮造型</span>
+              </label>
             </div>
-            <select id="service" name="service" hidden>
-              <option value="Haircut">剪髮</option>
-              <option value="Perming">燙髮</option>
-              <option value="HairDye">染髮</option>
-              <option value="HairCare">護髮</option>
-              <option value="ScalpCare">頭皮養護</option>
-              <option value="HairStyling">妝髮造型</option>
-            </select>
           </div>
           <div class="form-group">
             <label>預約時間</label>

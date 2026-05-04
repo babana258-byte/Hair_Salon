@@ -96,6 +96,8 @@ renderCalendar();
 document.getElementById('reserveForm').addEventListener('submit', function (e) {
   e.preventDefault();
   if (!selectedDate) { alert('請先選擇預約日期！'); return; }
+  const checked = document.querySelectorAll('input[name="service"]:checked');
+  if (checked.length === 0) { alert('請至少選擇一項服務內容！'); return; }
   // TODO: 串接後端 API
   document.getElementById('successMsg').style.display = 'block';
   setTimeout(() => {

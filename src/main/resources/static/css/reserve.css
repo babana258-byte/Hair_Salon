@@ -292,7 +292,7 @@ body {
   margin-bottom: 1.2rem;
 }
 
-.form-group label {
+.form-group > label {
   display: block;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
@@ -301,7 +301,7 @@ body {
   text-transform: uppercase;
 }
 
-.form-group input,
+.form-group input:not([type="checkbox"]),
 .form-group select,
 .form-group textarea {
   width: 100%;
@@ -324,7 +324,7 @@ body {
   resize: vertical;
 }
 
-.form-group input:focus,
+.form-group input:not([type="checkbox"]):focus,
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--brandy-rose);
@@ -412,8 +412,72 @@ body {
   background-color: var(--peach-cream);
 }
 
-.custom-option.selected {
-  color: var(--brandy-rose);
+/* Service checkboxes */
+.service-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.service-checkbox-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.6rem 0.9rem;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 50px;
+  background-color: var(--white-beige);
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-family: 'Noto Serif TC', serif;
+  color: var(--text-dark);
+  letter-spacing: 0.1em;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.service-checkbox-item:hover {
+  border-color: var(--brandy-rose);
+  background-color: var(--peach-cream);
+  color: var(--brown-dark);
+}
+
+.service-checkbox-item span {
+  text-align: center;
+}
+
+.service-checkbox-item input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: 0.6rem;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  padding: 0;
+  flex-shrink: 0;
+  border: 1.5px solid var(--neutral);
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  margin: 0;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.service-checkbox-item input[type="checkbox"]:checked {
+  background-color: var(--brandy-rose);
+  border-color: var(--brandy-rose);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' stroke='white' stroke-width='0.5' d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px 10px;
+}
+
+.service-checkbox-item:has(input:checked) {
+  border-color: var(--brandy-rose);
+  background-color: var(--peach-cream);
+  color: var(--brown-dark);
 }
 
 .submit-btn {
