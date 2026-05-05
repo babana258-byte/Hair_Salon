@@ -46,15 +46,15 @@ function renderTable() {
       <td>
         ${inv.paidAt
           ? `<span class="badge badge-confirmed">已付款</span>`
-          : `<span class="badge badge-warning">未付款</span>`}
+          : `<span class="badge badge-warning">未收款</span>`}
       </td>
       <td>
-        <div style="display:flex;gap:0.3rem;">
+        <div style="display:flex;gap:0.3rem;justify-content:center;">
           <button class="btn-icon" title="查看明細" onclick="openDetail(${inv.id})">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </button>
           ${!inv.paidAt ? `
-          <button class="btn-icon" title="標記付款" onclick="markPaid(${inv.id})">
+          <button class="btn-icon" title="標記收款" onclick="markPaid(${inv.id})" style="color:var(--brandy-rose);">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </button>` : ''}
         </div>
@@ -289,6 +289,88 @@ document.addEventListener('click', function(e) {
   }
 });
 
+// ── Invoice Modal 行事曆 ──
+let iCalYear = new Date().getFullYear();
+let iCalMonth = new Date().getMonth();
+let iCalSelected = '';
+
+function toggleInvModalCalendar() {
+  const cal = document.getElementById('iCustomCalendar');
+  if (cal.classList.contains('open')) {
+    cal.classList.remove('open');
+  } else {
+    renderInvModalCalendar();
+    cal.classList.add('open');
+  }
+}
+
+function renderInvModalCalendar() {
+  const today = new Date();
+  const firstDay = new Date(iCalYear, iCalMonth, 1).getDay();
+  const daysInMonth = new Date(iCalYear, iCalMonth + 1, 0).getDate();
+  const daysInPrev = new Date(iCalYear, iCalMonth, 0).getDate();
+
+  document.getElementById('iCalMonthLabel').textContent =
+    `${iCalYear}年 ${String(iCalMonth + 1).padStart(2, '0')}月`;
+
+  let html = '';
+  for (let i = firstDay - 1; i >= 0; i--) {
+    html += `<button type="button" class="cal-day other-month" disabled>${daysInPrev - i}</button>`;
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${iCalYear}-${String(iCalMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    const isToday = today.getFullYear() === iCalYear && today.getMonth() === iCalMonth && today.getDate() === d;
+    const isSelected = iCalSelected === dateStr;
+    html += `<button type="button" class="cal-day${isToday ? ' today' : ''}${isSelected ? ' selected' : ''}" onclick="selectInvModalCalDate('${dateStr}', ${d})">${d}</button>`;
+  }
+  const total = firstDay + daysInMonth;
+  const nextDays = total % 7 === 0 ? 0 : 7 - (total % 7);
+  for (let d = 1; d <= nextDays; d++) {
+    html += `<button type="button" class="cal-day other-month" disabled>${d}</button>`;
+  }
+  document.getElementById('iCalDays').innerHTML = html;
+}
+
+function changeInvModalCalMonth(dir) {
+  iCalMonth += dir;
+  if (iCalMonth > 11) { iCalMonth = 0; iCalYear++; }
+  if (iCalMonth < 0) { iCalMonth = 11; iCalYear--; }
+  renderInvModalCalendar();
+}
+
+function selectInvModalCalDate(dateStr, d) {
+  iCalSelected = dateStr;
+  const [y, m] = dateStr.split('-');
+  document.getElementById('iDateLabel').textContent = `${y}/${m}/${String(d).padStart(2, '0')}`;
+  document.getElementById('iDate').value = dateStr;
+  document.getElementById('iCustomCalendar').classList.remove('open');
+}
+
+function selectInvModalToday() {
+  const today = new Date();
+  iCalYear = today.getFullYear();
+  iCalMonth = today.getMonth();
+  const d = today.getDate();
+  const dateStr = `${iCalYear}-${String(iCalMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  selectInvModalCalDate(dateStr, d);
+}
+
+function clearInvModalCalDate() {
+  iCalSelected = '';
+  iCalYear = new Date().getFullYear();
+  iCalMonth = new Date().getMonth();
+  document.getElementById('iDateLabel').textContent = '選擇日期';
+  document.getElementById('iDate').value = '';
+  document.getElementById('iCustomCalendar').classList.remove('open');
+}
+
+document.addEventListener('click', function(e) {
+  const wrapper = document.getElementById('iCalendarWrapper');
+  if (wrapper && !wrapper.contains(e.target)) {
+    document.getElementById('iCustomCalendar').classList.remove('open');
+  }
+});
+
 // ── 手動新增消費單 ──
 function openAddInvoice() {
   document.getElementById('addInvoiceForm').reset();
@@ -303,7 +385,7 @@ function openAddInvoice() {
   document.getElementById('iPaid').value = 'paid';
   document.querySelector('#iPaidDropdown .custom-select-option[data-value="paid"]').classList.add('selected');
   // 日期預設今天
-  document.getElementById('iDate').value = new Date().toISOString().slice(0, 10);
+  selectInvModalToday();
   document.getElementById('addInvoiceOverlay').classList.add('show');
 }
 
@@ -317,6 +399,7 @@ function handleAddInvoiceOverlayClick(e) {
 
 document.getElementById('addInvoiceForm').addEventListener('submit', function(e) {
   e.preventDefault();
+  if (!document.getElementById('iDate').value) { showToast('請選擇消費日期'); return; }
   const method = document.getElementById('iMethod').value;
   if (!method) { showToast('請選擇付款方式'); return; }
 

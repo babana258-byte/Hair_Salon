@@ -91,21 +91,30 @@ body {
 
 .sidebar-footer {
   margin-top: auto;
-  padding: 1rem 1.4rem;
+  padding: 0.4rem 0.6rem;
   border-top: 1px solid rgba(178,144,121,0.2);
 }
 
 .logout-btn {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-size: 0.78rem; color: var(--neutral);
-  cursor: pointer; transition: color 0.2s;
-  background: none; border: none;
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.65rem 0.9rem; width: 100%;
+  font-size: 0.78rem; letter-spacing: 0.05em;
+  color: var(--neutral); cursor: pointer;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+  border-radius: 0 50px 50px 0;
+  margin-right: 0.4rem;
+  background: none; border-top: none; border-right: none; border-bottom: none;
   font-family: 'Noto Serif TC', serif;
-  letter-spacing: 0.05em;
+  text-align: left;
 }
 
-.logout-btn:hover { color: var(--brown-dark); }
-.logout-btn svg { width: 16px; height: 16px; }
+.logout-btn:hover {
+  color: var(--brown-dark);
+  background: rgba(178,144,121,0.1);
+}
+
+.logout-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 /* ── Main Area ── */
 .main {
@@ -287,6 +296,30 @@ body {
 .data-table th:nth-child(6) { width: 18%; }
 .data-table th:nth-child(7) { width: 12%; }
 
+/* 庫存管理（8欄）專屬欄寬 */
+.inventory-table th:nth-child(1) { width: 20%; }
+.inventory-table th:nth-child(2) { width: 9%; }
+.inventory-table th:nth-child(3) { width: 13%; }
+.inventory-table th:nth-child(4) { width: 9%; }
+.inventory-table th:nth-child(5) { width: 11%; }
+.inventory-table th:nth-child(6) { width: 10%; }
+.inventory-table th:nth-child(7) { width: 14%; }
+.inventory-table th:nth-child(8) { width: 14%; }
+.inventory-table th, .inventory-table td { padding-left: 0.8rem; padding-right: 0.8rem; }
+.data-table.inventory-table th:nth-child(6),
+.data-table.inventory-table td:nth-child(6) { text-align: center; }
+
+/* 消費管理（8欄）專屬欄寬 */
+.invoices-table th:nth-child(1) { width: 8%; }
+.invoices-table th:nth-child(2) { width: 12%; }
+.invoices-table th:nth-child(3) { width: 10%; }
+.invoices-table th:nth-child(4) { width: 20%; }
+.invoices-table th:nth-child(5) { width: 10%; }
+.invoices-table th:nth-child(6) { width: 12%; }
+.invoices-table th:nth-child(7) { width: 18%; }
+.invoices-table th:nth-child(8) { width: 10%; }
+.invoices-table th, .invoices-table td { padding-left: 0.8rem; padding-right: 0.8rem; }
+
 .data-table th,
 .data-table td {
   padding-left: 1.2rem;
@@ -297,6 +330,10 @@ body {
 /* 預約表格：備註欄（第6）左對齊 */
 .data-table th:nth-child(6),
 .data-table td:nth-child(6) { text-align: left; }
+
+/* 員工表格：備註欄（第6）左對齊 */
+.staff-table th:nth-child(6),
+.staff-table td:nth-child(6) { text-align: left; }
 
 /* 客戶表格：備註欄（第5）左對齊、操作欄（第6）置中 */
 .customers-table th:nth-child(5),
@@ -681,6 +718,7 @@ body {
 .badge-pending { background: #dceefb; color: #2e6a9e; }
 .badge-completed { background: var(--chalk-beige); color: var(--text-mid); }
 .badge-cancelled { background: #fdf0ed; color: #8b3a2a; }
+.badge-voided { background: #eeeeee; color: #888888; }
 .badge-active { background: #d4edda; color: #2d6a4f; }
 .badge-inactive { background: var(--chalk-beige); color: var(--neutral); }
 .badge-warning { background: #fdf0ed; color: #c0705a; }

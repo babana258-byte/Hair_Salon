@@ -185,7 +185,7 @@
     <!-- 資料表格 -->
     <div class="card">
       <div style="overflow-x:auto;">
-        <table class="data-table">
+        <table class="data-table invoices-table">
           <thead>
             <tr>
               <th>單號</th>
@@ -273,7 +273,32 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>消費日期</label>
-            <input type="date" id="iDate" required>
+            <div class="date-picker-wrapper modal-date-wrapper" id="iCalendarWrapper">
+              <button type="button" class="custom-select-btn" onclick="toggleInvModalCalendar()">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5"/></svg>
+                <span id="iDateLabel">選擇日期</span>
+              </button>
+              <div class="custom-calendar modal-calendar" id="iCustomCalendar">
+                <div class="cal-header">
+                  <button type="button" class="cal-nav" onclick="changeInvModalCalMonth(-1)">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                  </button>
+                  <span class="cal-month-label" id="iCalMonthLabel"></span>
+                  <button type="button" class="cal-nav" onclick="changeInvModalCalMonth(1)">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                  </button>
+                </div>
+                <div class="cal-weekdays">
+                  <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                </div>
+                <div class="cal-days" id="iCalDays"></div>
+                <div class="cal-footer">
+                  <button type="button" class="cal-clear-btn" onclick="clearInvModalCalDate()">清除</button>
+                  <button type="button" class="cal-today-btn" onclick="selectInvModalToday()">今天</button>
+                </div>
+              </div>
+              <input type="hidden" id="iDate">
+            </div>
           </div>
         </div>
         <div class="col-12">

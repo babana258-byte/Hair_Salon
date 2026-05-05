@@ -112,6 +112,7 @@ const tabStatusMap = {
   upcoming:  ['已確認', '待確認'],
   completed: ['完成'],
   noshow:    ['預約未到'],
+  cancelled: ['已取消'],
 };
 
 function switchTab(el, tab) {
@@ -126,6 +127,7 @@ const statusMap = {
   '已確認': 'badge-confirmed',
   '完成': 'badge-completed',
   '預約未到': 'badge-cancelled',
+  '已取消': 'badge-voided',
 };
 
 // ── 渲染列表 ──
@@ -136,7 +138,9 @@ function renderTable() {
     return;
   }
 
-  tbody.innerHTML = filtered.map(a => `
+  tbody.innerHTML = filtered.map(a => {
+    const isActive = ['待確認', '已確認'].includes(a.status);
+    return `
     <tr>
       <td>
         <div style="font-size:0.85rem;color:var(--text-dark);">${a.customer}</div>
@@ -152,19 +156,26 @@ function renderTable() {
       <td style="font-size:0.78rem;color:var(--neutral);">${a.notes || '—'}</td>
       <td>
         <div style="display:flex;gap:0.3rem;justify-content:center;">
+          ${isActive ? `
           <button class="btn-icon" title="完成預約" onclick="openComplete(${a.id})" style="color:var(--brandy-rose);">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </button>
+          <button class="btn-icon" title="取消預約" onclick="cancelAppt(${a.id})" style="color:var(--neutral);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          ` : ''}
           <button class="btn-icon" title="編輯" onclick="openEdit(${a.id})">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/></svg>
           </button>
+          ${!isActive ? `
           <button class="btn-icon danger" title="刪除" onclick="deleteAppt(${a.id})">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
           </button>
+          ` : ''}
         </div>
       </td>
     </tr>
-  `).join('');
+  `}).join('');
 }
 
 // ── 搜尋 ──
@@ -544,6 +555,28 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', function (
   closeConfirm();
   applyFilter();
   showToast('預約已刪除');
+});
+
+// ── 取消預約 ──
+let pendingCancelId = null;
+
+function cancelAppt(id) {
+  pendingCancelId = id;
+  document.getElementById('cancelConfirmOverlay').classList.add('show');
+}
+
+function closeCancelConfirm() {
+  pendingCancelId = null;
+  document.getElementById('cancelConfirmOverlay').classList.remove('show');
+}
+
+document.getElementById('confirmCancelBtn').addEventListener('click', function () {
+  if (pendingCancelId === null) return;
+  const appt = appointments.find(a => a.id === pendingCancelId);
+  if (appt) appt.status = '已取消';
+  closeCancelConfirm();
+  applyFilter();
+  showToast('預約已取消');
 });
 
 // ── Toast ──

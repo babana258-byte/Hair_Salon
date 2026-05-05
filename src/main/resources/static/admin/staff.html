@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沐序後台｜員工管理</title>
+  <link href="../css/bootstrap.css" rel="stylesheet" />
+  <link href="../css/admin.css" rel="stylesheet" />
+  <link rel="icon" href="../img/logo_favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="../img/logo_navbar.png" alt="沐序 Logo" class="sidebar-logo-img">
+    <div class="sidebar-logo-sub">Admin Panel</div>
+  </div>
+  <div class="sidebar-section">主要功能</div>
+  <nav class="sidebar-nav">
+    <a href="./dashboard.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zm7.5-9C10.5 3.504 11.004 3 11.625 3h2.25C14.496 3 15 3.504 15 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0110.5 19.875V4.125zm7.5 4.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z"/></svg>
+      總覽
+    </a>
+    <a href="./appointments.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5"/></svg>
+      預約管理
+    </a>
+    <a href="./customers.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      客戶管理
+    </a>
+    <a href="./invoices.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/></svg>
+      消費管理
+    </a>
+  </nav>
+  <div class="sidebar-section">服務設定</div>
+  <nav class="sidebar-nav">
+    <a href="./services.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      服務項目
+    </a>
+    <a href="./inventory.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+      庫存管理
+    </a>
+  </nav>
+  <div class="sidebar-section">人員管理</div>
+  <nav class="sidebar-nav">
+    <a href="./staff.html" class="nav-item active">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+      員工管理
+    </a>
+    <a href="./schedules.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      班表管理
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="logout-btn" onclick="window.location.href='../login.html'">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
+      登出
+    </button>
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title">員工管理</div>
+    </div>
+    <div class="topbar-right">
+      <span class="role-badge">管理員</span>
+      <span class="admin-name">洪老闆</span>
+      <div class="admin-avatar">洪</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <span class="section-label">Staff</span>
+        <h1>員工管理</h1>
+      </div>
+      <button class="btn-primary" onclick="openAdd()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        新增員工
+      </button>
+    </div>
+
+    <!-- 搜尋 & 篩選 -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="toolbar">
+          <div class="search-box">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+            <input type="text" id="searchInput" placeholder="搜尋員工姓名、電話...">
+          </div>
+          <div class="custom-select-wrapper" id="titleDropdown">
+            <button type="button" class="custom-select-btn" onclick="toggleTitleDropdown()">
+              <span id="titleLabel">全部職稱</span>
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+            </button>
+            <ul class="custom-select-list" id="titleList">
+              <li class="custom-select-option selected" data-value="">全部職稱</li>
+              <li class="custom-select-option" data-value="設計師">設計師</li>
+              <li class="custom-select-option" data-value="助理">助理</li>
+              <li class="custom-select-option" data-value="洗髮師">洗髮師</li>
+            </ul>
+          </div>
+          <select id="titleFilter" style="display:none;"></select>
+          <div class="custom-select-wrapper" id="statusDropdown">
+            <button type="button" class="custom-select-btn" onclick="toggleStatusDropdown()">
+              <span id="statusLabel">在職</span>
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+            </button>
+            <ul class="custom-select-list" id="statusList">
+              <li class="custom-select-option selected" data-value="active">在職</li>
+              <li class="custom-select-option" data-value="">全部</li>
+              <li class="custom-select-option" data-value="inactive">離職</li>
+            </ul>
+          </div>
+          <select id="statusFilter" style="display:none;" value="active"></select>
+          <span id="staffCount" style="font-size:0.78rem;color:var(--neutral);letter-spacing:0.05em;margin-left:auto;"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 資料表格 -->
+    <div class="card">
+      <div style="overflow-x:auto;">
+        <table class="data-table staff-table">
+          <thead>
+            <tr>
+              <th>員工</th>
+              <th>職稱</th>
+              <th>到職日</th>
+              <th>專長</th>
+              <th>狀態</th>
+              <th>備註</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="staffTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 新增／編輯 Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-title" id="modalTitle">新增員工</div>
+    <form id="staffForm">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>姓名</label>
+            <input type="text" id="fName" placeholder="員工姓名" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>手機號碼</label>
+            <input type="tel" id="fPhone" placeholder="員工手機號碼" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>職稱</label>
+            <div class="custom-select-wrapper modal-select" id="fTitleDropdown" data-input="fTitle" data-label="fTitleLabel">
+              <button type="button" class="custom-select-btn" onclick="toggleModalDropdown('fTitleDropdown')">
+                <span id="fTitleLabel">設計師</span>
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+              </button>
+              <ul class="custom-select-list">
+                <li class="custom-select-option selected" data-value="設計師">設計師</li>
+                <li class="custom-select-option" data-value="助理">助理</li>
+                <li class="custom-select-option" data-value="洗髮師">洗髮師</li>
+              </ul>
+            </div>
+            <input type="hidden" id="fTitle" value="設計師">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>到職日</label>
+            <div class="date-picker-wrapper modal-date-wrapper" id="fHireDateWrapper">
+              <button type="button" class="custom-select-btn" onclick="toggleStaffCalendar()">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5"/></svg>
+                <span id="fHireDateLabel">選擇日期</span>
+              </button>
+              <div class="custom-calendar modal-calendar" id="staffCustomCalendar">
+                <div class="cal-header">
+                  <button type="button" class="cal-nav" onclick="changeStaffCalMonth(-1)">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                  </button>
+                  <span class="cal-month-label" id="staffCalMonthLabel"></span>
+                  <button type="button" class="cal-nav" onclick="changeStaffCalMonth(1)">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                  </button>
+                </div>
+                <div class="cal-weekdays">
+                  <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                </div>
+                <div class="cal-days" id="staffCalDays"></div>
+                <div class="cal-footer">
+                  <button type="button" class="cal-clear-btn" onclick="clearStaffCalDate()">清除</button>
+                  <button type="button" class="cal-today-btn" onclick="selectStaffCalToday()">今天</button>
+                </div>
+              </div>
+              <input type="hidden" id="fHireDate">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>在職狀態</label>
+            <div class="custom-select-wrapper modal-select" id="fIsActiveDropdown" data-input="fIsActive" data-label="fIsActiveLabel">
+              <button type="button" class="custom-select-btn" onclick="toggleModalDropdown('fIsActiveDropdown')">
+                <span id="fIsActiveLabel">在職</span>
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+              </button>
+              <ul class="custom-select-list">
+                <li class="custom-select-option selected" data-value="true">在職</li>
+                <li class="custom-select-option" data-value="false">離職</li>
+              </ul>
+            </div>
+            <input type="hidden" id="fIsActive" value="true">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>專長技術</label>
+            <input type="text" id="fSpecialty" placeholder="例如：縮毛矯正、線條染">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>備註</label>
+            <textarea id="fNotes" placeholder="其他備註..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline" onclick="closeModal()">取消</button>
+        <button type="submit" class="btn-primary">儲存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="../js/admin/staff.js"></script>
+</body>
+</html>

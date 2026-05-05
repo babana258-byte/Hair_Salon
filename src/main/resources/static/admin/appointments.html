@@ -96,6 +96,7 @@
       <button class="status-tab active" data-tab="upcoming" onclick="switchTab(this, 'upcoming')">即將到來</button>
       <button class="status-tab" data-tab="completed" onclick="switchTab(this, 'completed')">已完成</button>
       <button class="status-tab" data-tab="noshow" onclick="switchTab(this, 'noshow')">預約未到</button>
+      <button class="status-tab" data-tab="cancelled" onclick="switchTab(this, 'cancelled')">已取消</button>
     </div>
 
     <!-- 搜尋 & 篩選 -->
@@ -308,6 +309,7 @@
                 <li class="custom-select-option" data-value="已確認">已確認</li>
                 <li class="custom-select-option" data-value="完成">完成</li>
                 <li class="custom-select-option" data-value="預約未到">預約未到</li>
+                <li class="custom-select-option" data-value="已取消">已取消</li>
               </ul>
             </div>
             <input type="hidden" id="fStatus" value="待確認">
@@ -342,6 +344,21 @@
     <div class="modal-footer">
       <button type="button" class="btn-outline" onclick="closeConfirm()">取消</button>
       <button type="button" class="btn-danger" id="confirmDeleteBtn">刪除</button>
+    </div>
+  </div>
+</div>
+
+<!-- 取消預約確認 Modal -->
+<div class="modal-overlay" id="cancelConfirmOverlay">
+  <div class="modal confirm-modal">
+    <div class="confirm-icon" style="color:var(--neutral);">
+      <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </div>
+    <div class="confirm-title">確定要取消此預約？</div>
+    <div class="confirm-desc">預約將標記為已取消，資料仍會保留。</div>
+    <div class="modal-footer">
+      <button type="button" class="btn-outline" onclick="closeCancelConfirm()">返回</button>
+      <button type="button" class="btn-danger" id="confirmCancelBtn">確認取消</button>
     </div>
   </div>
 </div>

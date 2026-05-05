@@ -52,6 +52,6 @@ public class Appointment {
     }
 
     public enum Status {
-        待確認, 已確認, 完成, 預約未到
+        待確認, 已確認, 完成, 預約未到, 已取消
     }
 }
