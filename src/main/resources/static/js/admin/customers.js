@@ -276,13 +276,29 @@ document.getElementById('customerForm').addEventListener('submit', async functio
 });
 
 // ── 刪除客戶 ──
+let _pendingDeleteId = null;
+
 function deleteCustomer(id) {
   const c = customers.find(c => c.id === id);
-  if (!confirm(`確定要刪除客戶「${c.name}」？`)) return;
-  const idx = customers.findIndex(c => c.id === id);
-  customers.splice(idx, 1);
-  applyFilter();
-  showToast('客戶已刪除');
+  if (!c) return;
+  _pendingDeleteId = id;
+  document.getElementById('deleteConfirmTitle').textContent = `確定要刪除客戶「${c.name}」？`;
+  document.getElementById('deleteConfirmOverlay').classList.add('show');
+}
+
+function confirmDelete() {
+  const c = customers.find(c => c.id === _pendingDeleteId);
+  if (c) {
+    customers.splice(customers.findIndex(c => c.id === _pendingDeleteId), 1);
+    applyFilter();
+    showToast('客戶已刪除');
+  }
+  closeDeleteConfirm();
+}
+
+function closeDeleteConfirm() {
+  _pendingDeleteId = null;
+  document.getElementById('deleteConfirmOverlay').classList.remove('show');
 }
 
 // ── Toast ──

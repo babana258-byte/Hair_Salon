@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>沐序後台｜服務項目</title>
+  <title>沐序後台｜最新消息</title>
   <link href="../css/bootstrap.css" rel="stylesheet" />
   <link href="../css/admin.css" rel="stylesheet" />
-  <link href="../css/admin-services.css" rel="stylesheet" />
+  <link href="../css/admin-news.css" rel="stylesheet" />
   <link rel="icon" href="../img/logo_favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 </head>
@@ -43,7 +43,7 @@
   </nav>
   <div class="sidebar-section">內容管理</div>
   <nav class="sidebar-nav">
-    <a href="./news.html" class="nav-item">
+    <a href="./news.html" class="nav-item active">
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/></svg>
       最新消息
     </a>
@@ -54,7 +54,7 @@
   </nav>
   <div class="sidebar-section">服務設定</div>
   <nav class="sidebar-nav">
-    <a href="./services.html" class="nav-item active">
+    <a href="./services.html" class="nav-item">
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
       服務項目
     </a>
@@ -86,7 +86,7 @@
 <div class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title">服務項目</div>
+      <div class="topbar-title">最新消息</div>
     </div>
     <div class="topbar-right">
       <span class="role-badge">管理員</span>
@@ -98,12 +98,12 @@
   <div class="content">
     <div class="page-header">
       <div class="page-header-left">
-        <span class="section-label">Services</span>
-        <h1>服務項目</h1>
+        <span class="section-label">News</span>
+        <h1>最新消息</h1>
       </div>
       <button class="btn-primary" onclick="openAdd()">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        新增服務
+        新增消息
       </button>
     </div>
 
@@ -113,7 +113,7 @@
         <div class="toolbar">
           <div class="search-box">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-            <input type="text" id="searchInput" placeholder="搜尋服務名稱...">
+            <input type="text" id="searchInput" placeholder="搜尋標題、內容...">
           </div>
           <div class="custom-select-wrapper" id="categoryDropdown">
             <button type="button" class="custom-select-btn" onclick="toggleCategoryDropdown()">
@@ -122,95 +122,159 @@
             </button>
             <ul class="custom-select-list" id="categoryList">
               <li class="custom-select-option selected" data-value="">全部類別</li>
-              <li class="custom-select-option" data-value="剪髮">剪髮</li>
-              <li class="custom-select-option" data-value="染髮">染髮</li>
-              <li class="custom-select-option" data-value="燙髮">燙髮</li>
-              <li class="custom-select-option" data-value="護髮">護髮</li>
-              <li class="custom-select-option" data-value="造型">造型</li>
+              <li class="custom-select-option" data-value="活動">活動</li>
+              <li class="custom-select-option" data-value="公告">公告</li>
+              <li class="custom-select-option" data-value="新服務">新服務</li>
+              <li class="custom-select-option" data-value="商品">商品</li>
               <li class="custom-select-option" data-value="其他">其他</li>
             </ul>
           </div>
           <select id="categoryFilter" style="display:none;"></select>
-          <div class="custom-select-wrapper" id="svcStatusDropdown">
-            <button type="button" class="custom-select-btn" onclick="toggleSvcStatusDropdown()">
-              <span id="svcStatusLabel">上架中</span>
+          <div class="custom-select-wrapper" id="newsStatusDropdown">
+            <button type="button" class="custom-select-btn" onclick="toggleNewsStatusDropdown()">
+              <span id="newsStatusLabel">全部狀態</span>
               <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
             </button>
-            <ul class="custom-select-list" id="svcStatusList">
-              <li class="custom-select-option selected" data-value="active">上架中</li>
-              <li class="custom-select-option" data-value="">全部</li>
-              <li class="custom-select-option" data-value="inactive">已下架</li>
+            <ul class="custom-select-list" id="newsStatusList">
+              <li class="custom-select-option selected" data-value="">全部狀態</li>
+              <li class="custom-select-option" data-value="published">已發布</li>
+              <li class="custom-select-option" data-value="draft">草稿</li>
             </ul>
           </div>
           <select id="statusFilter" style="display:none;"></select>
-          <span id="serviceCount" style="font-size:0.78rem;color:var(--neutral);letter-spacing:0.05em;margin-left:auto;"></span>
         </div>
       </div>
     </div>
 
-    <!-- 服務卡片 -->
-    <div class="service-grid" id="serviceGrid"></div>
+    <!-- 資料表格 -->
+    <div class="card">
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="text-align:center;width:72px;">封面</th>
+              <th>標題 / 內容預覽</th>
+              <th>類別</th>
+              <th>發布日期</th>
+              <th>狀態</th>
+              <th style="text-align:center;">操作</th>
+            </tr>
+          </thead>
+          <tbody id="newsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- 新增／編輯 Modal -->
-<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-title" id="modalTitle">新增服務項目</div>
-    <form id="serviceForm">
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" style="max-width:600px;">
+    <div class="modal-title" id="modalTitle">新增消息</div>
+    <form id="newsForm">
       <div class="row g-3">
-        <div class="col-md-8">
+        <div class="col-12">
           <div class="form-group">
-            <label>服務名稱</label>
-            <input type="text" id="fName" placeholder="服務名稱" required>
+            <label>標題</label>
+            <input type="text" id="fTitle" placeholder="消息標題" required>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="form-group">
             <label>類別</label>
             <div class="custom-select-wrapper modal-select" id="fCategoryDropdown" data-input="fCategory" data-label="fCategoryLabel">
               <button type="button" class="custom-select-btn" onclick="toggleModalDropdown('fCategoryDropdown')">
-                <span id="fCategoryLabel">剪髮</span>
+                <span id="fCategoryLabel">活動</span>
                 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
               </button>
               <ul class="custom-select-list">
-                <li class="custom-select-option selected" data-value="剪髮">剪髮</li>
-                <li class="custom-select-option" data-value="染髮">染髮</li>
-                <li class="custom-select-option" data-value="燙髮">燙髮</li>
-                <li class="custom-select-option" data-value="護髮">護髮</li>
-                <li class="custom-select-option" data-value="造型">造型</li>
+                <li class="custom-select-option selected" data-value="活動">活動</li>
+                <li class="custom-select-option" data-value="公告">公告</li>
+                <li class="custom-select-option" data-value="新服務">新服務</li>
+                <li class="custom-select-option" data-value="商品">商品</li>
                 <li class="custom-select-option" data-value="其他">其他</li>
               </ul>
             </div>
-            <input type="hidden" id="fCategory" value="剪髮">
+            <input type="hidden" id="fCategory" value="活動">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label>價格（NT$）</label>
-            <input type="number" id="fPrice" placeholder="0" min="0" required>
+            <label>發布日期</label>
+            <div class="date-picker-wrapper modal-date-wrapper" id="newsCalendarWrapper">
+              <button type="button" class="custom-select-btn" onclick="toggleNewsModalCalendar()">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5"/></svg>
+                <span id="fDateLabel">選擇日期</span>
+              </button>
+              <div class="custom-calendar modal-calendar" id="newsModalCalendar">
+                <div class="cal-header">
+                  <button type="button" class="cal-nav" onclick="changeNewsModalCalMonth(-1)">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                  </button>
+                  <span class="cal-month-label" id="newsCalMonthLabel"></span>
+                  <button type="button" class="cal-nav" onclick="changeNewsModalCalMonth(1)">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                  </button>
+                </div>
+                <div class="cal-weekdays">
+                  <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                </div>
+                <div class="cal-days" id="newsCalDays"></div>
+                <div class="cal-footer">
+                  <button type="button" class="cal-clear-btn" onclick="clearNewsModalCalDate()">清除</button>
+                  <button type="button" class="cal-today-btn" onclick="selectNewsModalToday()">今天</button>
+                </div>
+              </div>
+              <input type="hidden" id="fDate">
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>內容</label>
+            <textarea id="fContent" placeholder="消息內容..." required></textarea>
+            <div class="char-count"><span id="charCount">0</span> 字</div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label>所需時間（分鐘）</label>
-            <input type="number" id="fDuration" placeholder="60" min="0" required>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>上架狀態</label>
-            <div class="custom-select-wrapper modal-select" id="fIsActiveDropdown" data-input="fIsActive" data-label="fIsActiveLabel">
-              <button type="button" class="custom-select-btn" onclick="toggleModalDropdown('fIsActiveDropdown')">
-                <span id="fIsActiveLabel">上架</span>
+            <label>發布狀態</label>
+            <div class="custom-select-wrapper modal-select" id="fIsPublishedDropdown" data-input="fIsPublished" data-label="fIsPublishedLabel">
+              <button type="button" class="custom-select-btn" onclick="toggleModalDropdown('fIsPublishedDropdown')">
+                <span id="fIsPublishedLabel">草稿（不公開）</span>
                 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
               </button>
               <ul class="custom-select-list">
-                <li class="custom-select-option selected" data-value="true">上架</li>
-                <li class="custom-select-option" data-value="false">下架</li>
+                <li class="custom-select-option selected" data-value="false">草稿（不公開）</li>
+                <li class="custom-select-option" data-value="true">立即發布</li>
               </ul>
             </div>
-            <input type="hidden" id="fIsActive" value="true">
+            <input type="hidden" id="fIsPublished" value="false">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>封面圖片<span style="font-size:0.72rem;color:var(--neutral);font-weight:normal;letter-spacing:0;margin-left:0.4rem;">橫幅，建議 1200×400</span></label>
+            <div class="img-upload-area" id="coverUploadArea" style="height:110px;" onclick="document.getElementById('fCoverImage').click()">
+              <div class="img-upload-placeholder" id="coverPlaceholder">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18a.75.75 0 00.75-.75V5.25a.75.75 0 00-.75-.75H3a.75.75 0 00-.75.75v15c0 .414.336.75.75.75zM12 9.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+                <span>點擊上傳封面圖片</span>
+              </div>
+              <img id="coverPreview" src="" alt="封面" style="display:none;width:100%;height:100%;object-fit:cover;">
+              <button type="button" class="img-remove-btn" id="coverRemoveBtn" style="display:none;" onclick="removeCoverImage(event)">×</button>
+            </div>
+            <input type="file" id="fCoverImage" accept="image/*" style="display:none;" onchange="previewCoverImage(event)">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>活動圖片<span style="font-size:0.72rem;color:var(--neutral);font-weight:normal;letter-spacing:0;margin-left:0.4rem;">最多 6 張，建議 300×400</span></label>
+            <div id="galleryGrid" style="display:flex;gap:0.6rem;flex-wrap:wrap;"></div>
+            <button type="button" id="addGalleryBtn" class="btn-outline" style="margin-top:0.5rem;font-size:0.78rem;padding:0.35rem 0.9rem;display:inline-flex;align-items:center;gap:0.3rem;" onclick="addGallerySlot()">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+              新增圖片
+            </button>
+            <input type="file" id="fGalleryInput" accept="image/*" style="display:none;" onchange="handleGalleryUpload(event)">
           </div>
         </div>
       </div>
@@ -222,9 +286,24 @@
   </div>
 </div>
 
+<!-- 刪除確認 Modal -->
+<div class="modal-overlay" id="deleteConfirmOverlay">
+  <div class="modal confirm-modal">
+    <div class="confirm-icon">
+      <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+    </div>
+    <div class="confirm-title" id="deleteConfirmTitle">確定要刪除此消息？</div>
+    <div class="confirm-desc">此操作無法復原，消息資料將永久移除。</div>
+    <div class="modal-footer">
+      <button type="button" class="btn-outline" onclick="closeDeleteConfirm()">取消</button>
+      <button type="button" class="btn-danger" onclick="confirmDelete()">刪除</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<script src="../js/admin/services.js"></script>
+<script src="../js/admin/news.js"></script>
 </body>
 </html>

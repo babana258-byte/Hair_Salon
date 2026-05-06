@@ -35,6 +35,21 @@
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/></svg>
       消費管理
     </a>
+    <a href="./orders.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+      訂單管理
+    </a>
+  </nav>
+  <div class="sidebar-section">內容管理</div>
+  <nav class="sidebar-nav">
+    <a href="./news.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/></svg>
+      最新消息
+    </a>
+    <a href="./products.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+      商品管理
+    </a>
   </nav>
   <div class="sidebar-section">服務設定</div>
   <nav class="sidebar-nav">
@@ -91,14 +106,6 @@
       </button>
     </div>
 
-    <!-- 次導覽列 -->
-    <div class="status-tabs">
-      <button class="status-tab active" data-tab="upcoming" onclick="switchTab(this, 'upcoming')">即將到來</button>
-      <button class="status-tab" data-tab="completed" onclick="switchTab(this, 'completed')">已完成</button>
-      <button class="status-tab" data-tab="noshow" onclick="switchTab(this, 'noshow')">預約未到</button>
-      <button class="status-tab" data-tab="cancelled" onclick="switchTab(this, 'cancelled')">已取消</button>
-    </div>
-
     <!-- 搜尋 & 篩選 -->
     <div class="card mb-3">
       <div class="card-body">
@@ -151,6 +158,14 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- 次導覽列 -->
+    <div class="status-tabs">
+      <button class="status-tab active" data-tab="upcoming" onclick="switchTab(this, 'upcoming')">即將到來</button>
+      <button class="status-tab" data-tab="completed" onclick="switchTab(this, 'completed')">已完成</button>
+      <button class="status-tab" data-tab="noshow" onclick="switchTab(this, 'noshow')">預約未到</button>
+      <button class="status-tab" data-tab="cancelled" onclick="switchTab(this, 'cancelled')">已取消</button>
     </div>
 
     <!-- 資料表格 -->

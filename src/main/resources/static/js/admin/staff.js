@@ -317,16 +317,40 @@ document.getElementById('staffForm').addEventListener('submit', async function (
 });
 
 // ── 切換在職狀態 ──
+let _pendingToggleId = null;
+let _pendingToggleActive = null;
+
 function toggleActive(id, active) {
   const s = staffList.find(s => s.id === id);
   if (!s) return;
+  _pendingToggleId = id;
+  _pendingToggleActive = active;
   const action = active ? '啟用' : '停用';
-  if (!confirm(`確定要${action}員工「${s.name}」？`)) return;
+  document.getElementById('toggleConfirmTitle').textContent = `確定要${action}員工「${s.name}」？`;
+  document.getElementById('toggleConfirmDesc').textContent = active
+    ? '啟用後該員工可接受新預約。'
+    : '停用後該員工將無法接受新預約。';
+  const btn = document.getElementById('toggleConfirmBtn');
+  btn.textContent = action;
+  btn.className = active ? 'btn-primary' : 'btn-danger';
+  document.getElementById('toggleConfirmOverlay').classList.add('show');
+}
 
-  // TODO: PUT /api/staff/{id}
-  s.isActive = active;
-  applyFilter();
-  showToast(`已${action}「${s.name}」`);
+function confirmToggleActive() {
+  const s = staffList.find(s => s.id === _pendingToggleId);
+  if (s) {
+    s.isActive = _pendingToggleActive;
+    // TODO: PUT /api/staff/{id}
+    applyFilter();
+    showToast(`已${_pendingToggleActive ? '啟用' : '停用'}「${s.name}」`);
+  }
+  closeToggleConfirm();
+}
+
+function closeToggleConfirm() {
+  _pendingToggleId = null;
+  _pendingToggleActive = null;
+  document.getElementById('toggleConfirmOverlay').classList.remove('show');
 }
 
 // ── Toast ──

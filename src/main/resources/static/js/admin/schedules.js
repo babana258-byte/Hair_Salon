@@ -131,19 +131,22 @@ const staffOptions = [
 ];
 
 const schedules = [
-  { id: 1, staffId: 1, staffName: '林設計師', date: '2025-05-05', startTime: '10:00', endTime: '19:00', isDayoff: false },
-  { id: 2, staffId: 2, staffName: '王設計師', date: '2025-05-05', startTime: '10:00', endTime: '19:00', isDayoff: false },
-  { id: 3, staffId: 3, staffName: '陳助理', date: '2025-05-05', startTime: '10:00', endTime: '18:00', isDayoff: false },
-  { id: 4, staffId: 1, staffName: '林設計師', date: '2025-05-06', startTime: '', endTime: '', isDayoff: true },
-  { id: 5, staffId: 2, staffName: '王設計師', date: '2025-05-06', startTime: '10:00', endTime: '19:00', isDayoff: false },
-  { id: 6, staffId: 3, staffName: '陳助理', date: '2025-05-06', startTime: '10:00', endTime: '18:00', isDayoff: false },
-  { id: 7, staffId: 1, staffName: '林設計師', date: '2025-05-07', startTime: '10:00', endTime: '19:00', isDayoff: false },
-  { id: 8, staffId: 2, staffName: '王設計師', date: '2025-05-07', startTime: '', endTime: '', isDayoff: true },
-  { id: 9, staffId: 3, staffName: '陳助理', date: '2025-05-07', startTime: '10:00', endTime: '18:00', isDayoff: false },
+  { id: 1, staffId: 1, staffName: '林設計師', date: '2026-05-05', startTime: '10:00', endTime: '19:00', isDayoff: false },
+  { id: 2, staffId: 2, staffName: '王設計師', date: '2026-05-05', startTime: '10:00', endTime: '19:00', isDayoff: false },
+  { id: 3, staffId: 3, staffName: '陳助理', date: '2026-05-05', startTime: '10:00', endTime: '18:00', isDayoff: false },
+  { id: 4, staffId: 1, staffName: '林設計師', date: '2026-05-06', startTime: '', endTime: '', isDayoff: true },
+  { id: 5, staffId: 2, staffName: '王設計師', date: '2026-05-06', startTime: '10:00', endTime: '19:00', isDayoff: false },
+  { id: 6, staffId: 3, staffName: '陳助理', date: '2026-05-06', startTime: '10:00', endTime: '18:00', isDayoff: false },
+  { id: 7, staffId: 1, staffName: '林設計師', date: '2026-05-07', startTime: '10:00', endTime: '19:00', isDayoff: false },
+  { id: 8, staffId: 2, staffName: '王設計師', date: '2026-05-07', startTime: '', endTime: '', isDayoff: true },
+  { id: 9, staffId: 3, staffName: '陳助理', date: '2026-05-07', startTime: '10:00', endTime: '18:00', isDayoff: false },
 ];
 
 let currentWeekStart = getMonday(new Date());
 let editingId = null;
+let viewMode = 'week';
+let currentMonthYear = new Date().getFullYear();
+let currentMonthIndex = new Date().getMonth();
 
 // ── 取得週一 ──
 function getMonday(date) {
@@ -166,7 +169,10 @@ function getWeekDates(monday) {
 
 // ── 格式化日期 ──
 function formatDate(date) {
-  return date.toISOString().split('T')[0];
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
 }
 
 function formatDateLabel(date) {
@@ -174,15 +180,20 @@ function formatDateLabel(date) {
   return `${date.getMonth() + 1}/${date.getDate()}（${days[date.getDay()]}）`;
 }
 
-// ── 渲染週曆 ──
+// ── 渲染（分派） ──
 function renderCalendar() {
+  if (viewMode === 'week') renderWeekCalendar();
+  else renderMonthCalendar();
+}
+
+// ── 渲染週曆 ──
+function renderWeekCalendar() {
   const weekDates = getWeekDates(currentWeekStart);
   const weekEnd = weekDates[6];
 
   document.getElementById('weekLabel').textContent =
     `${currentWeekStart.getFullYear()} 年 ${currentWeekStart.getMonth() + 1} 月 ${currentWeekStart.getDate()} 日 ～ ${weekEnd.getMonth() + 1} 月 ${weekEnd.getDate()} 日`;
 
-  // 表頭
   const thead = document.getElementById('calendarHead');
   thead.innerHTML = `
     <tr>
@@ -195,7 +206,6 @@ function renderCalendar() {
     </tr>
   `;
 
-  // 內容
   const tbody = document.getElementById('calendarBody');
   tbody.innerHTML = staffOptions.map(staff => `
     <tr>
@@ -242,19 +252,109 @@ function renderCalendar() {
   `).join('');
 }
 
-// ── 週切換 ──
+// ── 渲染月曆 ──
+function renderMonthCalendar() {
+  const year = currentMonthYear;
+  const month = currentMonthIndex;
+  const todayStr = formatDate(new Date());
+
+  document.getElementById('weekLabel').textContent = `${year} 年 ${month + 1} 月`;
+
+  const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
+  document.getElementById('calendarHead').innerHTML = `
+    <tr>
+      ${dayNames.map(n => `<th style="text-align:center;">${n}</th>`).join('')}
+    </tr>
+  `;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const daysInPrev = new Date(year, month, 0).getDate();
+
+  const cells = [];
+  for (let i = firstDay - 1; i >= 0; i--) {
+    cells.push({ day: daysInPrev - i, dateStr: null, isOther: true });
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    cells.push({ day: d, dateStr, isOther: false, isToday: dateStr === todayStr });
+  }
+  let nextDay = 1;
+  while (cells.length % 7 !== 0) {
+    cells.push({ day: nextDay++, dateStr: null, isOther: true });
+  }
+
+  let rows = '';
+  for (let i = 0; i < cells.length; i += 7) {
+    rows += '<tr>' + cells.slice(i, i + 7).map(cell => {
+      if (cell.isOther) {
+        return `<td class="month-day other-month"><span class="month-day-num">${cell.day}</span></td>`;
+      }
+      const { day, dateStr, isToday } = cell;
+      const daySchedules = schedules.filter(s => s.date === dateStr);
+      const hasUnscheduled = staffOptions.some(staff => !schedules.find(s => s.staffId === staff.id && s.date === dateStr));
+      let chipsHtml;
+      if (daySchedules.length === 0) {
+        chipsHtml = `<div style="margin-top:0.4rem;">
+          <button class="add-schedule-btn" onclick="openAdd(0, '${dateStr}')">+</button>
+        </div>`;
+      } else {
+        const chips = staffOptions.map(staff => {
+          const sched = schedules.find(s => s.staffId === staff.id && s.date === dateStr);
+          if (!sched) return '';
+          if (sched.isDayoff) {
+            return `<div class="month-staff-chip dayoff" onclick="openEdit(${sched.id})">${staff.name} 休</div>`;
+          }
+          const sh = sched.startTime.split(':')[0];
+          const eh = sched.endTime.split(':')[0];
+          return `<div class="month-staff-chip work" onclick="openEdit(${sched.id})">${staff.name} ${sh}-${eh}</div>`;
+        }).join('');
+        const addBtn = hasUnscheduled
+          ? `<button class="add-schedule-btn month-add-more" onclick="openAdd(0, '${dateStr}')">+</button>`
+          : '';
+        chipsHtml = chips + addBtn;
+      }
+      return `
+        <td class="month-day${isToday ? ' is-today' : ''}">
+          <span class="month-day-num${isToday ? ' today-circle' : ''}">${day}</span>
+          ${chipsHtml}
+        </td>
+      `;
+    }).join('') + '</tr>';
+  }
+
+  document.getElementById('calendarBody').innerHTML = rows;
+}
+
+// ── 導航切換 ──
 document.getElementById('prevWeek').addEventListener('click', () => {
-  currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+  if (viewMode === 'week') {
+    currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+  } else {
+    currentMonthIndex--;
+    if (currentMonthIndex < 0) { currentMonthIndex = 11; currentMonthYear--; }
+  }
   renderCalendar();
 });
 
 document.getElementById('nextWeek').addEventListener('click', () => {
-  currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+  if (viewMode === 'week') {
+    currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+  } else {
+    currentMonthIndex++;
+    if (currentMonthIndex > 11) { currentMonthIndex = 0; currentMonthYear++; }
+  }
   renderCalendar();
 });
 
 document.getElementById('todayBtn').addEventListener('click', () => {
-  currentWeekStart = getMonday(new Date());
+  const now = new Date();
+  if (viewMode === 'week') {
+    currentWeekStart = getMonday(now);
+  } else {
+    currentMonthYear = now.getFullYear();
+    currentMonthIndex = now.getMonth();
+  }
   renderCalendar();
 });
 
@@ -269,13 +369,16 @@ function openAdd(staffId, date) {
   schedCalSelected = date;
   schedCalYear = parseInt(y);
   schedCalMonth = parseInt(m) - 1;
-  document.getElementById('fStaff').value = staffId;
-  const staff = staffOptions.find(s => s.id === staffId);
+  document.querySelectorAll('#fStaffDropdown .custom-select-option').forEach(o => o.classList.remove('selected'));
+  const staff = staffId ? staffOptions.find(s => s.id === staffId) : null;
   if (staff) {
+    document.getElementById('fStaff').value = staffId;
     document.getElementById('fStaffLabel').textContent = staff.name;
-    document.querySelectorAll('#fStaffDropdown .custom-select-option').forEach(o => o.classList.remove('selected'));
     const opt = document.querySelector('#fStaffDropdown .custom-select-option[data-value="' + staffId + '"]');
     if (opt) opt.classList.add('selected');
+  } else {
+    document.getElementById('fStaff').value = '';
+    document.getElementById('fStaffLabel').textContent = '選擇員工';
   }
   setModalDropdown('fIsDayoffDropdown', 'false');
   setModalDropdown('fStartTimeDropdown', '10:00');
@@ -398,6 +501,24 @@ document.addEventListener('DOMContentLoaded', function () {
     li.dataset.value = s.id;
     li.textContent = s.name;
     staffList.appendChild(li);
+  });
+
+  document.getElementById('weekViewBtn').addEventListener('click', () => {
+    if (viewMode === 'week') return;
+    viewMode = 'week';
+    document.getElementById('weekViewBtn').classList.add('active');
+    document.getElementById('monthViewBtn').classList.remove('active');
+    document.getElementById('todayBtn').textContent = '本週';
+    renderCalendar();
+  });
+
+  document.getElementById('monthViewBtn').addEventListener('click', () => {
+    if (viewMode === 'month') return;
+    viewMode = 'month';
+    document.getElementById('monthViewBtn').classList.add('active');
+    document.getElementById('weekViewBtn').classList.remove('active');
+    document.getElementById('todayBtn').textContent = '本月';
+    renderCalendar();
   });
 
   renderCalendar();

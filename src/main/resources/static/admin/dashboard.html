@@ -36,6 +36,21 @@
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/></svg>
       消費管理
     </a>
+    <a href="./orders.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+      訂單管理
+    </a>
+  </nav>
+  <div class="sidebar-section">內容管理</div>
+  <nav class="sidebar-nav">
+    <a href="./news.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/></svg>
+      最新消息
+    </a>
+    <a href="./products.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+      商品管理
+    </a>
   </nav>
 
   <div class="sidebar-section">服務設定</div>
@@ -99,25 +114,107 @@
 
     <!-- Stats -->
     <div class="stats-grid">
-      <div class="stat-card">
+      <div class="stat-card" onclick="window.location.href='./appointments.html'">
         <div class="stat-label">今日預約</div>
         <div class="stat-value" id="todayAppt">8</div>
         <div class="stat-hint">已完成 3 筆</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card warning" onclick="window.location.href='./orders.html'">
+        <div class="stat-label">待處理訂單</div>
+        <div class="stat-value" id="pendingOrders">2</div>
+        <div class="stat-hint">待確認 / 備貨中</div>
+      </div>
+      <div class="stat-card" onclick="window.location.href='./orders.html'">
+        <div class="stat-label">今日訂單收入</div>
+        <div class="stat-value" id="todayOrderRevenue">4.8k</div>
+        <div class="stat-hint">已付款訂單合計</div>
+      </div>
+      <div class="stat-card warning" onclick="window.location.href='./inventory.html'">
+        <div class="stat-label">庫存警示</div>
+        <div class="stat-value" id="lowStock">3</div>
+        <div class="stat-hint">低於安全庫存</div>
+      </div>
+      <div class="stat-card" onclick="window.location.href='./invoices.html'">
         <div class="stat-label">本月營收</div>
         <div class="stat-value" id="monthRevenue">128k</div>
         <div class="stat-hint">較上月 +12%</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" onclick="window.location.href='./customers.html'">
         <div class="stat-label">客戶總數</div>
         <div class="stat-value" id="totalCustomers">342</div>
         <div class="stat-hint">本月新增 18</div>
       </div>
-      <div class="stat-card warning">
-        <div class="stat-label">庫存警示</div>
-        <div class="stat-value" id="lowStock">3</div>
-        <div class="stat-hint">低於安全庫存</div>
+    </div>
+
+    <!-- 今日訂單 -->
+    <div class="row g-4 mb-3">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">今日訂單</span>
+            <div style="display:flex;gap:0.6rem;align-items:center;">
+              <span class="badge badge-warning" style="font-size:0.7rem;">待確認 1</span>
+              <span class="badge" style="background:var(--peach-cream);color:var(--brandy-rose);font-size:0.7rem;">備貨中 1</span>
+              <a href="./orders.html" class="btn-outline" style="font-size:0.72rem;padding:0.35rem 0.9rem;">查看全部</a>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>訂單編號</th>
+                  <th>客戶</th>
+                  <th>商品摘要</th>
+                  <th>金額</th>
+                  <th>付款狀態</th>
+                  <th>訂單狀態</th>
+                  <th style="text-align:center;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="todayOrderTable">
+                <tr>
+                  <td style="color:var(--brandy-rose);letter-spacing:0.06em;font-size:0.8rem;">ORD-20260506-001</td>
+                  <td>張小芬</td>
+                  <td>摩洛哥堅果修護油 ×1</td>
+                  <td>NT$ 980</td>
+                  <td><span class="badge badge-confirmed">已付款</span></td>
+                  <td><span class="badge badge-pending">待確認</span></td>
+                  <td style="text-align:center;">
+                    <button class="btn-icon" title="查看明細" onclick="openDashOrderDetail(0)">
+                      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color:var(--brandy-rose);letter-spacing:0.06em;font-size:0.8rem;">ORD-20260506-002</td>
+                  <td>林佳怡</td>
+                  <td>護髮素 500ml ×2、染劑 #6N ×1</td>
+                  <td>NT$ 2,360</td>
+                  <td><span class="badge badge-confirmed">已付款</span></td>
+                  <td><span class="badge" style="background:#e8f0e4;color:#5a8a5a;">備貨中</span></td>
+                  <td style="text-align:center;">
+                    <button class="btn-icon" title="查看明細" onclick="openDashOrderDetail(1)">
+                      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color:var(--brandy-rose);letter-spacing:0.06em;font-size:0.8rem;">ORD-20260505-008</td>
+                  <td>陳雅琪</td>
+                  <td>沐序精萃洗髮乳 ×1</td>
+                  <td>NT$ 1,450</td>
+                  <td><span class="badge badge-warning">未付款</span></td>
+                  <td><span class="badge badge-pending">待確認</span></td>
+                  <td style="text-align:center;">
+                    <button class="btn-icon" title="查看明細" onclick="openDashOrderDetail(2)">
+                      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -211,7 +308,7 @@
               </div>
               <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
                 <span style="color:var(--neutral);">未出貨訂單</span>
-                <span style="color:#c0705a;font-weight:500;">2 筆</span>
+                <a href="./orders.html" style="color:#c0705a;font-weight:500;text-decoration:none;">2 筆 →</a>
               </div>
             </div>
           </div>
@@ -241,6 +338,49 @@
           </div>
         </div>
       </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 訂單快覽 Modal -->
+<div class="modal-overlay" id="dashOrderOverlay" onclick="closeDashOrderDetail(event)">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-title">訂單明細</div>
+    <div style="background:var(--peach-cream);border-radius:12px;padding:1rem;font-size:0.82rem;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem;">
+      <div style="display:flex;justify-content:space-between;">
+        <span style="color:var(--neutral);">訂單編號</span>
+        <span id="doOrderNo" style="color:var(--brandy-rose);letter-spacing:0.08em;font-weight:500;"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span style="color:var(--neutral);">客戶姓名</span>
+        <span id="doCustomer"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span style="color:var(--neutral);">商品摘要</span>
+        <span id="doItems" style="text-align:right;max-width:60%;"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span style="color:var(--neutral);">訂單金額</span>
+        <span id="doAmount" style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--brown-deep);font-weight:500;"></span>
+      </div>
+    </div>
+    <div style="display:flex;gap:1.5rem;margin-bottom:1rem;font-size:0.82rem;">
+      <div style="display:flex;flex-direction:column;gap:0.4rem;">
+        <span style="color:var(--neutral);">付款狀態</span>
+        <span id="doPaid"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.4rem;">
+        <span style="color:var(--neutral);">訂單狀態</span>
+        <span id="doStatus"></span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-outline" onclick="closeDashOrderDetail()">關閉</button>
+      <a href="./orders.html" class="btn-primary">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        前往訂單管理
+      </a>
     </div>
   </div>
 </div>

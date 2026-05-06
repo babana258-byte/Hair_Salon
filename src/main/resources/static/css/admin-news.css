@@ -1,0 +1,11 @@
+.form-group textarea {
+  border-radius: 14px;
+  height: 140px;
+  resize: vertical;
+}
+
+.char-count {
+  font-size: 0.72rem; color: var(--neutral);
+  letter-spacing: 0.05em; margin-top: 0.3rem;
+  text-align: right;
+}
