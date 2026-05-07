@@ -139,7 +139,9 @@ function renderTable() {
   }
 
   tbody.innerHTML = filtered.map(a => {
-    const isActive = ['待確認', '已確認'].includes(a.status);
+    const isPending   = a.status === '待確認';
+    const isConfirmed = a.status === '已確認';
+    const isActive    = isPending || isConfirmed;
     return `
     <tr>
       <td>
@@ -156,10 +158,17 @@ function renderTable() {
       <td style="font-size:0.78rem;color:var(--neutral);">${a.notes || '—'}</td>
       <td>
         <div style="display:flex;gap:0.3rem;justify-content:center;">
-          ${isActive ? `
+          ${isPending ? `
+          <button class="btn-icon" title="確認預約" onclick="confirmAppt(${a.id})" style="color:#5a8a5a;">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </button>
+          ` : ''}
+          ${isConfirmed ? `
           <button class="btn-icon" title="完成預約" onclick="openComplete(${a.id})" style="color:var(--brandy-rose);">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </button>
+          ` : ''}
+          ${isActive ? `
           <button class="btn-icon" title="取消預約" onclick="cancelAppt(${a.id})" style="color:var(--neutral);">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
@@ -556,6 +565,15 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', function (
   applyFilter();
   showToast('預約已刪除');
 });
+
+// ── 確認預約（待確認 → 已確認）──
+function confirmAppt(id) {
+  const appt = appointments.find(a => a.id === id);
+  if (!appt) return;
+  appt.status = '已確認';
+  applyFilter();
+  showToast('預約已確認');
+}
 
 // ── 取消預約 ──
 let pendingCancelId = null;
