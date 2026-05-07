@@ -8,6 +8,21 @@
   <link href="../css/admin.css" rel="stylesheet" />
   <link rel="icon" href="../img/logo_favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    .cat-list-wrap { max-height:300px; overflow-y:auto; }
+    .cat-row { display:flex; align-items:center; padding:0.65rem 0.8rem; border-bottom:1px solid var(--chalk-beige); gap:0.6rem; }
+    .cat-row:last-child { border-bottom:none; }
+    .cat-name { flex:1; font-size:0.88rem; color:var(--text-dark); }
+    .cat-input { flex:1; font-size:0.85rem; border:1.5px solid var(--brandy-rose); border-radius:8px; padding:0.3rem 0.7rem; outline:none; font-family:inherit; background:white; color:var(--text-dark); }
+    .cat-actions { display:flex; gap:0.2rem; flex-shrink:0; }
+    .cat-empty { text-align:center; color:var(--neutral); padding:1.5rem; font-size:0.85rem; font-style:italic; }
+    .cat-add-row { display:flex; gap:0.6rem; padding:0.8rem; border-top:1px solid var(--chalk-beige); }
+    .cat-add-row input { flex:1; border:1.5px solid var(--chalk-beige); border-radius:8px; padding:0.45rem 0.8rem; font-size:0.85rem; outline:none; font-family:inherit; background:var(--white-beige); color:var(--text-dark); transition:border-color 0.2s; }
+    .cat-add-row input:focus { border-color:var(--brandy-rose); background:white; }
+    .cat-row { transition: transform 0.18s ease; }
+    .cat-drag-handle { cursor:grab; color:var(--neutral); display:flex; align-items:center; padding:0 0.15rem; flex-shrink:0; transition:color 0.15s; user-select:none; }
+    .cat-drag-handle:hover { color:var(--brandy-rose); }
+  </style>
 </head>
 <body>
 
@@ -38,6 +53,10 @@
     <a href="./orders.html" class="nav-item">
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
       訂單管理
+    </a>
+    <a href="./finance.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zm7.5-9C10.5 3.504 11.004 3 11.625 3h2.25C14.496 3 15 3.504 15 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0110.5 19.875V4.125zm7.5 4.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z"/></svg>
+      財務報表
     </a>
   </nav>
   <div class="sidebar-section">內容管理</div>
@@ -72,6 +91,10 @@
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
       班表管理
     </a>
+    <a href="./salary.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      薪資計算
+    </a>
   </nav>
   <div class="sidebar-footer">
     <button class="logout-btn" onclick="window.location.href='../login.html'">
@@ -100,10 +123,16 @@
         <span class="section-label">Products</span>
         <h1>商品管理</h1>
       </div>
-      <button class="btn-primary" onclick="openAdd()">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        新增商品
-      </button>
+      <div style="display:flex;gap:0.5rem;">
+        <button class="btn-outline" onclick="openCategoryModal()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/></svg>
+          管理分類
+        </button>
+        <button class="btn-primary" onclick="openAdd()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+          新增商品
+        </button>
+      </div>
     </div>
 
     <!-- 統計卡片 -->
@@ -190,8 +219,27 @@
   </div>
 </div>
 
+<!-- 分類管理 Modal -->
+<div class="modal-overlay" id="categoryModalOverlay" onclick="if(event.target===this)closeCategoryModal()">
+  <div class="modal" style="max-width:440px;">
+    <div class="modal-title">商品分類管理</div>
+    <div class="cat-list-wrap" id="categoryListBody"></div>
+    <div class="cat-add-row">
+      <input type="text" id="newCatInput" placeholder="輸入新分類名稱..."
+        onkeydown="if(event.key==='Enter')addCategory()">
+      <button type="button" class="btn-primary" onclick="addCategory()" style="white-space:nowrap;padding-left:1rem;padding-right:1rem;">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        新增
+      </button>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-outline" onclick="closeCategoryModal()">關閉</button>
+    </div>
+  </div>
+</div>
+
 <!-- 新增／編輯 Modal -->
-<div class="modal-overlay" id="modalOverlay">
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="modal-title" id="modalTitle">新增商品</div>
     <form id="productForm">
@@ -285,7 +333,7 @@
 </div>
 
 <!-- 刪除確認 Modal -->
-<div class="modal-overlay" id="deleteConfirmOverlay">
+<div class="modal-overlay" id="deleteConfirmOverlay" onclick="if(event.target===this)closeDeleteConfirm()">
   <div class="modal confirm-modal">
     <div class="confirm-icon">
       <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>

@@ -53,6 +53,223 @@ document.addEventListener('click', function(e) {
   }
 });
 
+// ── 商品分類 ──
+let categoryList = ['護髮', '造型品', '洗髮', '其他'];
+let _dragSrcIndex = null;
+let _dragOverIndex = null;
+let _originalRects = [];
+let _dragClone = null;
+let _dragOffsetY = 0;
+
+function rebuildTypeDropdowns() {
+  const typeFilterVal = document.getElementById('typeFilter').value;
+
+  // 工具列篩選下拉
+  document.getElementById('prodTypeList').innerHTML =
+    `<li class="custom-select-option${!typeFilterVal ? ' selected' : ''}" data-value="">全部類型</li>` +
+    categoryList.map(c =>
+      `<li class="custom-select-option${typeFilterVal === c ? ' selected' : ''}" data-value="${c}">${c}</li>`
+    ).join('');
+  if (!categoryList.includes(typeFilterVal)) {
+    document.getElementById('typeFilter').value = '';
+    document.getElementById('prodTypeLabel').textContent = '全部類型';
+  }
+
+  // 新增／編輯 Modal 的分類下拉
+  const fTypeVal = document.getElementById('fType').value;
+  const validFType = categoryList.includes(fTypeVal) ? fTypeVal : (categoryList[0] || '');
+  document.querySelector('#fTypeDropdown .custom-select-list').innerHTML =
+    categoryList.map(c =>
+      `<li class="custom-select-option${c === validFType ? ' selected' : ''}" data-value="${c}">${c}</li>`
+    ).join('');
+  document.getElementById('fType').value = validFType;
+  document.getElementById('fTypeLabel').textContent = validFType || '—';
+}
+
+// ── 分類管理 Modal ──
+function openCategoryModal() {
+  renderCategoryList();
+  document.getElementById('categoryModalOverlay').classList.add('show');
+}
+
+
+function closeCategoryModal() {
+  document.getElementById('categoryModalOverlay').classList.remove('show');
+  document.getElementById('newCatInput').value = '';
+}
+
+function renderCategoryList() {
+  const list = document.getElementById('categoryListBody');
+  if (categoryList.length === 0) {
+    list.innerHTML = '<div class="cat-empty">尚無分類，請新增</div>';
+    return;
+  }
+  list.innerHTML = categoryList.map((c, i) => `
+    <div class="cat-row" id="catRow_${i}">
+      <div class="cat-drag-handle" title="拖曳排序" onmousedown="startCatDrag(event,${i})">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg>
+      </div>
+      <span class="cat-name" id="catName_${i}">${c}</span>
+      <input class="cat-input" id="catInput_${i}" value="${c}" style="display:none;"
+        onkeydown="if(event.key==='Enter')saveCategory(${i});else if(event.key==='Escape')cancelEditCategory(${i})">
+      <div class="cat-actions">
+        <button class="btn-icon" id="catEditBtn_${i}" title="編輯" onclick="editCategory(${i})">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/></svg>
+        </button>
+        <button class="btn-icon" id="catSaveBtn_${i}" title="儲存" onclick="saveCategory(${i})" style="display:none;">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        </button>
+        <button class="btn-icon" id="catCancelBtn_${i}" title="取消" onclick="cancelEditCategory(${i})" style="display:none;">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button class="btn-icon danger" title="刪除" onclick="deleteCategory(${i})">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+        </button>
+      </div>
+    </div>
+  `).join('');
+  bindCatDrag();
+}
+
+function updateDragOverVisual(srcIdx, dstIdx) {
+  const allRows = document.querySelectorAll('#categoryListBody .cat-row');
+  if (!allRows.length) return;
+  const rowH = allRows[0].offsetHeight;
+  allRows.forEach((r, j) => {
+    if (j === srcIdx) return;
+    let shift = 0;
+    if (srcIdx < dstIdx && j > srcIdx && j <= dstIdx) shift = -rowH;
+    else if (srcIdx > dstIdx && j >= dstIdx && j < srcIdx) shift = rowH;
+    r.style.transform = shift ? `translateY(${shift}px)` : '';
+  });
+}
+
+function clearDragVisual() {
+  document.querySelectorAll('#categoryListBody .cat-row').forEach(r => {
+    r.style.transform = '';
+    r.style.opacity = '';
+  });
+}
+
+function startCatDrag(e, i) {
+  if (e.button !== 0) return;
+  e.preventDefault();
+  const allRows = Array.from(document.querySelectorAll('#categoryListBody .cat-row'));
+  if (!allRows.length) return;
+  _dragSrcIndex = i;
+  _dragOverIndex = i;
+  _originalRects = allRows.map(r => r.getBoundingClientRect());
+  const srcRect = _originalRects[i];
+  _dragOffsetY = e.clientY - srcRect.top;
+  _dragClone = allRows[i].cloneNode(true);
+  Object.assign(_dragClone.style, {
+    position: 'fixed', left: srcRect.left + 'px', top: srcRect.top + 'px',
+    width: srcRect.width + 'px', height: srcRect.height + 'px', margin: '0',
+    zIndex: '9999', pointerEvents: 'none', opacity: '0.97',
+    boxShadow: '0 8px 28px rgba(74,55,40,0.2)', borderRadius: '8px',
+    border: '1.5px solid var(--brandy-rose)', background: 'white', transition: 'none',
+  });
+  document.body.appendChild(_dragClone);
+  document.body.style.cursor = 'grabbing';
+  allRows[i].style.opacity = '0';
+  document.addEventListener('mousemove', onCatDragMove);
+  document.addEventListener('mouseup', onCatDragEnd);
+}
+
+function onCatDragMove(e) {
+  if (_dragSrcIndex === null || !_dragClone) return;
+  _dragClone.style.top = (e.clientY - _dragOffsetY) + 'px';
+  let newDst = 0;
+  _originalRects.forEach((rect, j) => {
+    if (j === _dragSrcIndex) return;
+    if (e.clientY > rect.top + rect.height / 2) newDst++;
+  });
+  if (newDst !== _dragOverIndex) {
+    _dragOverIndex = newDst;
+    updateDragOverVisual(_dragSrcIndex, newDst);
+  }
+}
+
+function onCatDragEnd() {
+  document.removeEventListener('mousemove', onCatDragMove);
+  document.removeEventListener('mouseup', onCatDragEnd);
+  if (_dragClone) { _dragClone.remove(); _dragClone = null; }
+  document.body.style.cursor = '';
+  const src = _dragSrcIndex;
+  const dst = _dragOverIndex;
+  _dragSrcIndex = null;
+  _dragOverIndex = null;
+  _originalRects = [];
+  clearDragVisual();
+  if (src !== null && dst !== null && src !== dst) {
+    const moved = categoryList.splice(src, 1)[0];
+    categoryList.splice(dst, 0, moved);
+    renderCategoryList();
+    rebuildTypeDropdowns();
+  }
+}
+
+function bindCatDrag() { /* 由 startCatDrag 取代，保留空函式供 renderCategoryList 呼叫 */ }
+
+function editCategory(i) {
+  document.getElementById(`catName_${i}`).style.display = 'none';
+  document.getElementById(`catInput_${i}`).style.display = 'block';
+  document.getElementById(`catInput_${i}`).focus();
+  document.getElementById(`catEditBtn_${i}`).style.display = 'none';
+  document.getElementById(`catSaveBtn_${i}`).style.display = '';
+  document.getElementById(`catCancelBtn_${i}`).style.display = '';
+}
+
+function cancelEditCategory(i) {
+  document.getElementById(`catName_${i}`).style.display = '';
+  document.getElementById(`catInput_${i}`).style.display = 'none';
+  document.getElementById(`catInput_${i}`).value = categoryList[i];
+  document.getElementById(`catEditBtn_${i}`).style.display = '';
+  document.getElementById(`catSaveBtn_${i}`).style.display = 'none';
+  document.getElementById(`catCancelBtn_${i}`).style.display = 'none';
+}
+
+function saveCategory(i) {
+  const newName = document.getElementById(`catInput_${i}`).value.trim();
+  if (!newName) { showToast('分類名稱不得為空'); return; }
+  if (categoryList.some((c, j) => c === newName && j !== i)) { showToast('分類名稱已存在'); return; }
+  const oldName = categoryList[i];
+  categoryList[i] = newName;
+  productList.forEach(p => { if (p.type === oldName) p.type = newName; });
+  renderCategoryList();
+  rebuildTypeDropdowns();
+  applyFilter();
+  showToast(`分類已更名為「${newName}」`);
+}
+
+function deleteCategory(i) {
+  const name = categoryList[i];
+  const inUse = productList.filter(p => p.type === name).length;
+  if (inUse > 0) {
+    showToast(`「${name}」有 ${inUse} 件商品使用中，無法刪除`);
+    return;
+  }
+  categoryList.splice(i, 1);
+  renderCategoryList();
+  rebuildTypeDropdowns();
+  applyFilter();
+  showToast(`分類「${name}」已刪除`);
+}
+
+function addCategory() {
+  const input = document.getElementById('newCatInput');
+  const name = input.value.trim();
+  if (!name) { showToast('請輸入分類名稱'); return; }
+  if (categoryList.includes(name)) { showToast('分類名稱已存在'); return; }
+  categoryList.push(name);
+  input.value = '';
+  renderCategoryList();
+  rebuildTypeDropdowns();
+  showToast(`分類「${name}」已新增`);
+}
+
 // ── 假資料 ──
 const productList = [
   { id: 1, name: '純淨摩洛哥堅果修護油', brand: 'Paul Mitchell', type: '護髮', price: 1480, stock: 8, isActive: true, description: '深層修護，適合受損髮質' },
@@ -192,7 +409,8 @@ function openAdd() {
   editingId = null;
   document.getElementById('modalTitle').textContent = '新增商品';
   document.getElementById('productForm').reset();
-  setModalDropdown('fTypeDropdown', '護髮');
+  rebuildTypeDropdowns();
+  setModalDropdown('fTypeDropdown', categoryList[0] || '');
   setModalDropdown('fIsActiveDropdown', 'true');
   resetImageField(null);
   document.getElementById('modalOverlay').classList.add('show');
@@ -206,6 +424,7 @@ function openEdit(id) {
   document.getElementById('modalTitle').textContent = '編輯商品';
   document.getElementById('fName').value = p.name;
   document.getElementById('fBrand').value = p.brand;
+  rebuildTypeDropdowns();
   setModalDropdown('fTypeDropdown', p.type);
   document.getElementById('fPrice').value = p.price;
   document.getElementById('fStock').value = p.stock;
@@ -295,15 +514,16 @@ function showToast(msg) {
 
 // ── 初始化 ──
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('#prodTypeList .custom-select-option').forEach(function(opt) {
-    opt.addEventListener('click', function() {
-      document.getElementById('prodTypeLabel').textContent = this.textContent;
-      document.querySelectorAll('#prodTypeList .custom-select-option').forEach(o => o.classList.remove('selected'));
-      this.classList.add('selected');
-      document.getElementById('prodTypeDropdown').classList.remove('open');
-      document.getElementById('typeFilter').value = this.dataset.value;
-      applyFilter();
-    });
+  // 使用事件委派，類型篩選下拉重建後仍有效
+  document.getElementById('prodTypeList').addEventListener('click', function(e) {
+    const opt = e.target.closest('.custom-select-option');
+    if (!opt) return;
+    document.getElementById('prodTypeLabel').textContent = opt.textContent;
+    this.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    document.getElementById('prodTypeDropdown').classList.remove('open');
+    document.getElementById('typeFilter').value = opt.dataset.value;
+    applyFilter();
   });
 
   document.querySelectorAll('#prodStatusList .custom-select-option').forEach(function(opt) {

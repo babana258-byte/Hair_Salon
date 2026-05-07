@@ -167,6 +167,9 @@ function renderTable() {
           <button class="btn-icon" title="完成預約" onclick="openComplete(${a.id})" style="color:var(--brandy-rose);">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </button>
+          <button class="btn-icon" title="預約未到" onclick="noShowAppt(${a.id})" style="color:#b0935a;">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/><line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
           ` : ''}
           ${isActive ? `
           <button class="btn-icon" title="取消預約" onclick="cancelAppt(${a.id})" style="color:var(--neutral);">
@@ -486,6 +489,8 @@ function openComplete(id) {
   document.getElementById('cInfoStaff').textContent = appt.staff;
   document.getElementById('cInfoDatetime').textContent = `${appt.date} ${appt.time}`;
 
+  document.getElementById('cServices').value = appt.service;
+  document.getElementById('cProduct').value = '';
   document.getElementById('cAmount').value = '';
   document.getElementById('cDiscount').value = '0';
   resetModalDropdown('cMethodDropdown');
@@ -525,8 +530,10 @@ document.getElementById('completeForm').addEventListener('submit', function(e) {
   const newInvoice = {
     id: Date.now(),
     customer: appt.customer,
+    designer: appt.staff,
     date: appt.date,
-    items: appt.service,
+    items: document.getElementById('cServices').value,
+    product: document.getElementById('cProduct').value,
     subtotal,
     discount,
     total: subtotal - discount,
@@ -577,6 +584,13 @@ function confirmAppt(id) {
 
 // ── 取消預約 ──
 let pendingCancelId = null;
+
+function noShowAppt(id) {
+  const appt = appointments.find(a => a.id === id);
+  if (!appt) return;
+  appt.status = '預約未到';
+  applyFilter();
+}
 
 function cancelAppt(id) {
   pendingCancelId = id;

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"g:\\\\Mushue\\\\Hair_Salon\" -type f \\\\\\( -name \"*.yml\" -o -name \"*.yaml\" -o -name \"*.properties\" \\\\\\) 2>nul)",
+      "Bash(find \"g:\\\\Mushue\\\\Hair_Salon\" -type f -name \"*appointment*\" -o -name \"*reserve*\" 2>nul | grep -v target | grep -v \".class\")"
+    ],
+    "additionalDirectories": [
+      "g:\\Mushue\\Hair_Salon"
+    ]
+  }
+}

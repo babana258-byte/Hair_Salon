@@ -104,6 +104,9 @@ document.getElementById('reserveForm').addEventListener('submit', function (e) {
     document.getElementById('successMsg').style.display = 'none';
     this.reset(); selectedDate = null;
     document.getElementById('selectedDateDisplay').textContent = '請選擇預約日期';
+    const dv = document.querySelector('#designerDropdown .custom-select-value');
+    if (dv) { dv.textContent = '不指定'; }
+    document.querySelectorAll('#designerDropdown .custom-option').forEach(o => o.classList.toggle('selected', o.dataset.value === ''));
     renderCalendar();
   }, 4000);
 });

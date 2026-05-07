@@ -42,6 +42,64 @@ function renderOrderSummary() {
   document.getElementById('summaryTotal').textContent = 'NT$ ' + total.toLocaleString();
 }
 
+// ── 物流方式選擇 ──
+function updateAddressSection(shippingValue) {
+  var isHome = shippingValue === '宅配到府';
+  document.getElementById('addressCardTitle').textContent = isHome ? '收件地址' : '取件門市';
+  document.getElementById('storeSection').style.display = isHome ? 'none' : 'block';
+  document.getElementById('homeSection').style.display  = isHome ? 'block' : 'none';
+}
+
+function initShippingOptions() {
+  var options = document.querySelectorAll('.shipping-option');
+  options.forEach(function(option) {
+    option.addEventListener('click', function() {
+      options.forEach(function(o) { o.classList.remove('selected'); });
+      option.classList.add('selected');
+      var radio = option.querySelector('input[type=radio]');
+      if (radio) {
+        radio.checked = true;
+        var hidden = document.getElementById('shippingMethod');
+        if (hidden) hidden.value = radio.value;
+        updateAddressSection(radio.value);
+      }
+    });
+  });
+  var checked = document.querySelector('input[name=shipping]:checked');
+  if (checked) updateAddressSection(checked.value);
+}
+
+// ── 縣市自訂下拉 ──
+function initCitySelect() {
+  var wrapper = document.getElementById('cityWrapper');
+  var btn     = document.getElementById('cityBtn');
+  var label   = document.getElementById('cityLabel');
+  var hidden  = document.getElementById('city');
+  var options = wrapper.querySelectorAll('.city-option');
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    wrapper.classList.toggle('open');
+  });
+
+  options.forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var val = opt.dataset.value;
+      hidden.value = val;
+      label.textContent = val;
+      label.style.color = 'var(--text-dark)';
+      btn.style.borderColor = '';
+      options.forEach(function(o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      wrapper.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', function() {
+    wrapper.classList.remove('open');
+  });
+}
+
 // ── 付款方式選擇 ──
 function initPaymentOptions() {
   var options = document.querySelectorAll('.payment-option');
@@ -74,22 +132,44 @@ function hideError() {
 
 // ── 表單驗證 ──
 function validateForm() {
-  var fields = ['name', 'phone', 'city', 'district', 'address'];
+  var isHome = document.getElementById('shippingMethod').value === '宅配到府';
   var allFilled = true;
 
-  fields.forEach(function(id) {
+  ['name', 'phone'].forEach(function(id) {
     var el = document.getElementById(id);
     if (!el) return;
-    if (!el.value.trim()) {
-      el.style.borderColor = '#c0705a';
-      allFilled = false;
-    } else {
-      el.style.borderColor = '';
-    }
+    if (!el.value.trim()) { el.style.borderColor = '#c0705a'; allFilled = false; }
+    else el.style.borderColor = '';
   });
 
+  if (isHome) {
+    ['district', 'address'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (!el.value.trim()) { el.style.borderColor = '#c0705a'; allFilled = false; }
+      else el.style.borderColor = '';
+    });
+    var cityHidden = document.getElementById('city');
+    var cityBtn    = document.getElementById('cityBtn');
+    if (cityHidden && !cityHidden.value.trim()) {
+      if (cityBtn) cityBtn.style.borderColor = '#c0705a';
+      allFilled = false;
+    } else {
+      if (cityBtn) cityBtn.style.borderColor = '';
+    }
+  } else {
+    var storeEl = document.getElementById('storeName');
+    if (storeEl && !storeEl.value.trim()) {
+      storeEl.style.borderColor = '#c0705a'; allFilled = false;
+    } else if (storeEl) {
+      storeEl.style.borderColor = '';
+    }
+  }
+
   if (!allFilled) {
-    showError('請填寫所有必填欄位（姓名、手機、縣市、鄉鎮市區、詳細地址）。');
+    showError(isHome
+      ? '請填寫所有必填欄位（姓名、手機、縣市、鄉鎮市區、詳細地址）。'
+      : '請填寫所有必填欄位（姓名、手機、門市名稱）。');
     return false;
   }
 
@@ -137,9 +217,10 @@ function submitOrder() {
     shipping: shipping,
     name: document.getElementById('name').value,
     phone: document.getElementById('phone').value,
-    address: document.getElementById('city').value
-           + document.getElementById('district').value
-           + document.getElementById('address').value,
+    address: document.getElementById('shippingMethod').value === '宅配到府'
+           ? document.getElementById('city').value + document.getElementById('district').value + document.getElementById('address').value
+           : document.getElementById('storeName').value,
+    shippingMethod: document.getElementById('shippingMethod').value,
     paymentMethod: checkedRadio ? checkedRadio.value : '現金',
     notes: document.getElementById('notes').value
   };
@@ -154,7 +235,9 @@ function submitOrder() {
 // ── 初始化 ──
 document.addEventListener('DOMContentLoaded', function() {
   renderOrderSummary();
+  initShippingOptions();
   initPaymentOptions();
+  initCitySelect();
   var firstOption = document.querySelector('.payment-option');
   if (firstOption) firstOption.classList.add('selected');
 });

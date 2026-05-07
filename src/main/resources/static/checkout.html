@@ -116,62 +116,121 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>手機號碼</label>
-                    <input type="tel" id="phone" placeholder="09xx-xxx-xxx">
+                    <input type="tel" id="phone" placeholder="收件人手機號碼">
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- 收件地址 -->
+            <!-- 物流方式 -->
+            <div class="form-card">
+              <div class="form-card-title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+                </svg>
+                物流方式
+              </div>
+              <div class="shipping-options" id="shippingOptions">
+                <div class="shipping-option selected">
+                  <input type="radio" name="shipping" id="ship-711" value="7-ELEVEN 超商取貨" checked>
+                  <label for="ship-711">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
+                    7-ELEVEN 超商取貨
+                  </label>
+                </div>
+                <div class="shipping-option">
+                  <input type="radio" name="shipping" id="ship-family" value="全家 FamilyMart 超商取貨">
+                  <label for="ship-family">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
+                    全家 FamilyMart 超商取貨
+                  </label>
+                </div>
+                <div class="shipping-option">
+                  <input type="radio" name="shipping" id="ship-ok" value="OK mart 超商取貨">
+                  <label for="ship-ok">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
+                    OK mart 超商取貨
+                  </label>
+                </div>
+                <div class="shipping-option">
+                  <input type="radio" name="shipping" id="ship-home" value="宅配到府">
+                  <label for="ship-home">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+                    宅配到府
+                  </label>
+                </div>
+              </div>
+              <input type="hidden" id="shippingMethod" value="7-ELEVEN 超商取貨">
+            </div>
+
+            <!-- 取件資訊 -->
             <div class="form-card">
               <div class="form-card-title">
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
                 </svg>
-                收件地址
+                <span id="addressCardTitle">取件門市</span>
               </div>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>縣市</label>
-                    <select id="city">
-                      <option value="">選擇縣市</option>
-                      <option>台北市</option>
-                      <option>新北市</option>
-                      <option>桃園市</option>
-                      <option>台中市</option>
-                      <option>台南市</option>
-                      <option>高雄市</option>
-                      <option>基隆市</option>
-                      <option>新竹市</option>
-                      <option>嘉義市</option>
-                      <option>新竹縣</option>
-                      <option>苗栗縣</option>
-                      <option>彰化縣</option>
-                      <option>南投縣</option>
-                      <option>雲林縣</option>
-                      <option>嘉義縣</option>
-                      <option>屏東縣</option>
-                      <option>宜蘭縣</option>
-                      <option>花蓮縣</option>
-                      <option>台東縣</option>
-                      <option>澎湖縣</option>
-                      <option>金門縣</option>
-                      <option>連江縣</option>
-                    </select>
-                  </div>
+
+              <!-- 超商取貨：門市名稱 -->
+              <div id="storeSection">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>門市名稱</label>
+                  <input type="text" id="storeName" placeholder="請輸入取件門市名稱（例：台北信義門市）">
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>鄉鎮市區</label>
-                    <input type="text" id="district" placeholder="鄉鎮市區">
+              </div>
+
+              <!-- 宅配到府：收件地址 -->
+              <div id="homeSection" style="display:none;">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>縣市</label>
+                      <div class="city-select-wrapper" id="cityWrapper">
+                        <button type="button" class="city-select-btn" id="cityBtn">
+                          <span id="cityLabel" style="color:var(--neutral);">選擇縣市</span>
+                          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+                        </button>
+                        <div class="city-select-list" id="cityList">
+                          <div class="city-option" data-value="台北市">台北市</div>
+                          <div class="city-option" data-value="新北市">新北市</div>
+                          <div class="city-option" data-value="桃園市">桃園市</div>
+                          <div class="city-option" data-value="台中市">台中市</div>
+                          <div class="city-option" data-value="台南市">台南市</div>
+                          <div class="city-option" data-value="高雄市">高雄市</div>
+                          <div class="city-option" data-value="基隆市">基隆市</div>
+                          <div class="city-option" data-value="新竹市">新竹市</div>
+                          <div class="city-option" data-value="嘉義市">嘉義市</div>
+                          <div class="city-option" data-value="新竹縣">新竹縣</div>
+                          <div class="city-option" data-value="苗栗縣">苗栗縣</div>
+                          <div class="city-option" data-value="彰化縣">彰化縣</div>
+                          <div class="city-option" data-value="南投縣">南投縣</div>
+                          <div class="city-option" data-value="雲林縣">雲林縣</div>
+                          <div class="city-option" data-value="嘉義縣">嘉義縣</div>
+                          <div class="city-option" data-value="屏東縣">屏東縣</div>
+                          <div class="city-option" data-value="宜蘭縣">宜蘭縣</div>
+                          <div class="city-option" data-value="花蓮縣">花蓮縣</div>
+                          <div class="city-option" data-value="台東縣">台東縣</div>
+                          <div class="city-option" data-value="澎湖縣">澎湖縣</div>
+                          <div class="city-option" data-value="金門縣">金門縣</div>
+                          <div class="city-option" data-value="連江縣">連江縣</div>
+                        </div>
+                      </div>
+                      <input type="hidden" id="city">
+                    </div>
                   </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>詳細地址</label>
-                    <input type="text" id="address" placeholder="路／街、號、樓層">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>鄉鎮市區</label>
+                      <input type="text" id="district" placeholder="鄉鎮市區">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group" style="margin-bottom:0;">
+                      <label>詳細地址</label>
+                      <input type="text" id="address" placeholder="路／街、號、樓層">
+                    </div>
                   </div>
                 </div>
               </div>

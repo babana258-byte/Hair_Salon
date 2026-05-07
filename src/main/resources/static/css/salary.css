@@ -1,0 +1,162 @@
+/* ── 薪資卡片 ── */
+.salary-card {
+  background: white;
+  border: 1.5px solid rgba(178,144,121,0.2);
+  border-radius: 16px; padding: 1.2rem;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(178,144,121,0.08);
+}
+
+.salary-card:hover {
+  border-color: var(--brandy-rose);
+  box-shadow: 0 4px 16px rgba(178,144,121,0.15);
+  transform: translateY(-2px);
+}
+
+.salary-card.selected {
+  border-color: var(--brandy-rose);
+  background: rgba(178,144,121,0.04);
+  box-shadow: 0 4px 16px rgba(178,144,121,0.15);
+}
+
+.salary-card-top {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem; padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--chalk-beige);
+}
+
+.staff-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--peach-cream); color: var(--brown-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem; flex-shrink: 0;
+}
+
+.salary-card-body { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.salary-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.8rem; color: var(--neutral);
+}
+
+.salary-row span:last-child { color: var(--text-dark); }
+
+.salary-total-row {
+  display: flex; justify-content: space-between;
+  padding-top: 0.6rem; margin-top: 0.3rem;
+  border-top: 1px solid var(--chalk-beige);
+}
+
+.salary-total-row span:first-child {
+  font-size: 0.82rem; color: var(--text-mid);
+}
+
+.salary-total-row span:last-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--brandy-rose); font-weight: 500;
+}
+
+
+/* ── 明細區 ── */
+.detail-section {
+  background: white;
+  border: 1px solid rgba(178,144,121,0.2);
+  border-radius: 16px; padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(178,144,121,0.08);
+  margin-bottom: 1rem;
+}
+
+.detail-section-title {
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  color: var(--brandy-rose); text-transform: uppercase;
+  margin-bottom: 1rem; padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--chalk-beige);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+
+.detail-table {
+  width: 100%; border-collapse: collapse; font-size: 0.82rem;
+}
+
+.detail-table th {
+  font-size: 0.65rem; letter-spacing: 0.12em;
+  color: var(--neutral); font-weight: 400;
+  padding: 0.5rem 0.8rem; text-align: left;
+  border-bottom: 1px solid var(--chalk-beige);
+}
+
+.detail-table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid rgba(178,144,121,0.08);
+  color: var(--text-dark);
+}
+
+.detail-table tr:last-child td { border-bottom: none; }
+.detail-table tr:hover td { background: rgba(239,231,218,0.2); }
+
+.subtotal-row {
+  display: flex; justify-content: space-between;
+  align-items: center; font-size: 0.82rem;
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--chalk-beige);
+  margin-top: 0.3rem;
+}
+
+.subtotal-row .label { color: var(--neutral); }
+.subtotal-row .value { color: var(--text-dark); }
+.subtotal-row .comm-value { color: var(--brandy-rose); font-weight: 500; }
+
+/* ── 薪資匯總 ── */
+.salary-summary {
+  background: var(--peach-cream);
+  border: 1px solid rgba(178,144,121,0.2);
+  border-radius: 16px; padding: 1.5rem;
+}
+
+.summary-title {
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  color: var(--brandy-rose); text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.summary-item {
+  display: flex; justify-content: space-between;
+  font-size: 0.85rem; padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(178,144,121,0.15);
+}
+
+.summary-item .label { color: var(--text-mid); }
+.summary-item .value { color: var(--text-dark); }
+
+.summary-total {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 0.8rem;
+  padding-top: 0.8rem;
+}
+
+.summary-total .label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--brown-deep);
+}
+
+.summary-total .value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; color: var(--brown-deep); font-weight: 500;
+}
+
+/* ── 隱藏捲軸 ── */
+#monthPickerList {
+  scrollbar-width: none;
+}
+#monthPickerList::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── 列印樣式 ── */
+@media print {
+  .sidebar, .topbar, .page-header, #overviewSection,
+  #printBtn { display: none !important; }
+  .main { margin-left: 0 !important; }
+  .detail-section, .salary-summary { box-shadow: none; border: 1px solid #ddd; }
+}

@@ -1,0 +1,66 @@
+/* ── 時間切換 ── */
+.period-tabs {
+  display: flex; background: var(--peach-cream);
+  border-radius: 50px; padding: 3px; gap: 2px;
+}
+.period-btn {
+  padding: 0.4rem 1rem;
+  border: none; border-radius: 50px;
+  background: transparent; color: var(--neutral);
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.78rem; letter-spacing: 0.1em;
+  cursor: pointer; transition: all 0.2s;
+}
+.period-btn.active {
+  background: white; color: var(--brown-dark);
+  box-shadow: 0 1px 4px rgba(178,144,121,0.2);
+}
+
+.period-nav {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.period-nav-btn {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1.5px solid var(--chalk-beige);
+  background: white; color: var(--text-mid);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s;
+}
+.period-nav-btn:hover { border-color: var(--brandy-rose); color: var(--brandy-rose); }
+
+.period-label {
+  font-size: 0.88rem; color: var(--text-dark);
+  letter-spacing: 0.05em; min-width: 180px; text-align: center;
+}
+
+/* ── 收入進度條 ── */
+.rev-bar { height: 7px; border-radius: 50px; background: var(--chalk-beige); margin: 0.4rem 0; }
+.rev-bar-fill { height: 100%; border-radius: 50px; transition: width 0.5s ease; }
+.bar-svc { background: var(--brandy-rose); }
+.bar-prd { background: var(--neutral); }
+
+/* ── 長條圖 ── */
+.bar-chart-wrap {
+  display: flex; align-items: flex-end;
+  gap: 0.5rem; padding: 0.5rem 0;
+  overflow-x: auto;
+}
+.bar-legend {
+  display: flex; gap: 1.2rem; margin-top: 0.8rem;
+  font-size: 0.72rem; color: var(--neutral);
+}
+.bar-legend span {
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.bar-legend .dot {
+  width: 10px; height: 10px; border-radius: 2px;
+}
+
+#categoryList,
+.modal-select-scroll {
+  scrollbar-width: none;
+}
+#categoryList::-webkit-scrollbar,
+.modal-select-scroll::-webkit-scrollbar {
+  display: none;
+}

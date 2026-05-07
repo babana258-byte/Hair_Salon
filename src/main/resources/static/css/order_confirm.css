@@ -345,6 +345,34 @@ body {
   background-color: var(--peach-cream); color: var(--brandy-rose);
 }
 
+/* ── ATM Card ── */
+.atm-card { border-color: rgba(178,144,121,0.4); }
+
+.atm-notice {
+  background: rgba(239,231,218,0.6);
+  border-left: 3px solid var(--brandy-rose);
+  border-radius: 0 10px 10px 0;
+  padding: 0.7rem 1rem;
+  font-size: 0.82rem; color: var(--brown-dark);
+  letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+
+.atm-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; color: var(--brandy-rose); font-weight: 500;
+}
+
+.copy-btn {
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--brandy-rose);
+  border-radius: 50px; background: transparent;
+  color: var(--brandy-rose); font-size: 0.72rem;
+  font-family: 'Noto Serif TC', serif;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+
+.copy-btn:hover { background: var(--brandy-rose); color: white; }
+
 /* ── Notice Box ── */
 .notice-box {
   background-color: var(--peach-cream);

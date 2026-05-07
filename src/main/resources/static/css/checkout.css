@@ -190,6 +190,61 @@ body {
   padding-right: 2.5rem;
 }
 
+/* ── 縣市自訂下拉 ── */
+.city-select-wrapper { position: relative; }
+
+.city-select-btn {
+  width: 100%; padding: 0.7rem 1.1rem;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 50px;
+  background-color: var(--white-beige); color: var(--text-dark);
+  font-family: 'Noto Serif TC', serif; font-size: 0.88rem;
+  outline: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.city-select-btn:hover,
+.city-select-wrapper.open .city-select-btn {
+  border-color: var(--brandy-rose);
+  background-color: white;
+}
+
+.city-select-wrapper.open .city-select-btn svg {
+  transform: rotate(180deg);
+}
+
+.city-select-btn svg { transition: transform 0.2s; color: var(--neutral); }
+
+.city-select-list {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  background: white;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 16px;
+  max-height: 240px; overflow-y: auto;
+  z-index: 200;
+  display: none;
+  box-shadow: 0 8px 24px rgba(178,144,121,0.14);
+  scrollbar-width: none;
+}
+
+.city-select-list::-webkit-scrollbar { display: none; }
+
+.city-select-wrapper.open .city-select-list { display: block; }
+
+.city-option {
+  padding: 0.65rem 1.1rem;
+  font-size: 0.88rem; color: var(--text-dark);
+  font-family: 'Noto Serif TC', serif;
+  cursor: pointer; transition: background 0.15s;
+}
+
+.city-option:first-child { border-radius: 14px 14px 0 0; }
+.city-option:last-child  { border-radius: 0 0 14px 14px; }
+
+.city-option:hover  { background: var(--peach-cream); }
+.city-option.selected { background: var(--peach-cream); color: var(--brown-dark); }
+
 /* ── Payment Options ── */
 .payment-options { display: flex; flex-direction: column; gap: 0.8rem; }
 
@@ -214,6 +269,36 @@ body {
 }
 
 .payment-option label {
+  font-size: 0.85rem; color: var(--text-dark);
+  letter-spacing: 0.05em; cursor: pointer;
+  margin: 0; text-transform: none;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+
+/* ── Shipping Options ── */
+.shipping-options { display: flex; flex-direction: column; gap: 0.8rem; }
+
+.shipping-option {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.2rem;
+  border: 1.5px solid var(--chalk-beige);
+  border-radius: 50px; cursor: pointer;
+  transition: all 0.2s;
+}
+
+.shipping-option:hover { border-color: var(--brandy-rose); }
+
+.shipping-option.selected {
+  border-color: var(--brandy-rose);
+  background-color: rgba(178,144,121,0.05);
+}
+
+.shipping-option input[type=radio] {
+  width: auto; accent-color: var(--brandy-rose);
+  flex-shrink: 0; margin: 0;
+}
+
+.shipping-option label {
   font-size: 0.85rem; color: var(--text-dark);
   letter-spacing: 0.05em; cursor: pointer;
   margin: 0; text-transform: none;

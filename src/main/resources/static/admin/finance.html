@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沐序後台｜財務報表</title>
+  <link href="../css/bootstrap.css" rel="stylesheet" />
+  <link href="../css/admin.css" rel="stylesheet" />
+  <link href="../css/finance.css" rel="stylesheet" />
+  <link rel="icon" href="../img/logo_favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="../img/logo_navbar.png" alt="沐序 Logo" class="sidebar-logo-img">
+    <div class="sidebar-logo-sub">Admin Panel</div>
+  </div>
+  <div class="sidebar-section">主要功能</div>
+  <nav class="sidebar-nav">
+    <a href="./dashboard.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zm7.5-9C10.5 3.504 11.004 3 11.625 3h2.25C14.496 3 15 3.504 15 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0110.5 19.875V4.125zm7.5 4.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z"/></svg>
+      總覽
+    </a>
+    <a href="./appointments.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5"/></svg>
+      預約管理
+    </a>
+    <a href="./customers.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      客戶管理
+    </a>
+    <a href="./invoices.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/></svg>
+      消費管理
+    </a>
+    <a href="./orders.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+      訂單管理
+    </a>
+    <a href="./finance.html" class="nav-item active">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zm7.5-9C10.5 3.504 11.004 3 11.625 3h2.25C14.496 3 15 3.504 15 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0110.5 19.875V4.125zm7.5 4.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z"/></svg>
+      財務報表
+    </a>
+  </nav>
+  <div class="sidebar-section">內容管理</div>
+  <nav class="sidebar-nav">
+    <a href="./news.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/></svg>
+      最新消息
+    </a>
+    <a href="./products.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+      商品管理
+    </a>
+  </nav>
+  <div class="sidebar-section">服務設定</div>
+  <nav class="sidebar-nav">
+    <a href="./services.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      服務項目
+    </a>
+    <a href="./inventory.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+      庫存管理
+    </a>
+  </nav>
+  <div class="sidebar-section">人員管理</div>
+  <nav class="sidebar-nav">
+    <a href="./staff.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+      員工管理
+    </a>
+    <a href="./schedules.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      班表管理
+    </a>
+    <a href="./salary.html" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      薪資計算
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="logout-btn" onclick="window.location.href='../login.html'">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
+      登出
+    </button>
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left"><div class="topbar-title">財務報表</div></div>
+    <div class="topbar-right">
+      <span class="role-badge">管理員</span>
+      <span class="admin-name">王老闆</span>
+      <div class="admin-avatar">王</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- 頁首 -->
+    <div class="page-header" style="flex-wrap:wrap;gap:1rem;">
+      <div class="page-header-left">
+        <span class="section-label">Finance</span>
+        <h1>財務報表</h1>
+      </div>
+      <div style="display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;">
+        <!-- 月/季/年 切換 -->
+        <div class="period-tabs">
+          <button class="period-btn active" data-mode="month">月</button>
+          <button class="period-btn" data-mode="quarter">季</button>
+          <button class="period-btn" data-mode="year">年</button>
+        </div>
+        <!-- 上下期 -->
+        <div class="period-nav">
+          <button class="period-nav-btn" id="prevPeriod">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/></svg>
+          </button>
+          <span class="period-label" id="periodLabel"></span>
+          <button class="period-nav-btn" id="nextPeriod">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/></svg>
+          </button>
+        </div>
+        <button class="btn-outline" onclick="openCatModal()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          管理類別
+        </button>
+        <button class="btn-primary" onclick="openAddExpense()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+          新增支出
+        </button>
+      </div>
+    </div>
+
+    <!-- 統計卡片 -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">期間收入</div>
+        <div class="stat-value" id="statRevenue" style="font-size:1.4rem;">—</div>
+        <div class="stat-hint">服務 + 商品</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-label">期間支出</div>
+        <div class="stat-value" id="statExpense" style="font-size:1.4rem;">—</div>
+        <div class="stat-hint">手動記錄</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">淨利</div>
+        <div class="stat-value" id="statProfit" style="font-size:1.4rem;">—</div>
+        <div class="stat-hint">收入 − 支出</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">利潤率</div>
+        <div class="stat-value" id="statMargin" style="font-size:1.4rem;">—</div>
+        <div class="stat-hint">淨利 ÷ 收入</div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- 左：收入分析 + 圓餅圖 -->
+      <div class="col-lg-5">
+        <!-- 收入細項 -->
+        <div class="card mb-3">
+          <div class="card-header"><span class="card-title">收入分析</span></div>
+          <div class="card-body">
+            <div style="margin-bottom:1rem;">
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.3rem;">
+                <span style="color:var(--neutral);">服務收入</span>
+                <span id="revService" style="font-weight:500;"></span>
+              </div>
+              <div class="rev-bar"><div class="rev-bar-fill bar-svc" id="revSvcPct" style="width:0%"></div></div>
+              <div style="font-size:0.7rem;color:var(--neutral);" id="revSvcLabel"></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.3rem;">
+                <span style="color:var(--neutral);">商品收入</span>
+                <span id="revProduct" style="font-weight:500;"></span>
+              </div>
+              <div class="rev-bar"><div class="rev-bar-fill bar-prd" id="revPrdPct" style="width:0%"></div></div>
+              <div style="font-size:0.7rem;color:var(--neutral);" id="revPrdLabel"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 支出圓餅圖 -->
+        <div class="card">
+          <div class="card-header"><span class="card-title">支出結構</span></div>
+          <div class="card-body">
+            <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+              <svg width="200" height="200" viewBox="0 0 200 200" id="expenseChart"></svg>
+              <div style="flex:1;min-width:130px;display:flex;flex-direction:column;gap:0.5rem;" id="expenseLegend"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右：收支長條圖 + 支出明細 -->
+      <div class="col-lg-7">
+        <!-- 收支長條圖 -->
+        <div class="card mb-3">
+          <div class="card-header"><span class="card-title">收支走勢</span></div>
+          <div class="card-body">
+            <div class="bar-chart-wrap" id="barChart"></div>
+            <div class="bar-legend">
+              <span><span class="dot" style="background:var(--brandy-rose);"></span>收入</span>
+              <span><span class="dot" style="background:var(--chalk-beige);"></span>支出</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 支出明細 -->
+        <div class="card">
+          <div class="card-header"><span class="card-title">支出明細</span></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>日期</th><th>類別</th><th>項目</th>
+                  <th>金額</th><th>備註</th><th style="text-align:center;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="expenseTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 新增／編輯支出 Modal -->
+<div class="modal-overlay" id="expenseModalOverlay" onclick="if(event.target===this)closeExpenseModal()">
+  <div class="modal">
+    <div class="modal-title" id="expenseModalTitle">新增支出</div>
+    <form id="expenseForm">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>所屬月份</label>
+            <div class="custom-select-wrapper modal-select" id="eMonthWrapper">
+              <button type="button" class="custom-select-btn" id="eMonthBtn" style="background:var(--peach-cream);border-radius:50px;">
+                <span id="eMonthLabel" style="font-family:'Noto Serif TC',serif;font-size:0.85rem;color:var(--neutral);">請選擇月份</span>
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+              </button>
+              <div class="custom-select-list">
+                <div class="modal-select-scroll" id="eMonthList"></div>
+              </div>
+              <input type="hidden" id="eMonth">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>支出日期</label>
+            <div style="position:relative;">
+              <button type="button" class="custom-select-btn" id="eDateBtn" style="width:100%;justify-content:flex-start;gap:0.6rem;background:var(--peach-cream);border-radius:50px;">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5"/></svg>
+                <span id="eDateLabel" style="font-family:'Noto Serif TC',serif;font-size:0.85rem;color:var(--neutral);">請選擇日期</span>
+              </button>
+              <div class="custom-calendar modal-calendar" id="eDateCalendar"></div>
+              <input type="hidden" id="eDate">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>類別</label>
+            <div class="custom-select-wrapper modal-select" id="eCategoryWrapper">
+              <button type="button" class="custom-select-btn" id="eCategoryBtn" style="background:var(--peach-cream);border-radius:50px;">
+                <span id="eCategoryLabel" style="font-family:'Noto Serif TC',serif;font-size:0.85rem;color:var(--neutral);">請選擇類別</span>
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+              </button>
+              <div class="custom-select-list" id="eCategoryList"></div>
+              <input type="hidden" id="eCategory">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group"><label>金額（NT$）</label><input type="number" id="eAmount" placeholder="0" min="0" required></div>
+        </div>
+        <div class="col-12">
+          <div class="form-group"><label>項目名稱</label><input type="text" id="eName" placeholder="例如：5月房租" required></div>
+        </div>
+        <div class="col-12">
+          <div class="form-group"><label>備註（選填）</label><input type="text" id="eNote" placeholder="補充說明..."></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline" onclick="closeExpenseModal()">取消</button>
+        <button type="submit" class="btn-primary">儲存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 類別管理 Modal -->
+<div class="modal-overlay" id="catModalOverlay" onclick="if(event.target===this)closeCatModal()">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-title">管理支出類別</div>
+    <div style="max-height:260px;overflow-y:auto;margin-bottom:1rem;" id="categoryList"></div>
+    <div style="display:flex;gap:0.5rem;">
+      <input type="text" id="newCategoryInput" placeholder="輸入新類別名稱" class="form-control" style="border:1.5px solid var(--chalk-beige);border-radius:50px;padding:0.55rem 1rem;font-family:'Noto Serif TC',serif;font-size:0.85rem;outline:none;flex:1;">
+      <button class="btn-primary" id="addCategoryBtn">新增</button>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-outline" onclick="closeCatModal()">關閉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="../js/admin/finance.js"></script>
+</body>
+</html>

@@ -32,6 +32,14 @@ function renderOrder() {
   document.getElementById('receiverAddress').textContent = order.address;
   document.getElementById('orderNotes').textContent = order.notes || '無';
 
+  // ATM / 貨到付款 切換
+  const isATM = order.paymentMethod === '轉帳';
+  document.getElementById('atmCard').style.display = isATM ? 'block' : 'none';
+  if (isATM) {
+    document.getElementById('successTitle').textContent = '請完成 ATM 轉帳';
+    document.getElementById('successDesc').textContent = '請依下方帳號完成匯款，我們確認收款後將立即為您安排出貨';
+  }
+
   // 商品列表
   const itemsContainer = document.getElementById('orderItems');
   itemsContainer.innerHTML = order.items.map(item => `
@@ -58,6 +66,18 @@ function renderOrder() {
   document.getElementById('subtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
   document.getElementById('shippingFee').textContent = shipping === 0 ? '免運' : `NT$ ${shipping}`;
   document.getElementById('total').textContent = `NT$ ${total.toLocaleString()}`;
+  if (isATM) document.getElementById('atmAmount').textContent = `NT$ ${total.toLocaleString()}`;
+}
+
+// ── 複製帳號 ──
+function copyATMAccount() {
+  const account = document.getElementById('atmAccount').textContent.replace(/-/g, '');
+  navigator.clipboard.writeText(account).then(function() {
+    const btn = document.querySelector('.copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = '已複製！';
+    setTimeout(function() { btn.textContent = orig; }, 1800);
+  });
 }
 
 // ── 初始化 ──

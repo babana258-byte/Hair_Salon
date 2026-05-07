@@ -161,6 +161,25 @@
             </div>
           </div>
           <div class="form-group">
+            <label>指定設計師</label>
+            <div class="custom-select" id="designerDropdown">
+              <div class="custom-select-trigger">
+                <span class="custom-select-value">不指定</span>
+                <svg width="12" height="12" fill="#B29079" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+              </div>
+              <div class="custom-select-dropdown">
+                <div class="custom-option selected" data-value="">不指定</div>
+                <div class="custom-option" data-value="林設計師">林設計師</div>
+                <div class="custom-option" data-value="王設計師">王設計師</div>
+              </div>
+            </div>
+            <select id="designer" name="designer" hidden>
+              <option value="">不指定</option>
+              <option value="林設計師">林設計師</option>
+              <option value="王設計師">王設計師</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>預約時間</label>
             <div class="custom-select" id="timeDropdown">
               <div class="custom-select-trigger">
